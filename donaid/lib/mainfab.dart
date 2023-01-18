@@ -58,7 +58,7 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
             SpeedDialChild(
               child: !rmicons ? const Icon(Icons.search) : null,
               backgroundColor: secondarycolor,
-              foregroundColor: texlightpurple,
+              foregroundColor: textlightpurple,
               label: 'Search Donations',
               // onTap: () => setState(() => rmicons = !rmicons),
               onTap: () => debugPrint('Search'),
@@ -68,12 +68,12 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
             SpeedDialChild(
               child: !rmicons ? const Icon(Icons.qr_code) : null,
               backgroundColor: secondarycolor,
-              foregroundColor: texlightpurple,
+              foregroundColor: textlightpurple,
               label: 'Scan Donation QR Code',
               onTap: ()  {
           // Update the state of the app.
           // ...
-            Navigator.pop(context);
+            // Navigator.pop(context);
 
             Navigator.push(
               context,
