@@ -11,6 +11,9 @@ import 'package:donaid/mainfab.dart';
 import 'package:flutter/src/material/card.dart';////
 import 'dart:io';
 
+
+
+
 void main() {
   runApp( MaterialApp(
       title: 'DonAid',
@@ -147,8 +150,7 @@ class Actions extends StatelessWidget {
           title: const Text("Οι δράσεις μου"),
         ),
      body: const  ActionsPage(),
-      floatingActionButton:actfab,
-
+      floatingActionButton:const ActionFab(),
       
       drawer: const MyDrawer(),
       );
@@ -246,7 +248,7 @@ class MyDrawer extends StatelessWidget{
 
         title: const Text('Λογαριασμός'),
         onTap: () {
-   Navigator.pop(context);
+             Navigator.pop(context);
 
             Navigator.push(
               context,

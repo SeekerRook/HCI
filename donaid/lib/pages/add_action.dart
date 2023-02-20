@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 
 
-class TextFieldWidget extends StatefulWidget {
+class TextFieldWidgetAct extends StatefulWidget {
   final int maxLines;
   final String label;
   final String text;
   final ValueChanged<String> onChanged;
 
-  const TextFieldWidget({
+  const TextFieldWidgetAct({
     Key? key,
     this.maxLines = 1,
     required this.label,
@@ -18,10 +18,10 @@ class TextFieldWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _TextFieldWidgetState createState() => _TextFieldWidgetState();
+  _TextFieldWidgetActState createState() => _TextFieldWidgetActState();
 }
 
-class _TextFieldWidgetState extends State<TextFieldWidget> {
+class _TextFieldWidgetActState extends State<TextFieldWidgetAct> {
   late final TextEditingController controller;
 
   @override
@@ -59,12 +59,12 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       );
 }
 
-class ProfileWidget extends StatelessWidget {
+class ActionWidget extends StatelessWidget {
   final String imagePath;
   final bool isEdit;
   final VoidCallback onClicked;
 
-  const ProfileWidget({
+  const ActionWidget({
     Key? key,
     required this.imagePath,
     this.isEdit = false,
@@ -135,12 +135,13 @@ class ProfileWidget extends StatelessWidget {
 }
 
 
-class EditProfilePage extends StatefulWidget {
+class AddActionPage extends StatefulWidget {
   @override
-  _EditProfilePageState createState() => _EditProfilePageState();
-}
+  _AddActionPageState createState() => _AddActionPageState();
 
-class _EditProfilePageState extends State<EditProfilePage> {
+  }
+
+class _AddActionPageState extends State<AddActionPage> {
   // User user = UserPreferences.myUser;
 
   @override
@@ -149,29 +150,56 @@ class _EditProfilePageState extends State<EditProfilePage> {
               padding: EdgeInsets.symmetric(horizontal: 32),
               physics: BouncingScrollPhysics(),
               children: [
-                ProfileWidget(
-                  imagePath: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/271deea8-e28c-41a3-aaf5-2913f5f48be6/de7834s-6515bd40-8b2c-4dc6-a843-5ac1a95a8b55.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzI3MWRlZWE4LWUyOGMtNDFhMy1hYWY1LTI5MTNmNWY0OGJlNlwvZGU3ODM0cy02NTE1YmQ0MC04YjJjLTRkYzYtYTg0My01YWMxYTk1YThiNTUuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.BopkDn1ptIwbmcKHdAOlYHyAOOACXW0Zfgbs0-6BY-E",
-                  isEdit: true,
-                  onClicked: () async {},
+                // ActionWidget(
+                //   imagePath: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/271deea8-e28c-41a3-aaf5-2913f5f48be6/de7834s-6515bd40-8b2c-4dc6-a843-5ac1a95a8b55.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzI3MWRlZWE4LWUyOGMtNDFhMy1hYWY1LTI5MTNmNWY0OGJlNlwvZGU3ODM0cy02NTE1YmQ0MC04YjJjLTRkYzYtYTg0My01YWMxYTk1YThiNTUuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.BopkDn1ptIwbmcKHdAOlYHyAOOACXW0Zfgbs0-6BY-E",
+                //   isEdit: true,
+                //   onClicked: () async {},
+                // ),
+                const SizedBox(height: 24),
+                // TextFieldWidgetAct(
+                //   label: 'Τίτλος',
+                //   text: " ",
+                //   onChanged: (title) {},
+                // ),
+                TextFormField(
+
+                  decoration:  InputDecoration(
+                    prefixIcon: Icon(Icons.search),
+                    labelText: "Something",
+                  ),
+                onChanged: (title) {} ,
                 ),
                 const SizedBox(height: 24),
-                TextFieldWidget(
-                  label: 'Τίτλος',
-                  text: " ",
-                  onChanged: (name) {},
-                ),
-                const SizedBox(height: 24),
-                TextFieldWidget(
+                TextFieldWidgetAct(
                   label: 'Περιγραφή',
                   text: " ",
-                  onChanged: (email) {},
+                  onChanged: (description) {},
                 ),
                 const SizedBox(height: 24),
-                TextFieldWidget(
+                TextFieldWidgetAct(
+                  
                   label: 'Τοποθεσία',
                   text: " ",
-                  maxLines: 5,
-                  onChanged: (about) {},
+                  // maxLines: 5,
+                  onChanged: (location) {},
+                ),
+                const SizedBox(height: 24),
+                TextFieldWidgetAct(
+                  label: 'Ημερομηνία',
+                  text: " ",
+                  onChanged: (date) {},
+                ),
+                const SizedBox(height: 24),
+                TextFieldWidgetAct(
+                  label: 'Κατηγορίες',
+                  text: " ",
+                  onChanged: (categories) {},
+                ),
+                const SizedBox(height: 24),
+                TextFieldWidgetAct(
+                  label: 'Στοιχεία επικοινωνίας',
+                  text: " ",
+                  onChanged: (communication) {},
                 ),
               ],
             ),
