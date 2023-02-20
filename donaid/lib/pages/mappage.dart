@@ -134,6 +134,7 @@
 //   }
 // }
 import 'dart:math';
+import 'package:donaid/utils/action_card.dart';
 import 'package:flutter/services.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:donaid/theme.dart';
@@ -265,7 +266,7 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
         onTap: () {
           controller.center = transformer.toLatLng(Offset(pos.dx, pos.dy+100));
 
-          controller.zoom = 18;
+          // controller.zoom = 18;
 
           setState(() {});
         }
@@ -298,7 +299,7 @@ Widget _buildMarkerWidgetwithbs(Offset pos, Color color, MapTransformer transfor
 
           debugPrint('${pos.dx}, ${pos.dy}');
           controller.center = transformer.toLatLng(Offset(pos.dx, pos.dy+100));
-          // controller.zoom = 18;
+          // controller.zoom = 15;
           setState(() {});
 
           showBottomSheet(
@@ -313,55 +314,56 @@ Widget _buildMarkerWidgetwithbs(Offset pos, Color color, MapTransformer transfor
                 // padding: const EdgeInsets.only(bottom: kFloatingActionButtonMargin + 48),
                 child:Wrap(
                         children: [
-                          ListTile(
-                            title: Text(
-                              title,
-),
-                            subtitle: Text("από: $by"),
+                          ActionCard()
+//                           ListTile(
+//                             title: Text(
+//                               title,
+// ),
+//                             subtitle: Text("από: $by"),
                             
-                            tileColor: maincolor,
-                          ),
-                          ListTile(
-                            title: Text(
-                              place,
-                              style: const TextStyle(color: Color(0xff49454F)),
+//                             tileColor: maincolor,
+//                           ),
+//                           ListTile(
+//                             title: Text(
+//                               place,
+//                               style: const TextStyle(color: Color(0xff49454F)),
 
-                            ),
-                            leading: Icon(Icons.place),
+//                             ),
+//                             leading: Icon(Icons.place),
 
-                          ),          
-                          ListTile(
-                            title: Text(
-                              date,
-                              style: const TextStyle(color: Color(0xff49454F)),
+//                           ),          
+//                           ListTile(
+//                             title: Text(
+//                               date,
+//                               style: const TextStyle(color: Color(0xff49454F)),
 
-                            ),
-                            leading: Icon(Icons.date_range),
+//                             ),
+//                             leading: Icon(Icons.date_range),
 
-                          ), 
-                          ListTile(
-                            title: Text(
-                              description,
-                              style: const TextStyle(color: Color(0xff49454F)),
+//                           ), 
+//                           ListTile(
+//                             title: Text(
+//                               description,
+//                               style: const TextStyle(color: Color(0xff49454F)),
                             
                            
-                            ),
-                            leading: Icon(Icons.info),
+//                             ),
+//                             leading: Icon(Icons.info),
 
-                          ),                 
-                          ListTile(
-                            title: Text(
-                              'info@aggaliazois.com',
-                              style: const TextStyle(color: Color(0xff49454F)),
+//                           ),                 
+//                           ListTile(
+//                             title: Text(
+//                               'info@aggaliazois.com',
+//                               style: const TextStyle(color: Color(0xff49454F)),
                             
-                            ),
-                            onTap: () {
-                              Clipboard.setData(ClipboardData(text: contact));
+//                             ),
+//                             onTap: () {
+//                               Clipboard.setData(ClipboardData(text: contact));
 
-                            },
-                            leading: Icon(Icons.message),
+//                             },
+//                             leading: Icon(Icons.message),
 
-                          ),        
+//                           ),        
                           ]));
             }
           );
