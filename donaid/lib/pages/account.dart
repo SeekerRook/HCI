@@ -156,6 +156,17 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   isEdit: true,
                   onClicked: () async {},
                 ),
+               
+               
+                //  const SizedBox(height: 24),              
+              //   TextFormField(
+              //     decoration:  InputDecoration(
+              //       prefixIcon: Icon(Icons.search),
+              //       labelText: "Something",
+              //     ),
+              //   onChanged: (title) {} ,
+              //   ), 
+               
                 const SizedBox(height: 24),
                 TextFieldWidget(
                   label: 'Full Name',

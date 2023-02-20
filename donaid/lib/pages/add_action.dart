@@ -143,7 +143,7 @@ class AddActionPage extends StatefulWidget {
 
 class _AddActionPageState extends State<AddActionPage> {
   // User user = UserPreferences.myUser;
-
+bool _switchValue = false;
   @override
   Widget build(BuildContext context) =>  Builder(
           builder: (context) =>  ListView(
@@ -155,51 +155,78 @@ class _AddActionPageState extends State<AddActionPage> {
                 //   isEdit: true,
                 //   onClicked: () async {},
                 // ),
-                const SizedBox(height: 24),
-                // TextFieldWidgetAct(
-                //   label: 'Τίτλος',
-                //   text: " ",
-                //   onChanged: (title) {},
-                // ),
-                TextFormField(
 
-                  decoration:  InputDecoration(
-                    prefixIcon: Icon(Icons.search),
-                    labelText: "Something",
+
+              const SizedBox(height: 24),              
+                TextFormField(
+                  decoration:  InputDecoration(                    
+                    labelText: "Τίτλος",
                   ),
                 onChanged: (title) {} ,
                 ),
-                const SizedBox(height: 24),
-                TextFieldWidgetAct(
-                  label: 'Περιγραφή',
-                  text: " ",
-                  onChanged: (description) {},
+
+                const SizedBox(height: 24),              
+                TextFormField(
+                  decoration:  InputDecoration(                    
+                    labelText: "Περιγραφή",
+                  ),
+                onChanged: (description) {} ,
                 ),
-                const SizedBox(height: 24),
-                TextFieldWidgetAct(
+                
+                 const SizedBox(height: 24),              
+                TextFormField(
+                  decoration:  InputDecoration(
+                    prefixIcon: Icon(Icons.search),
+                    suffixIcon: Icon(Icons.close),
+                    labelText: "Τοποθεσία",
+                  ),
+                onChanged: (location) {} ,
+                ),
+
+              
+                const SizedBox(height: 24),             
+
+               TextFormField(
+                enabled: _switchValue,
+                  decoration:  InputDecoration(                    
+                    labelText: "Ημερομηνία",
+                  ),
+                onChanged: (date) {} ,
+                
+                ),
+               
+               
+               Switch(
+                value: _switchValue,
+                onChanged: (bool value) {
+                setState(() {
+                _switchValue = value;
+                });
+               },
+  ),
+            
+              
+                const SizedBox(height: 24),              
+                TextFormField(
+                  decoration: 
                   
-                  label: 'Τοποθεσία',
-                  text: " ",
-                  // maxLines: 5,
-                  onChanged: (location) {},
+                   InputDecoration(
+                    
+                    prefixIcon: Icon(Icons.search),
+                    suffixIcon: Icon(Icons.close),
+                    labelText: "Κατηγορίες",
+                     hintText: 'Προσθήκη'
+
+                  ),
+                onChanged: (categories) {} ,
                 ),
-                const SizedBox(height: 24),
-                TextFieldWidgetAct(
-                  label: 'Ημερομηνία',
-                  text: " ",
-                  onChanged: (date) {},
-                ),
-                const SizedBox(height: 24),
-                TextFieldWidgetAct(
-                  label: 'Κατηγορίες',
-                  text: " ",
-                  onChanged: (categories) {},
-                ),
-                const SizedBox(height: 24),
-                TextFieldWidgetAct(
-                  label: 'Στοιχεία επικοινωνίας',
-                  text: " ",
-                  onChanged: (communication) {},
+               
+                const SizedBox(height: 24),              
+                TextFormField(
+                  decoration:  InputDecoration(                    
+                    labelText: "Στοιχεία επικοινωνίας",
+                  ),
+                onChanged: (communication) {} ,
                 ),
               ],
             ),
