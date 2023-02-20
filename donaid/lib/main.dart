@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:donaid/pages/mappage.dart';
 // import 'package:donaid/drawer.dart';
 import 'package:donaid/pages/donations.dart';
+import 'package:donaid/pages/actions.dart';
+import 'package:donaid/pages/favorite.dart';
+import 'package:donaid/pages/account.dart';
 import 'package:donaid/theme.dart';
 import 'package:donaid/mainfab.dart';
+import 'package:flutter/src/material/card.dart';////
 import 'dart:io';
 
 void main() {
@@ -80,6 +84,78 @@ class Donations extends StatelessWidget {
   }
 }
 
+class Account extends StatelessWidget {
+  const Account({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return 
+        Scaffold(
+        appBar: AppBar(
+          leading: mymenu,
+          backgroundColor: maincolor,
+          foregroundColor: textblack,
+          title: const Text("Ο Λογαριασμός μου"),
+          
+        ),
+      body:   EditProfilePage(),
+      // floatingActionButton:accfab,
+
+      
+      drawer: const MyDrawer(),
+      );
+  }
+}
+
+class Favorites extends StatelessWidget {
+  const Favorites({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return 
+        Scaffold(
+        appBar: AppBar(
+          leading: mymenu,
+          backgroundColor: maincolor,
+          foregroundColor: textblack,
+          title: const Text("Τα αγαπημένα μου"),
+        ),
+      body: const  FavoritePage(),
+      
+      floatingActionButton:favfab,
+
+      
+      drawer: const MyDrawer(),
+      );
+  }
+}
+
+class Actions extends StatelessWidget {
+  const Actions({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return 
+        Scaffold(
+        appBar: AppBar(
+          leading: mymenu,
+          backgroundColor: maincolor,
+          foregroundColor: textblack,
+          title: const Text("Οι δράσεις μου"),
+        ),
+     body: const  ActionsPage(),
+      floatingActionButton:actfab,
+
+      
+      drawer: const MyDrawer(),
+      );
+  }
+}
+
+
 class MyDrawer extends StatelessWidget{
     const MyDrawer({super.key});
 
@@ -139,17 +215,27 @@ class MyDrawer extends StatelessWidget{
 
         title: const Text('Οι Δράσεις μου'),
         onTap: () {
-          // Update the state of the app.
-          // ...
+          Navigator.pop(context);
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Actions()),
+            );
         },
       ),
+
+
      ListTile(
         leading: const Icon(Icons.favorite),           
 
         title: const Text('Αγαπημένα'),
         onTap: () {
-          // Update the state of the app.
-          // ...
+          Navigator.pop(context);
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Favorites()),
+            );
         },
       ),
       const Divider(
@@ -160,10 +246,15 @@ class MyDrawer extends StatelessWidget{
 
         title: const Text('Λογαριασμός'),
         onTap: () {
-          // Update the state of the app.
-          // ...
+   Navigator.pop(context);
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Account()),
+            );
         },
       ),
+      
       ListTile(
         leading: const Icon(Icons.person_remove),           
 
