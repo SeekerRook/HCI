@@ -37,8 +37,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
 
     super.dispose();
   }
-
-  @override
+ @override
   Widget build(BuildContext context) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -59,7 +58,6 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         ],
       );
 }
-
 
 class ProfileWidget extends StatelessWidget {
   final String imagePath;
@@ -158,20 +156,20 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 ),
                 const SizedBox(height: 24),
                 TextFieldWidget(
-                  label: 'Full Name',
-                  text: "Vasileia",
+                  label: 'Τίτλος',
+                  text: " ",
                   onChanged: (name) {},
                 ),
                 const SizedBox(height: 24),
                 TextFieldWidget(
-                  label: 'Email',
-                  text: "ntalianiv@gmail.com",
+                  label: 'Περιγραφή',
+                  text: " ",
                   onChanged: (email) {},
                 ),
                 const SizedBox(height: 24),
                 TextFieldWidget(
-                  label: 'About',
-                  text: "I am an undergraduate student at ECE NTUA",
+                  label: 'Τοποθεσία',
+                  text: " ",
                   maxLines: 5,
                   onChanged: (about) {},
                 ),
