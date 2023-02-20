@@ -134,7 +134,7 @@
 //   }
 // }
 import 'dart:math';
-
+import 'package:flutter/services.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:donaid/theme.dart';
 // import 'package:example/utils/tile_servers.dart';
@@ -159,7 +159,30 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
     zoom: 15,
   );
 
-  final markers = [
+
+  final markers = [ //actual coordinates would be fetched from the app API, that is not implemented for this prototype. We are using dummy data 
+    const LatLng(37.97327142078896, 23.78297583782418),
+    const LatLng(37.97527142078896, 23.78397583782418),
+    const LatLng(37.97727142078896, 23.784097583782418),
+    const LatLng(37.97227142078896, 23.786097583782418),
+    const LatLng(37.87327142078896, 23.78297583782418),
+    const LatLng(37.94527142078896, 23.783547583782418),
+    const LatLng(37.93727142078896, 23.782397583782418),
+    const LatLng(37.96227142078896, 23.779097583782418),   
+    const LatLng(37.17327142078896, 23.72597583782418),
+    const LatLng(37.95727142078896, 23.75497583782418),
+    const LatLng(37.92627142078896, 23.743097583782418),
+    const LatLng(37.93827142078896, 23.787097583782418),  
+    const LatLng(37.99027142078896, 23.70397583782418),
+    const LatLng(37.93027142078896, 23.72497583782418),
+    const LatLng(37.90027142078896, 23.765097583782418),
+    const LatLng(37.98927142078896, 23.778097583782418),  
+    const LatLng(37.93427142078896, 23.73297583782418),
+    const LatLng(37.93427142078896, 23.74597583782418),
+    const LatLng(37.95627142078896, 23.733097583782418),
+    const LatLng(37.92927142078896, 23.777097583782418),
+  ];
+  final data = [ //actual coordinates would be fetched from the app API, that is not implemented for this prototype. We are using dummy data 
     const LatLng(37.97327142078896, 23.78297583782418),
     const LatLng(37.97527142078896, 23.78397583782418),
     const LatLng(37.97727142078896, 23.784097583782418),
@@ -186,6 +209,7 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
     controller.center = const LatLng(37.97927142078896, 23.783097583782418);
     controller.zoom = 15;
 
+    Navigator.pop(context);
     setState(() {});
   }
 
@@ -194,6 +218,7 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
     final zoom = clamp(controller.zoom + delta, 2, 18);
 
     transformer.setZoomInPlace(zoom, position);
+
     setState(() {});
   }
 
@@ -223,7 +248,8 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
     }
   }
 
-  Widget _buildMarkerWidget(Offset pos, Color color,
+  Widget _buildMarkerWidget(Offset pos, Color color, MapTransformer transformer,
+
       [IconData icon = Icons.location_on]) {
     return Positioned(
       left: pos.dx - 24,
@@ -237,16 +263,114 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
           size: 48,
         ),
         onTap: () {
-          showDialog(
+          controller.center = transformer.toLatLng(Offset(pos.dx, pos.dy+100));
+
+          controller.zoom = 18;
+
+          setState(() {});
+        }
+      ),
+    );
+  }
+Widget _buildMarkerWidgetwithbs(Offset pos, Color color, MapTransformer transformer,
+      String title,
+      String by,
+      String place,
+      String date,
+      String description,
+      String contact,
+      
+      [bool showbs = true, IconData icon = Icons.location_on]) {
+      
+    return Positioned(
+      left: pos.dx - 24,
+      top: pos.dy - 24,
+      width: 48,
+      height: 48,
+      child: GestureDetector(
+        child: Icon(
+          icon,
+          color: color,
+          size: 48,
+        ),
+        onTap: () {
+
+
+          debugPrint('${pos.dx}, ${pos.dy}');
+          controller.center = transformer.toLatLng(Offset(pos.dx, pos.dy+100));
+          // controller.zoom = 18;
+          setState(() {});
+
+          showBottomSheet(
+
+            
             context: context,
-            builder: (context) => const AlertDialog(
-              content: Text('You have clicked a marker!'),
-            ),
+             
+            builder: (context){
+
+              return SingleChildScrollView(
+                //  height: 200,
+                // padding: const EdgeInsets.only(bottom: kFloatingActionButtonMargin + 48),
+                child:Wrap(
+                        children: [
+                          ListTile(
+                            title: Text(
+                              title,
+),
+                            subtitle: Text("από: $by"),
+                            
+                            tileColor: maincolor,
+                          ),
+                          ListTile(
+                            title: Text(
+                              place,
+                              style: const TextStyle(color: Color(0xff49454F)),
+
+                            ),
+                            leading: Icon(Icons.place),
+
+                          ),          
+                          ListTile(
+                            title: Text(
+                              date,
+                              style: const TextStyle(color: Color(0xff49454F)),
+
+                            ),
+                            leading: Icon(Icons.date_range),
+
+                          ), 
+                          ListTile(
+                            title: Text(
+                              description,
+                              style: const TextStyle(color: Color(0xff49454F)),
+                            
+                           
+                            ),
+                            leading: Icon(Icons.info),
+
+                          ),                 
+                          ListTile(
+                            title: Text(
+                              'info@aggaliazois.com',
+                              style: const TextStyle(color: Color(0xff49454F)),
+                            
+                            ),
+                            onTap: () {
+                              Clipboard.setData(ClipboardData(text: contact));
+
+                            },
+                            leading: Icon(Icons.message),
+
+                          ),        
+                          ]));
+            }
           );
+       
         },
       ),
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -257,21 +381,28 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
           final markerPositions = markers.map(transformer.toOffset).toList();
 
           final markerWidgets = markerPositions.map(
-            (pos) => _buildMarkerWidget(pos, pincolor),
+            (pos) => _buildMarkerWidgetwithbs(pos, pincolor ,transformer,
+            "title","Organization","0/0/2000 - 30/12/2055","place","Lore Ipsum ........","info@mail.com",
+            ),
           );
+<<<<<<< HEAD
 
           final homeLocation = transformer
               .toOffset(const LatLng(37.97927142078896, 23.783097583782418));
+=======
+          
+          final homeLocation = transformer.toOffset(const LatLng(37.97927142078896, 23.783097583782418));
+>>>>>>> 3c2d916db551488c7410a4d27851bad3b7d6ffd0
 
           final homeMarkerWidget =
-              _buildMarkerWidget(homeLocation, textpurple, Icons.my_location);
+              _buildMarkerWidget(homeLocation, textpurple ,transformer,  Icons.my_location);
 
           final centerLocation = Offset(
               transformer.constraints.biggest.width / 2,
               transformer.constraints.biggest.height / 2);
 
           final centerMarkerWidget =
-              _buildMarkerWidget(centerLocation, Colors.purple);
+              _buildMarkerWidget(centerLocation , Colors.purple ,transformer);
 
           return GestureDetector(
             behavior: HitTestBehavior.opaque,

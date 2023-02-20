@@ -1,7 +1,7 @@
 import 'package:donaid/mymenu.dart';
 import 'package:flutter/material.dart';
 import 'package:donaid/pages/mappage.dart';
-import 'package:donaid/drawer.dart';
+// import 'package:donaid/drawer.dart';
 import 'package:donaid/pages/donations.dart';
 import 'package:donaid/pages/actions.dart';
 import 'package:donaid/pages/favorite.dart';
@@ -10,6 +10,9 @@ import 'package:donaid/theme.dart';
 import 'package:donaid/mainfab.dart';
 import 'package:flutter/src/material/card.dart';////
 import 'dart:io';
+
+
+
 
 void main() {
   runApp( MaterialApp(
@@ -32,19 +35,7 @@ class MyApp extends StatelessWidget {
       title: 'DonAid',
       theme: mytheme,
       home: const MainPage(), 
-      // Scaffold(
-      //   appBar: AppBar(
-      //     leading: mymenu,
-      //     backgroundColor: maincolor,
-      //     foregroundColor: textblack,
-      //     title: const Text("DonAid"),
-      //   ),
-      // body: const InteractiveMapPage(),
-      // floatingActionButton:mainfab,
 
-      
-      // drawer: mydrawer(),
-      // ),
     );
   }
 }
@@ -78,6 +69,8 @@ class Donations extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+            debugPrint(context.toString());
+
     return 
         Scaffold(
         appBar: AppBar(
@@ -158,10 +151,8 @@ class Actions extends StatelessWidget {
           foregroundColor: textblack,
           title: const Text("Οι δράσεις μου"),
         ),
-      body: const  ActionsPage(),
-      
-      floatingActionButton:actfab,
-
+     body: const  ActionsPage(),
+      floatingActionButton:const ActionFab(),
       
       drawer: const MyDrawer(),
       );
@@ -200,6 +191,7 @@ class MyDrawer extends StatelessWidget{
           // Update the state of the app.
           // ...
             Navigator.pop(context);
+            Navigator.pop(context);
 
             Navigator.push(
               context,
@@ -214,7 +206,9 @@ class MyDrawer extends StatelessWidget{
         onTap: () {
           // Update the state of the app.
           // ...
+            Navigator.pop(context);            
             Navigator.pop(context);
+
 
             Navigator.push(
               context,
@@ -228,6 +222,7 @@ class MyDrawer extends StatelessWidget{
 
         title: const Text('Οι Δράσεις μου'),
         onTap: () {
+            Navigator.pop(context);            
           Navigator.pop(context);
 
             Navigator.push(
@@ -236,11 +231,14 @@ class MyDrawer extends StatelessWidget{
             );
         },
       ),
+
+
      ListTile(
         leading: const Icon(Icons.favorite),           
 
         title: const Text('Αγαπημένα'),
         onTap: () {
+            Navigator.pop(context);            
           Navigator.pop(context);
 
             Navigator.push(
@@ -257,7 +255,10 @@ class MyDrawer extends StatelessWidget{
 
         title: const Text('Λογαριασμός'),
         onTap: () {
+
+            Navigator.pop(context);            
    Navigator.pop(context);
+
 
             Navigator.push(
               context,
