@@ -129,7 +129,7 @@
 //           );
 //         },
 //       ),
-  
+
 //     );
 //   }
 // }
@@ -167,15 +167,15 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
     const LatLng(37.87327142078896, 23.78297583782418),
     const LatLng(37.94527142078896, 23.783547583782418),
     const LatLng(37.93727142078896, 23.782397583782418),
-    const LatLng(37.96227142078896, 23.779097583782418),   
+    const LatLng(37.96227142078896, 23.779097583782418),
     const LatLng(37.17327142078896, 23.72597583782418),
     const LatLng(37.95727142078896, 23.75497583782418),
     const LatLng(37.92627142078896, 23.743097583782418),
-    const LatLng(37.93827142078896, 23.787097583782418),  
+    const LatLng(37.93827142078896, 23.787097583782418),
     const LatLng(37.99027142078896, 23.70397583782418),
     const LatLng(37.93027142078896, 23.72497583782418),
     const LatLng(37.90027142078896, 23.765097583782418),
-    const LatLng(37.98927142078896, 23.778097583782418),  
+    const LatLng(37.98927142078896, 23.778097583782418),
     const LatLng(37.93427142078896, 23.73297583782418),
     const LatLng(37.93427142078896, 23.74597583782418),
     const LatLng(37.95627142078896, 23.733097583782418),
@@ -251,7 +251,6 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: MapLayout(
         controller: controller,
         builder: (context, transformer) {
@@ -261,7 +260,8 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
             (pos) => _buildMarkerWidget(pos, pincolor),
           );
 
-          final homeLocation = transformer.toOffset(const LatLng(37.97927142078896, 23.783097583782418));
+          final homeLocation = transformer
+              .toOffset(const LatLng(37.97927142078896, 23.783097583782418));
 
           final homeMarkerWidget =
               _buildMarkerWidget(homeLocation, textpurple, Icons.my_location);
