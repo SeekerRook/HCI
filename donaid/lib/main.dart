@@ -125,7 +125,7 @@ class Favorites extends StatelessWidget {
           leading: mymenu,
           backgroundColor: maincolor,
           foregroundColor: textblack,
-          title: const Text("Τα αγαπημένα μου"),
+          title: const Text("Τα Αγαπημένα μου"),
         ),
       body: const  FavoritePage(),
       
@@ -149,7 +149,7 @@ class Actions extends StatelessWidget {
           leading: mymenu,
           backgroundColor: maincolor,
           foregroundColor: textblack,
-          title: const Text("Οι δράσεις μου"),
+          title: const Text("Οι Δράσεις μου"),
         ),
      body: const  ActionsPage(),
       floatingActionButton:const ActionFab(),
