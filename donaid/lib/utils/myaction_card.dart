@@ -66,16 +66,18 @@ Card MyActionCard() {
                   )
                 ),   
 
-                SizedBox(width: 5,),
+                Spacer(),
                 ElevatedButton(
                   onPressed: () {},
                   // style: ButtonStyle(elevation: MaterialStateProperty(12.0 )),
                   style: ElevatedButton.styleFrom(
                       //primary: Colors.purple,
                       elevation: 15.0,
-                      textStyle: const TextStyle(color: Colors.white)),
+                      textStyle: const TextStyle()),
                   child: const Icon(Icons.qr_code),
                 ),
+                SizedBox(width: 10,),
+             
              ]
             ),
             Container(
