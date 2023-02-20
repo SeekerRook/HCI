@@ -11,18 +11,20 @@ Card ActionCard() {
         elevation: 4.0,
         child: Column(
           children: [
-                Container(
-                  alignment: Alignment.topCenter,
-                  margin: EdgeInsets.only(top: 15),
-                  child: CircleAvatar(
-                      child: Icon(Icons.account_circle),
-                      backgroundColor: Colors.purple,
-                    ),
-                ),
+                // Container(
+                //   alignment: Alignment.topCenter,
+                //   margin: EdgeInsets.only(top: 15),
+                //   child: CircleAvatar(
+                //       child: Icon(Icons.account_circle),
+                //       backgroundColor: Colors.purple,
+                //     ),
+                // ),
                 ListTile(
+                  leading: const Icon(Icons.account_circle),
+
                   title: Text(heading),
                   subtitle: Text(subheading),
-                  trailing: Icon(Icons.favorite_outline),
+                  trailing: const Icon(Icons.favorite_outline),
                 )
               ,
             Container(
@@ -33,10 +35,13 @@ Card ActionCard() {
               ),
             ),
             Row(
+              
              children: [
+                SizedBox(width: 10,),
+
                 Chip(
                   label: Text("Category"),
-                  backgroundColor: Colors.white,
+                  // backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder (
                          borderRadius: BorderRadius.circular(5.0),
                   ),
@@ -46,9 +51,10 @@ Card ActionCard() {
                     style: BorderStyle.solid
                   )
                 ),
+                SizedBox(width: 5,),
                 Chip(
                   label: Text("Category"),
-                  backgroundColor: Colors.white,
+                  // backgroundColor: Colors.white,
                   shape: RoundedRectangleBorder (
                          borderRadius: BorderRadius.circular(5.0),
                   ),
@@ -57,7 +63,8 @@ Card ActionCard() {
                     width: 1, 
                     style: BorderStyle.solid
                   )
-                )
+                ),   
+
              ]
             ),
             Container(
