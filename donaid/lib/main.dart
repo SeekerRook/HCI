@@ -66,6 +66,8 @@ class Donations extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+            debugPrint(context.toString());
+
     return 
         Scaffold(
         appBar: AppBar(
@@ -187,6 +189,7 @@ class MyDrawer extends StatelessWidget{
           // Update the state of the app.
           // ...
             Navigator.pop(context);
+            Navigator.pop(context);
 
             Navigator.push(
               context,
@@ -201,7 +204,9 @@ class MyDrawer extends StatelessWidget{
         onTap: () {
           // Update the state of the app.
           // ...
+            Navigator.pop(context);            
             Navigator.pop(context);
+
 
             Navigator.push(
               context,
@@ -215,6 +220,7 @@ class MyDrawer extends StatelessWidget{
 
         title: const Text('Οι Δράσεις μου'),
         onTap: () {
+            Navigator.pop(context);            
           Navigator.pop(context);
 
             Navigator.push(
@@ -230,6 +236,7 @@ class MyDrawer extends StatelessWidget{
 
         title: const Text('Αγαπημένα'),
         onTap: () {
+            Navigator.pop(context);            
           Navigator.pop(context);
 
             Navigator.push(
@@ -246,6 +253,7 @@ class MyDrawer extends StatelessWidget{
 
         title: const Text('Λογαριασμός'),
         onTap: () {
+            Navigator.pop(context);            
    Navigator.pop(context);
 
             Navigator.push(

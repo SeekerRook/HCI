@@ -295,11 +295,12 @@ Widget _buildMarkerWidgetwithbs(Offset pos, Color color, MapTransformer transfor
         ),
         onTap: () {
 
-          controller.zoom = 18;
+
           debugPrint('${pos.dx}, ${pos.dy}');
           controller.center = transformer.toLatLng(Offset(pos.dx, pos.dy+100));
-
+          // controller.zoom = 18;
           setState(() {});
+
           showBottomSheet(
 
             
@@ -364,6 +365,7 @@ Widget _buildMarkerWidgetwithbs(Offset pos, Color color, MapTransformer transfor
                           ]));
             }
           );
+       
         },
       ),
     );
