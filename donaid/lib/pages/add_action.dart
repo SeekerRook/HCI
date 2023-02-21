@@ -92,14 +92,14 @@ class ActionWidget extends StatelessWidget {
   Widget buildImage() {
     final image = NetworkImage(imagePath);
 
-    return ClipOval(
+    return ClipRRect(
       child: Material(
         color: Colors.transparent,
         child: Ink.image(
           image: image,
           fit: BoxFit.cover,
-          width: 128,
-          height: 128,
+          // width: 128,
+          height: 200,
           child: InkWell(onTap: onClicked),
         ),
       ),

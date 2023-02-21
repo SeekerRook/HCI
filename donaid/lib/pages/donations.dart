@@ -25,5 +25,3 @@ class DonationsPage extends StatelessWidget {
   }
 }
 
-FloatingActionButton donfab =
-    FloatingActionButton(onPressed: () => {}, child: const Icon(Icons.qr_code));

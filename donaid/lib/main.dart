@@ -7,7 +7,7 @@ import 'package:donaid/pages/actions.dart';
 import 'package:donaid/pages/favorite.dart';
 import 'package:donaid/pages/account.dart';
 import 'package:donaid/theme.dart';
-import 'package:donaid/mainfab.dart';
+import 'package:donaid/utils/fabs.dart';
 import 'package:flutter/src/material/card.dart';////
 import 'dart:io';
 
@@ -81,7 +81,7 @@ class Donations extends StatelessWidget {
         ),
       body: const  DonationsPage(),
       
-      floatingActionButton:donfab,
+      floatingActionButton:DonFab(),
 
       
       drawer: const MyDrawer(),
@@ -154,7 +154,7 @@ class Actions extends StatelessWidget {
           title: const Text("Οι Δράσεις μου"),
         ),
      body: const  ActionsPage(),
-      floatingActionButton:const ActionFab(),
+      floatingActionButton:const AddFab(),
       
       drawer: const MyDrawer(),
       );
