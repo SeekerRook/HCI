@@ -142,8 +142,15 @@ class EditProfilePage extends StatefulWidget {
   _EditProfilePageState createState() => _EditProfilePageState();
 }
 
+
+final TextEditingController usernamecontroller= TextEditingController();
+final TextEditingController pswdcontroller= TextEditingController();
+
+
+
 class _EditProfilePageState extends State<EditProfilePage> {
   // User user = UserPreferences.myUser;
+
 
   @override
   Widget build(BuildContext context) =>  Builder(
@@ -169,10 +176,32 @@ class _EditProfilePageState extends State<EditProfilePage> {
                
                 const SizedBox(height: 24),
                 TextFieldWidget(
-                  label: 'Full Name',
+                  label: 'Username',
                   text: "Vasileia",
                   onChanged: (name) {},
                 ),
+
+                const SizedBox(height: 24),
+                // TextFieldWidget(
+                //   label: 'Password',
+                //   text: "*********",
+                //   onChanged: (password) {},
+                // ),
+
+
+                TextField(
+              obscureText: true,
+              controller : pswdcontroller,
+
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: "Password",
+                
+              ),
+            ),
+
+            
+
                 const SizedBox(height: 24),
                 TextFieldWidget(
                   label: 'Email',
@@ -181,13 +210,19 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 ),
                 const SizedBox(height: 24),
                 TextFieldWidget(
-                  label: 'About',
+                  label: 'Bio',
                   text: "I am an undergraduate student at ECE NTUA",
                   maxLines: 5,
-                  onChanged: (about) {},
+                  onChanged: (bio) {},
                 ),
               ],
             ),
           );
+  
 
 }
+void Build (){
+  pswdcontroller.text = "hahadethamehakareis";
+  usernamecontroller.text = "Vasileia Ntaliani";
+
+  }

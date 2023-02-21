@@ -95,6 +95,8 @@ class Account extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    var content = EditProfilePage();
+    Build();
     return 
         Scaffold(
         appBar: AppBar(

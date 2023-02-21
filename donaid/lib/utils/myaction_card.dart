@@ -1,6 +1,15 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 
-Card MyActionCard() {
+
+
+
+class MyActionCard extends StatelessWidget {
+  const MyActionCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+
     var heading = 'Name';
     var subheading = 'by Organization';
     var cardImage = NetworkImage(
@@ -66,16 +75,43 @@ Card MyActionCard() {
                   )
                 ),   
 
+
+
                 Spacer(),
+
                 ElevatedButton(
-                  onPressed: () {},
+
                   // style: ButtonStyle(elevation: MaterialStateProperty(12.0 )),
                   style: ElevatedButton.styleFrom(
                       //primary: Colors.purple,
                       elevation: 15.0,
                       textStyle: const TextStyle()),
                   child: const Icon(Icons.qr_code),
+
+
+                  onPressed: () => {showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                content: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Image.network(
+                      'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=DON41D_asdf',
+                      // height: 200,
+                      fit: BoxFit.cover,
+                    ),
+                   
+                  ],
                 ),
+              ),
+            ),
+
+                //   AlertDialog(
+                //   content: Image.asset('https://www.everypixel.com/q/funny-dogs')
+                // ),
+                 },
+                ),
+              
                 SizedBox(width: 10,),
              
              ]
@@ -85,8 +121,9 @@ Card MyActionCard() {
               alignment: Alignment.centerLeft,
               child: Text(supportingText, overflow:TextOverflow.ellipsis),
             ),
-  
+
           ],
         ));
   }
 // }
+}
