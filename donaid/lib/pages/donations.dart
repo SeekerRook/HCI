@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:donaid/utils/action_card.dart';
 
-
 Card ActionCard() {
   var heading = 'Name';
   var subheading = 'by Organization';
@@ -82,27 +81,22 @@ class DonationsPage extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
     return const Center(
       child: Text("Donations"),
     );
-=======
-    return 
-    Scaffold(
-    body: Container(
-          padding: EdgeInsets.all(16.0),
-          child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  ActionCard(),
-                  ActionCard(),
-                  ActionCard(),                 
-                ],
-              )),
-    )
-    ); 
->>>>>>> 3c2d916db551488c7410a4d27851bad3b7d6ffd0
+    return Scaffold(
+        body: Container(
+      padding: EdgeInsets.all(16.0),
+      child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: [
+              ActionCard(),
+              ActionCard(),
+              ActionCard(),
+            ],
+          )),
+    ));
   }
 }
 
