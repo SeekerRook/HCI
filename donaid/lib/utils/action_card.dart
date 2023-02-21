@@ -6,8 +6,10 @@ Card ActionCard() {
   var heading = data.title;
   var subheading = 'από "' + data.organization + '"';
   var cardImage = NetworkImage(
+
       'https://diotima.org.gr/wp-content/uploads/2020/02/Diotima-Donation-02.jpg');
   var supportingText =   data.date + '\n\n' + data.place + '\n\n'+ data.description;
+
   // '00/00/2000\nAddress 0, City\n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis ';
   return Card(
       elevation: 4.0,

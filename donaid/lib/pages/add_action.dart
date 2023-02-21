@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 
-
 class TextFieldWidgetAct extends StatefulWidget {
   final int maxLines;
   final String label;
@@ -37,7 +36,8 @@ class _TextFieldWidgetActState extends State<TextFieldWidgetAct> {
 
     super.dispose();
   }
- @override
+
+  @override
   Widget build(BuildContext context) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -134,102 +134,100 @@ class ActionWidget extends StatelessWidget {
       );
 }
 
-
 class AddActionPage extends StatefulWidget {
   @override
   _AddActionPageState createState() => _AddActionPageState();
-
-  }
+}
 
 class _AddActionPageState extends State<AddActionPage> {
   // User user = UserPreferences.myUser;
-bool _switchValue = false;
+  bool _switchValue = false;
+  var _controllerT = TextEditingController();
+  var _controllerC = TextEditingController();
   @override
-  Widget build(BuildContext context) =>  Builder(
-          builder: (context) =>  ListView(
-              padding: EdgeInsets.symmetric(horizontal: 32),
-              physics: BouncingScrollPhysics(),
-              children: [
-                // ActionWidget(
-                //   imagePath: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/271deea8-e28c-41a3-aaf5-2913f5f48be6/de7834s-6515bd40-8b2c-4dc6-a843-5ac1a95a8b55.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzI3MWRlZWE4LWUyOGMtNDFhMy1hYWY1LTI5MTNmNWY0OGJlNlwvZGU3ODM0cy02NTE1YmQ0MC04YjJjLTRkYzYtYTg0My01YWMxYTk1YThiNTUuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.BopkDn1ptIwbmcKHdAOlYHyAOOACXW0Zfgbs0-6BY-E",
-                //   isEdit: true,
-                //   onClicked: () async {},
-                // ),
+  Widget build(BuildContext context) => Builder(
+        builder: (context) => ListView(
+          padding: EdgeInsets.symmetric(horizontal: 32),
+          physics: BouncingScrollPhysics(),
+          children: [
+            // ActionWidget(
+            //   imagePath: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/271deea8-e28c-41a3-aaf5-2913f5f48be6/de7834s-6515bd40-8b2c-4dc6-a843-5ac1a95a8b55.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzI3MWRlZWE4LWUyOGMtNDFhMy1hYWY1LTI5MTNmNWY0OGJlNlwvZGU3ODM0cy02NTE1YmQ0MC04YjJjLTRkYzYtYTg0My01YWMxYTk1YThiNTUuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.BopkDn1ptIwbmcKHdAOlYHyAOOACXW0Zfgbs0-6BY-E",
+            //   isEdit: true,
+            //   onClicked: () async {},
+            // ),
 
-
-              const SizedBox(height: 24),              
-                TextFormField(
-                  decoration:  InputDecoration(                    
-                    labelText: "Τίτλος",
-                  ),
-                onChanged: (title) {} ,
-                ),
-
-                const SizedBox(height: 24),              
-                TextFormField(
-                  decoration:  InputDecoration(                    
-                    labelText: "Περιγραφή",
-                  ),
-                onChanged: (description) {} ,
-                ),
-                
-                 const SizedBox(height: 24),              
-                TextFormField(
-                  decoration:  InputDecoration(
-                    prefixIcon: Icon(Icons.search),
-                    suffixIcon: Icon(Icons.close),
-                    labelText: "Τοποθεσία",
-                  ),
-                onChanged: (location) {} ,
-                ),
-
-              
-                const SizedBox(height: 24),             
-
-               TextFormField(
-                enabled: _switchValue,
-                  decoration:  InputDecoration(                    
-                    labelText: "Ημερομηνία",
-                  ),
-                onChanged: (date) {} ,
-                
-                ),
-               
-               
-               Switch(
-                value: _switchValue,
-                onChanged: (bool value) {
-                setState(() {
-                _switchValue = value;
-                });
-               },
-  ),
-            
-              
-                const SizedBox(height: 24),              
-                TextFormField(
-                  decoration: 
-                  
-                   InputDecoration(
-                    
-                    prefixIcon: Icon(Icons.search),
-                    suffixIcon: Icon(Icons.close),
-                    labelText: "Κατηγορίες",
-                     hintText: 'Προσθήκη'
-
-                  ),
-                onChanged: (categories) {} ,
-                ),
-               
-                const SizedBox(height: 24),              
-                TextFormField(
-                  decoration:  InputDecoration(                    
-                    labelText: "Στοιχεία επικοινωνίας",
-                  ),
-                onChanged: (communication) {} ,
-                ),
-              ],
+            const SizedBox(height: 24),
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: "Τίτλος",
+              ),
+              onChanged: (title) {},
             ),
-          );
 
+            const SizedBox(height: 24),
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: "Περιγραφή",
+              ),
+              onChanged: (description) {},
+            ),
+
+            const SizedBox(height: 24),
+            TextFormField(
+              controller: _controllerT,
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.search),
+                suffixIcon: IconButton(
+                  onPressed: _controllerT.clear,
+                  icon: Icon(Icons.clear),
+                ),
+                labelText: "Τοποθεσία",
+              ),
+              onChanged: (location) {},
+            ),
+
+            const SizedBox(height: 24),
+
+            TextFormField(
+              enabled: _switchValue,
+              decoration: InputDecoration(
+                labelText: "Ημερομηνία",
+              ),
+              onChanged: (date) {},
+            ),
+
+            Switch(
+              value: _switchValue,
+              onChanged: (bool value) {
+                setState(() {
+                  _switchValue = value;
+                });
+              },
+            ),
+
+            const SizedBox(height: 24),
+            TextFormField(
+              controller: _controllerC,
+              decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.search),
+                  suffixIcon: IconButton(
+                    onPressed: _controllerC.clear,
+                    icon: Icon(Icons.clear),
+                  ),
+                  //suffixIcon: Icon(Icons.close),
+                  labelText: "Κατηγορίες",
+                  hintText: 'Προσθήκη'),
+              onChanged: (categories) {},
+            ),
+
+            const SizedBox(height: 24),
+            TextFormField(
+              decoration: InputDecoration(
+                labelText: "Στοιχεία επικοινωνίας",
+              ),
+              onChanged: (communication) {},
+            ),
+          ],
+        ),
+      );
 }
