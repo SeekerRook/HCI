@@ -145,8 +145,8 @@ class EditProfilePage extends StatefulWidget {
 
 final TextEditingController usernamecontroller= TextEditingController();
 final TextEditingController pswdcontroller= TextEditingController();
-
-
+final TextEditingController emailcontroller= TextEditingController();
+final TextEditingController biocontroller= TextEditingController();
 
 class _EditProfilePageState extends State<EditProfilePage> {
   // User user = UserPreferences.myUser;
@@ -175,45 +175,47 @@ class _EditProfilePageState extends State<EditProfilePage> {
               //   ), 
                
                 const SizedBox(height: 24),
-                TextFieldWidget(
-                  label: 'Username',
-                  text: "Vasileia",
-                  onChanged: (name) {},
+                TextField(
+                  controller : usernamecontroller,
+                  decoration: InputDecoration(
+              //  border: OutlineInputBorder(),
+                labelText: "Username",
+                
+              ),
                 ),
 
-                const SizedBox(height: 24),
-                // TextFieldWidget(
-                //   label: 'Password',
-                //   text: "*********",
-                //   onChanged: (password) {},
-                // ),
-
-
-                TextField(
+              const SizedBox(height: 24),
+              TextField(
               obscureText: true,
               controller : pswdcontroller,
 
               decoration: InputDecoration(
-                border: OutlineInputBorder(),
+              //  border: OutlineInputBorder(),
                 labelText: "Password",
                 
               ),
             ),
 
             
-
                 const SizedBox(height: 24),
-                TextFieldWidget(
-                  label: 'Email',
-                  text: "ntalianiv@gmail.com",
-                  onChanged: (email) {},
+                TextField(
+                  controller : emailcontroller,
+                  decoration: InputDecoration(
+              //  border: OutlineInputBorder(),
+                labelText: "Email",
+                
+              ),
                 ),
+               
+               
                 const SizedBox(height: 24),
-                TextFieldWidget(
-                  label: 'Bio',
-                  text: "I am an undergraduate student at ECE NTUA",
-                  maxLines: 5,
-                  onChanged: (bio) {},
+                TextField(
+                  controller : biocontroller,
+                  decoration: InputDecoration(
+               // border: OutlineInputBorder(),
+                labelText: "Bio",
+                
+              ),
                 ),
               ],
             ),
@@ -223,6 +225,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
 }
 void Build (){
   pswdcontroller.text = "hahadethamehakareis";
-  usernamecontroller.text = "Vasileia Ntaliani";
+  usernamecontroller.text = "Vasileia";
+  emailcontroller.text = "ntalianiv@gmail.com";
+  biocontroller.text = "I am an undergraduate student at ECE NTUA";
 
   }
