@@ -1,6 +1,6 @@
 import 'package:donaid/pages/account.dart';
 import 'package:flutter/material.dart';
-import 'package:donaid/utils/action_card.dart';
+import 'package:donaid/utils/myaction_card.dart';
 import 'package:donaid/pages/add_action.dart';
 import 'package:donaid/theme.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
@@ -20,9 +20,9 @@ class ActionsPage extends StatelessWidget{
               scrollDirection: Axis.vertical,
               child: Column(
                 children: [
-                  ActionCard(),
-                  ActionCard(),
-                  ActionCard(),                 
+                  MyActionCard(),
+                  MyActionCard(),
+                  MyActionCard(),                 
                 ],
               )),
     ) ,
@@ -173,7 +173,7 @@ class AddActions extends StatelessWidget {
           // leading: ,
           backgroundColor: maincolor,
           foregroundColor: textblack,
-          title: const Text("to kainoutgio"),
+          title: const Text("Προσθήκη Δράσης"),
         ),
      body: AddActionPage(),
       //floatingActionButton:const ActionFab(),
