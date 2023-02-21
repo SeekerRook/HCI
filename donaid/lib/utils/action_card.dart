@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:donaid/utils/data.dart';
 
-Card ActionCard() {
+class ActionCard extends StatelessWidget {
+  const ActionCard({super.key});
+
+
+@override
+  Widget build(BuildContext context) {
   var data = get_data();
   var heading = data.title;
   var subheading = 'από "' + data.organization + '"';
@@ -90,4 +95,4 @@ Card ActionCard() {
       ));
 }
 
-// }
+ }

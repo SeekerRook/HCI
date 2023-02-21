@@ -143,7 +143,7 @@ var _controllerT = TextEditingController();
 var _controllerC = TextEditingController();
 
 class _AddActionPageState extends State<AddActionPage> {
-  // User user = UserPreferences.myUser;
+
   bool _switchValue = false;
   @override
   Widget build(BuildContext context) => Builder(
