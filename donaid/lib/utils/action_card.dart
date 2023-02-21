@@ -73,18 +73,6 @@ Card ActionCard() {
               alignment: Alignment.centerLeft,
               child: Text(supportingText, overflow:TextOverflow.ellipsis),
             ),
-           /* ButtonBar(
-              children: [
-                TextButton(
-                  child: const Text('CONTACT AGENT'),
-                  onPressed: () {/* ... */},
-                ),
-                TextButton(
-                  child: const Text('LEARN MORE'),
-                  onPressed: () {/* ... */},
-                )
-              ],
-            )*/
           ],
         ));
   }

@@ -150,11 +150,11 @@ bool _switchValue = false;
               padding: EdgeInsets.symmetric(horizontal: 32),
               physics: BouncingScrollPhysics(),
               children: [
-                // ActionWidget(
-                //   imagePath: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/271deea8-e28c-41a3-aaf5-2913f5f48be6/de7834s-6515bd40-8b2c-4dc6-a843-5ac1a95a8b55.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzI3MWRlZWE4LWUyOGMtNDFhMy1hYWY1LTI5MTNmNWY0OGJlNlwvZGU3ODM0cy02NTE1YmQ0MC04YjJjLTRkYzYtYTg0My01YWMxYTk1YThiNTUuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.BopkDn1ptIwbmcKHdAOlYHyAOOACXW0Zfgbs0-6BY-E",
-                //   isEdit: true,
-                //   onClicked: () async {},
-                // ),
+                ActionWidget(
+                  imagePath: "http://st.depositphotos.com/1146092/4811/i/450/depositphotos_48115167-very-funny-dog.jpg",
+                  isEdit: true,
+                  onClicked: () async {},
+                ),
 
 
               const SizedBox(height: 24),              
@@ -207,7 +207,7 @@ bool _switchValue = false;
             
               
                 const SizedBox(height: 24),              
-                TextFormField(
+                 TextFormField(
                   decoration: 
                   
                    InputDecoration(
@@ -220,6 +220,10 @@ bool _switchValue = false;
                   ),
                 onChanged: (categories) {} ,
                 ),
+               
+
+
+
                
                 const SizedBox(height: 24),              
                 TextFormField(
