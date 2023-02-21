@@ -81,9 +81,7 @@ class DonationsPage extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Donations"),
-    );
+
     return Scaffold(
         body: Container(
       padding: EdgeInsets.all(16.0),
