@@ -161,53 +161,29 @@ class _StaticProfilePageState extends State<StaticProfilePage> {
                 StaticProfileWidget(
                   imagePath: "https://images-ext-2.discordapp.net/external/QJu037WHfI_pq95d1gg46OEvK0X7r_i4Lv0yBlHFTnM/%3F_nc_cat%3D104%26ccb%3D1-7%26_nc_sid%3D09cbfe%26_nc_ohc%3DU7ioUpjI1H0AX_CfzQ5%26_nc_ht%3Dscontent.fath4-2.fna%26oh%3D00_AfACS5LF8rb8MVvRPoFWty0bXw3KIzSOXbLecCa1eYSH2g%26oe%3D63FAA888/https/scontent.fath4-2.fna.fbcdn.net/v/t39.30808-6/325979872_1388081398611609_2589098736076340159_n.jpg?width=670&height=664",
                   isEdit: true,
+                  
                   onClicked: () async {},
                 ),
-                
-              //   const SizedBox(height: 24),
-              //   TextField(                  
-              //     controller : orgcontroller,
-              //     readOnly: true,
-              //     decoration: InputDecoration(              
-              //   labelText: "Organization",               
-              // ),
-              //   ),
 
-             
+                         
 
-            //   const SizedBox(height: 24),
-            //   TextField(
-            //   obscureText: true,
-            //   controller : pswdcontroller,
-            //   readOnly: true,
-            //   decoration: InputDecoration(
-            //   labelText: "Password",
-            //   ),
-            // ),
+        Text(
+          '\n\nContact\n',
+        style: TextStyle(fontWeight: FontWeight.bold),),
 
-            
-                const SizedBox(height: 24),
-                TextField(
-                  minLines: 1,
-                  maxLines: 5,
-                  controller : contactcontroller,
-                  readOnly: true,
-                  decoration: InputDecoration(                  
-                  labelText: "Contact",
-                  ),
-                ),
-               
-               
-                const SizedBox(height: 24),
-                TextField(
-                  minLines: 1,
-                  maxLines: 10,
-                  controller : infocontroller,
-                  readOnly: true,
-                  decoration: InputDecoration(                  
-                labelText: "Info",
-              ),
-                ),
+
+        Text(
+          contactcontroller.text+'\n\n',),
+
+       
+        Text(
+          'Info\n',
+        style: TextStyle(fontWeight: FontWeight.bold),
+    
+        ),
+
+        Text(
+          infocontroller.text+'\n\n',)
               ],
             ),
           );

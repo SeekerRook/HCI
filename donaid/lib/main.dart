@@ -1,4 +1,5 @@
 import 'package:donaid/mymenu.dart';
+import 'package:donaid/previous_page.dart';
 import 'package:flutter/material.dart';
 import 'package:donaid/pages/mappage.dart';
 // import 'package:donaid/drawer.dart';
@@ -10,6 +11,8 @@ import 'package:donaid/pages/static_account.dart';
 import 'package:donaid/theme.dart';
 import 'package:donaid/utils/fabs.dart';
 import 'package:flutter/src/material/card.dart';////
+import 'package:donaid/pages/addmap.dart';
+
 import 'dart:io';
 
 
@@ -153,7 +156,7 @@ class StaticAccount extends StatelessWidget {
     return 
         Scaffold(
         appBar: AppBar(
-          leading: mymenu,
+          leading: previouspage,
           backgroundColor: maincolor,
           foregroundColor: textblack,
           title: const Text("Αιμοπετάλιο"),
@@ -213,6 +216,33 @@ class Actions extends StatelessWidget {
       );
   }
 }
+
+class MyMap extends StatelessWidget {
+  const MyMap({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+            debugPrint(context.toString());
+
+    return 
+        Scaffold(
+        appBar: AppBar(
+          leading: mymenu,
+          backgroundColor: maincolor,
+          foregroundColor: textblack,
+          title: const Text("Νέος χάρτης"),
+        ),
+      body: const  AddMapPage(),
+      
+      floatingActionButton:DonFab(),
+
+      
+      drawer: const MyDrawer(),
+      );
+  }
+}
+
 
 
 class MyDrawer extends StatelessWidget{

@@ -209,7 +209,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   minLines: 1,
                   maxLines: 5,
                   controller : contactcontroller,
-                  readOnly: true,
                   decoration: InputDecoration(
                   labelText: "Contact",
                   ),
