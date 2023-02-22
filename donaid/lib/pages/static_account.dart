@@ -143,10 +143,10 @@ class StaticProfilePage extends StatefulWidget {
 }
 
 
-final TextEditingController usernamecontroller= TextEditingController();
-final TextEditingController pswdcontroller= TextEditingController();
-final TextEditingController emailcontroller= TextEditingController();
-final TextEditingController biocontroller= TextEditingController();
+//final TextEditingController orgcontroller= TextEditingController();
+//final TextEditingController pswdcontroller= TextEditingController();
+final TextEditingController contactcontroller= TextEditingController();
+final TextEditingController infocontroller= TextEditingController();
 
 class _StaticProfilePageState extends State<StaticProfilePage> {
  
@@ -159,49 +159,53 @@ class _StaticProfilePageState extends State<StaticProfilePage> {
               physics: BouncingScrollPhysics(),
               children: [
                 StaticProfileWidget(
-                  imagePath: "https://wallpapers.com/images/hd/cute-girl-vector-art-profile-picture-jhbu3wt713zj2bti.jpg",
+                  imagePath: "https://images-ext-2.discordapp.net/external/QJu037WHfI_pq95d1gg46OEvK0X7r_i4Lv0yBlHFTnM/%3F_nc_cat%3D104%26ccb%3D1-7%26_nc_sid%3D09cbfe%26_nc_ohc%3DU7ioUpjI1H0AX_CfzQ5%26_nc_ht%3Dscontent.fath4-2.fna%26oh%3D00_AfACS5LF8rb8MVvRPoFWty0bXw3KIzSOXbLecCa1eYSH2g%26oe%3D63FAA888/https/scontent.fath4-2.fna.fbcdn.net/v/t39.30808-6/325979872_1388081398611609_2589098736076340159_n.jpg?width=670&height=664",
                   isEdit: true,
                   onClicked: () async {},
                 ),
                 
-                const SizedBox(height: 24),
-                TextField(                  
-                  controller : usernamecontroller,
-                  readOnly: true,
-                  decoration: InputDecoration(              
-                labelText: "Username",               
-              ),
-                ),
+              //   const SizedBox(height: 24),
+              //   TextField(                  
+              //     controller : orgcontroller,
+              //     readOnly: true,
+              //     decoration: InputDecoration(              
+              //   labelText: "Organization",               
+              // ),
+              //   ),
 
              
 
-              const SizedBox(height: 24),
-              TextField(
-              obscureText: true,
-              controller : pswdcontroller,
-              readOnly: true,
-              decoration: InputDecoration(
-              labelText: "Password",
-              ),
-            ),
+            //   const SizedBox(height: 24),
+            //   TextField(
+            //   obscureText: true,
+            //   controller : pswdcontroller,
+            //   readOnly: true,
+            //   decoration: InputDecoration(
+            //   labelText: "Password",
+            //   ),
+            // ),
 
             
                 const SizedBox(height: 24),
                 TextField(
-                  controller : emailcontroller,
+                  minLines: 1,
+                  maxLines: 5,
+                  controller : contactcontroller,
                   readOnly: true,
-                  decoration: InputDecoration(
-                  labelText: "Email",
+                  decoration: InputDecoration(                  
+                  labelText: "Contact",
                   ),
                 ),
                
                
                 const SizedBox(height: 24),
                 TextField(
-                  controller : biocontroller,
+                  minLines: 1,
+                  maxLines: 10,
+                  controller : infocontroller,
                   readOnly: true,
-                  decoration: InputDecoration(
-                labelText: "Bio",
+                  decoration: InputDecoration(                  
+                labelText: "Info",
               ),
                 ),
               ],
@@ -212,9 +216,9 @@ class _StaticProfilePageState extends State<StaticProfilePage> {
 }
 
 void BuildStatic (){
-  pswdcontroller.text = "hahadethamehakareis";
-  usernamecontroller.text = "Vasileia";
-  emailcontroller.text = "ntalianiv@gmail.com";
-  biocontroller.text = "I am an undergraduate student at ECE NTUA";
+  //pswdcontroller.text = "hahadethamehakareis";
+ // orgcontroller.text = "Aimopetalio";
+  contactcontroller.text = "https://aimopetalio.med.uoa.gr/";
+  infocontroller.text = "Το Αιμοπετάλιο επιδιώκει τη διάδοση της ιδέας της εθελοντικής αιμοδοσίας. Κύρια δράση του είναι η διοργάνωση εθελοντικών αιμοδοσιών σε χώρους του πανεπιστημίου, σε συνεργασία με το Ε.ΚΕ.Α. Συνήθως διοργανώνονται δυο αιμοδοσίες σε κάθε ακαδημαϊκό εξάμηνο, ένα διήμερο στην Ιατρική Σχολή και ένα διήμερο/τριήμερο στην Πανεπιστημιούπολη!";
 
   }

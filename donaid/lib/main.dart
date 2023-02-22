@@ -156,7 +156,7 @@ class StaticAccount extends StatelessWidget {
           leading: mymenu,
           backgroundColor: maincolor,
           foregroundColor: textblack,
-          title: const Text("Ο Σταθερός Λογαριασμός μου"),
+          title: const Text("Αιμοπετάλιο"),
           
         ),
       body:   StaticProfilePage(),

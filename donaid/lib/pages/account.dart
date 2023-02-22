@@ -149,7 +149,9 @@ class EditProfilePage extends StatefulWidget {
 final TextEditingController usernamecontroller= TextEditingController();
 final TextEditingController pswdcontroller= TextEditingController();
 final TextEditingController emailcontroller= TextEditingController();
-final TextEditingController biocontroller= TextEditingController();
+final TextEditingController infocontroller= TextEditingController();
+final TextEditingController contactcontroller= TextEditingController();
+
 
 class _EditProfilePageState extends State<EditProfilePage> {
   // User user = UserPreferences.myUser;
@@ -202,12 +204,24 @@ class _EditProfilePageState extends State<EditProfilePage> {
               ),
                 ),
                
-               
+               const SizedBox(height: 24),
+                TextField(
+                  minLines: 1,
+                  maxLines: 5,
+                  controller : contactcontroller,
+                  readOnly: true,
+                  decoration: InputDecoration(
+                  labelText: "Contact",
+                  ),
+                ),
+
                 const SizedBox(height: 24),
                 TextField(
-                  controller : biocontroller,
+                  minLines: 1,
+                  maxLines: 5,
+                  controller : infocontroller,
                   decoration: InputDecoration(
-                labelText: "Bio",
+                labelText: "Info",
                 
               ),
                 ),
@@ -236,6 +250,7 @@ void Build (){
   pswdcontroller.text = "hahadethamehakareis";
   usernamecontroller.text = "Vasileia";
   emailcontroller.text = "ntalianiv@gmail.com";
-  biocontroller.text = "I am an undergraduate student at ECE NTUA";
+  infocontroller.text = "I am an undergraduate student at ECE NTUA";
+  contactcontroller.text = "-";
 
   }

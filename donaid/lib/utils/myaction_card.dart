@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:donaid/main.dart';
 
 
 class MyActionCard extends StatefulWidget {
@@ -33,8 +34,17 @@ class _MyActionCardState extends State<MyActionCard> {
                 //     ),
                 // ),
                 ListTile(
-                  leading: const Icon(Icons.account_circle),
-
+                     leading:IconButton(
+          icon: const Icon(Icons.account_circle),
+          // tooltip: 'Increase volume by 10',
+          onPressed: () {
+            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const StaticAccount()),
+            );
+          }
+          ),
                   title: Text(heading),
                   subtitle: Text(subheading),
                   // trailing: const Icon(Icons.favorite_outline),
