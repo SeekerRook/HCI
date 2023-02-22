@@ -2,24 +2,48 @@
 import 'package:flutter/material.dart';
 import 'package:donaid/utils/data.dart';
 import 'package:donaid/main.dart';
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class ActionCard extends StatefulWidget {
-  const ActionCard({super.key});
+   String ID;
+
+   ActionCard(this.ID,{super.key});
 @override
   _ActionCardState createState() => _ActionCardState();
 }
 
 bool _isFavorited = false; 
 class _ActionCardState extends State<ActionCard> {
+  // var data ;
+  // @override
+  // void initState(){
+   
+  //   super.initState();
+  // }
+
+
+Future<String> load_data() async {
+  get_data();
+  return "something";
+}
 @override
   Widget build(BuildContext context) {
-  
-  var data = get_data();
-  var heading = data.title;
-  var subheading = 'από "' + data.organization + '"';
+   return  FutureBuilder(
+          future:  get_data(),
+          builder: (context, AsyncSnapshot snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting)
+              return Center(child: CircularProgressIndicator());
+            else if (snapshot.connectionState == ConnectionState.done){
+  var data=global_action[widget.ID];
+  debugPrint('${data}');
+
+  var heading = data!.title;
+  var subheading = 'από "${data.organization}"';
   var cardImage = NetworkImage(
 
-      'https://diotima.org.gr/wp-content/uploads/2020/02/Diotima-Donation-02.jpg');
+      data.imgpath);
   var supportingText =   data.date + '\n\n' + data.place + '\n\n'+ data.description;
 
   // '00/00/2000\nAddress 0, City\n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis ';
@@ -46,11 +70,11 @@ class _ActionCardState extends State<ActionCard> {
             // trailing: const Icon(Icons.favorite_outline),
          trailing: IconButton(
               onPressed: () => {
-                  setState(() => _isFavorited = !_isFavorited) },
-              icon: _isFavorited
+                  setState(() => data.isFavorite = !data.isFavorite) },
+              icon: data.isFavorite
                   ? Icon(Icons.favorite)
                   : Icon(Icons.favorite_border),
-              color: (_isFavorited)
+              color: (data.isFavorite)
                                 ? Colors.red
                                 : Colors.black12),
 
@@ -71,7 +95,7 @@ class _ActionCardState extends State<ActionCard> {
             ),
 
             Chip(
-                label: Text("Αιμοδοσία"),
+                label: Text(data.type),
                 // backgroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5.0),
@@ -117,6 +141,35 @@ class _ActionCardState extends State<ActionCard> {
             )*/
         ],
       ));
+          }   
+
+
+            else
+              return Container();
+          }); 
+  
+  // var data = get_data();
+
 }
 
+ 
+
  }
+
+
+Future<String> get_data() async {
+  return get_data_();
+//   final String response = await rootBundle.loadString('assets/data/actions.json');
+// // final data = await json.decode(response);
+//   debugPrint('Response : ${response}');
+
+//   final data =  jsonDecode(response);
+//   for (int i = 0; i< data.length; i++){
+//   debugPrint('ID : ${data[i]["ID"]}');
+//   global_action ["${data[i]["ID"]}"] =   DonaidAction.fromJson(data[i]);
+//   }
+//   debugPrint('${global_action}');
+
+
+//    return "action";
+}
