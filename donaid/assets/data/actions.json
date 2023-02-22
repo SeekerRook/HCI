@@ -1,8 +1,31 @@
-{
+[{
+    "ID":"D1",
     "title": "Εθελοντική Αιμοδοσία",
     "organization": "Αιμοπετάλιο",
     "date": "25/12/2023",
     "x": 37.97531039553379,
     "y":  23.73562607771404,
-    "description": "Αυτά τα Χριστουγεννα δώρισε αίμα σε όσους το έχουν ανάγκη!"
+    "imgpath": "https://aimopetalio.med.uoa.gr/uploads/tx_gridelements/118889676_3332136366883448_770279006979701372_n.png",
+    "UserID": "U1",
+    "place":"Πλατεία Συντάγματος",
+    "description": "Αυτά τα Χριστουγεννα δώρισε αίμα σε όσους το έχουν ανάγκη!",
+    "type":"Αιμοδοσία",
+    "isFavorite": true,
+    "hasDonated": true
+},
+{
+    "ID":"D2",
+    "title": "Τοίχος Καλοσυνης",
+    "organization": "Αγγαλιά Ζωής",
+    "date": "Πάντα",
+    "x": 37.97531039553379,
+    "y":  23.73562607771404,
+    "imgpath": "https://scontent.fath4-2.fna.fbcdn.net/v/t39.30808-6/327308510_1340694566709804_7404856486421745513_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=e3f864&_nc_ohc=sIIrFXmhyYwAX-t-waL&_nc_ht=scontent.fath4-2.fna&oh=00_AfBDrhEvjS2sUsZ1So-mTpU3n37itHCTC6ysbt-8Ea1VJg&oe=63FAFE91",
+    "UserID": "U2",
+    "place":"Καπαδοκίας 4",
+    "description": "Δώρισε Τρόφιμα διαρκείας που σου περισσέυουν για να τα βρούν όσοι τα έχουν ανάγκη",
+    "type":"Τρόφιμα",
+    "isFavorite": false,
+    "hasDonated": false
 }
+]

@@ -15,9 +15,9 @@ class DonationsPage extends StatelessWidget {
           scrollDirection: Axis.vertical,
           child: Column(
             children: [
-              ActionCard(),
-              ActionCard(),
-              ActionCard(),
+              ActionCard("D1"),
+              ActionCard("D2"),
+              // ActionCard(""),
             ],
           )),
     ));

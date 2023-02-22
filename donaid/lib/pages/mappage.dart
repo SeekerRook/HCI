@@ -165,47 +165,47 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
     //actual coordinates would be fetched from the app API, that is not implemented for this prototype. We are using dummy data
     const LatLng(37.97327142078896, 23.78297583782418),
     const LatLng(37.97527142078896, 23.78397583782418),
-    const LatLng(37.97727142078896, 23.784097583782418),
-    const LatLng(37.97227142078896, 23.786097583782418),
-    const LatLng(37.87327142078896, 23.78297583782418),
-    const LatLng(37.94527142078896, 23.783547583782418),
-    const LatLng(37.93727142078896, 23.782397583782418),
-    const LatLng(37.96227142078896, 23.779097583782418),
-    const LatLng(37.17327142078896, 23.72597583782418),
-    const LatLng(37.95727142078896, 23.75497583782418),
-    const LatLng(37.92627142078896, 23.743097583782418),
-    const LatLng(37.93827142078896, 23.787097583782418),
-    const LatLng(37.99027142078896, 23.70397583782418),
-    const LatLng(37.93027142078896, 23.72497583782418),
-    const LatLng(37.90027142078896, 23.765097583782418),
-    const LatLng(37.98927142078896, 23.778097583782418),
-    const LatLng(37.93427142078896, 23.73297583782418),
-    const LatLng(37.93427142078896, 23.74597583782418),
-    const LatLng(37.95627142078896, 23.733097583782418),
-    const LatLng(37.92927142078896, 23.777097583782418),
+    // const LatLng(37.97727142078896, 23.784097583782418),
+    // const LatLng(37.97227142078896, 23.786097583782418),
+    // const LatLng(37.87327142078896, 23.78297583782418),
+    // const LatLng(37.94527142078896, 23.783547583782418),
+    // const LatLng(37.93727142078896, 23.782397583782418),
+    // const LatLng(37.96227142078896, 23.779097583782418),
+    // const LatLng(37.17327142078896, 23.72597583782418),
+    // const LatLng(37.95727142078896, 23.75497583782418),
+    // const LatLng(37.92627142078896, 23.743097583782418),
+    // const LatLng(37.93827142078896, 23.787097583782418),
+    // const LatLng(37.99027142078896, 23.70397583782418),
+    // const LatLng(37.93027142078896, 23.72497583782418),
+    // const LatLng(37.90027142078896, 23.765097583782418),
+    // const LatLng(37.98927142078896, 23.778097583782418),
+    // const LatLng(37.93427142078896, 23.73297583782418),
+    // const LatLng(37.93427142078896, 23.74597583782418),
+    // const LatLng(37.95627142078896, 23.733097583782418),
+    // const LatLng(37.92927142078896, 23.777097583782418),
   ];
   final data = [
     //actual coordinates would be fetched from the app API, that is not implemented for this prototype. We are using dummy data
-    const LatLng(37.97327142078896, 23.78297583782418),
-    const LatLng(37.97527142078896, 23.78397583782418),
-    const LatLng(37.97727142078896, 23.784097583782418),
-    const LatLng(37.97227142078896, 23.786097583782418),
-    const LatLng(37.87327142078896, 23.78297583782418),
-    const LatLng(37.94527142078896, 23.783547583782418),
-    const LatLng(37.93727142078896, 23.782397583782418),
-    const LatLng(37.96227142078896, 23.779097583782418),
-    const LatLng(37.17327142078896, 23.72597583782418),
-    const LatLng(37.95727142078896, 23.75497583782418),
-    const LatLng(37.92627142078896, 23.743097583782418),
-    const LatLng(37.93827142078896, 23.787097583782418),
-    const LatLng(37.99027142078896, 23.70397583782418),
-    const LatLng(37.93027142078896, 23.72497583782418),
-    const LatLng(37.90027142078896, 23.765097583782418),
-    const LatLng(37.98927142078896, 23.778097583782418),
-    const LatLng(37.93427142078896, 23.73297583782418),
-    const LatLng(37.93427142078896, 23.74597583782418),
-    const LatLng(37.95627142078896, 23.733097583782418),
-    const LatLng(37.92927142078896, 23.777097583782418),
+    "D1",// const LatLng(37.97327142078896, 23.78297583782418),
+    "D2",// const LatLng(37.97527142078896, 23.78397583782418),
+    // const LatLng(37.97727142078896, 23.784097583782418),
+    // const LatLng(37.97227142078896, 23.786097583782418),
+    // const LatLng(37.87327142078896, 23.78297583782418),
+    // const LatLng(37.94527142078896, 23.783547583782418),
+    // const LatLng(37.93727142078896, 23.782397583782418),
+    // const LatLng(37.96227142078896, 23.779097583782418),
+    // const LatLng(37.17327142078896, 23.72597583782418),
+    // const LatLng(37.95727142078896, 23.75497583782418),
+    // const LatLng(37.92627142078896, 23.743097583782418),
+    // const LatLng(37.93827142078896, 23.787097583782418),
+    // const LatLng(37.99027142078896, 23.70397583782418),
+    // const LatLng(37.93027142078896, 23.72497583782418),
+    // const LatLng(37.90027142078896, 23.765097583782418),
+    // const LatLng(37.98927142078896, 23.778097583782418),
+    // const LatLng(37.93427142078896, 23.73297583782418),
+    // const LatLng(37.93427142078896, 23.74597583782418),
+    // const LatLng(37.95627142078896, 23.733097583782418),
+    // const LatLng(37.92927142078896, 23.777097583782418),
   ];
 
   void _gotoDefault() {
@@ -277,6 +277,7 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
 
   Widget _buildMarkerWidgetwithbs(
       Offset pos,
+      String ID,
       Color color,
       MapTransformer transformer,
       String title,
@@ -312,7 +313,7 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
                     //  height: 200,
                     // padding: const EdgeInsets.only(bottom: kFloatingActionButtonMargin + 48),
                     child: Wrap(children: [
-                  ActionCard()
+                  ActionCard(ID)
 //                           ListTile(
 //                             title: Text(
 //                               title,
@@ -375,10 +376,15 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
         controller: controller,
         builder: (context, transformer) {
           final markerPositions = markers.map(transformer.toOffset).toList();
-
-          final markerWidgets = markerPositions.map(
+          // final markertuples = markerPositions.map()
+          final markerTuples = [];
+          for   (int i = 0; i< markerPositions.length; i++){
+            markerTuples.add([markerPositions[i],data[i]]);
+          }
+          final markerWidgets = markerTuples.map(
             (pos) => _buildMarkerWidgetwithbs(
-              pos,
+              pos[0],
+              pos[1],
               pincolor,
               transformer,
               "title",
