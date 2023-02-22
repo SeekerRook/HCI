@@ -92,7 +92,7 @@ class ActionWidget extends StatelessWidget {
   Widget buildImage() {
     final image = NetworkImage(imagePath);
 
-    return ClipOval(
+    return ClipRect(
       child: Material(
         color: Colors.transparent,
         child: Ink.image(
@@ -153,7 +153,7 @@ class _AddActionPageState extends State<AddActionPage> {
           children: [
             ActionWidget(
               imagePath:
-                  "http://st.depositphotos.com/1146092/4811/i/450/depositphotos_48115167-very-funny-dog.jpg",
+                  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
               isEdit: true,
               onClicked: () async {},
             ),
@@ -189,6 +189,7 @@ class _AddActionPageState extends State<AddActionPage> {
               enabled: _switchValue,
               decoration: InputDecoration(
                 labelText: "Ημερομηνία",
+                hintText: 'dd/mm/yyyy'
               ),
               onChanged: (date) {},
             ),
@@ -220,6 +221,21 @@ class _AddActionPageState extends State<AddActionPage> {
               ),
               onChanged: (communication) {},
             ),
+
+            Spacer(),
+            TextButton(
+            style: TextButton.styleFrom(),
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  content: Text(
+                      'You have submitted a new event'),
+                ),
+              );
+            },
+            child: Text('Submit'),
+            )
           ],
         ),
       );

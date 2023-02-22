@@ -3,15 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 
 
-class TextFieldWidget extends StatefulWidget {
-  
+class StaticTextFieldWidget extends StatefulWidget {
   final int maxLines;
   final String label;
   final String text;
   final ValueChanged<String> onChanged;
-  
 
-  const TextFieldWidget({
+  const StaticTextFieldWidget({
     Key? key,
     this.maxLines = 1,
     required this.label,
@@ -20,17 +18,16 @@ class TextFieldWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _TextFieldWidgetState createState() => _TextFieldWidgetState();
+  _StaticTextFieldWidgetState createState() => _StaticTextFieldWidgetState();
 }
 
-
-class _TextFieldWidgetState extends State<TextFieldWidget> {
+class _StaticTextFieldWidgetState extends State<StaticTextFieldWidget> {
   late final TextEditingController controller;
 
   @override
   void initState() {
     super.initState();
-    
+
     controller = TextEditingController(text: widget.text);
   }
 
@@ -64,12 +61,12 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
 }
 
 
-class ProfileWidget extends StatelessWidget {
+class StaticProfileWidget extends StatelessWidget {
   final String imagePath;
   final bool isEdit;
   final VoidCallback onClicked;
 
-  const ProfileWidget({
+  const StaticProfileWidget({
     Key? key,
     required this.imagePath,
     this.isEdit = false,
@@ -140,9 +137,9 @@ class ProfileWidget extends StatelessWidget {
 }
 
 
-class EditProfilePage extends StatefulWidget {
+class StaticProfilePage extends StatefulWidget {
   @override
-  _EditProfilePageState createState() => _EditProfilePageState();
+  _StaticProfilePageState createState() => _StaticProfilePageState();
 }
 
 
@@ -151,14 +148,9 @@ final TextEditingController pswdcontroller= TextEditingController();
 final TextEditingController emailcontroller= TextEditingController();
 final TextEditingController biocontroller= TextEditingController();
 
-class _EditProfilePageState extends State<EditProfilePage> {
-  // User user = UserPreferences.myUser;
-// @override
-//   void initState() {
-//     super.initState();
-//     bool _passwordVisible;
-//     _passwordVisible = false;
-//   }
+class _StaticProfilePageState extends State<StaticProfilePage> {
+ 
+
 
   @override
   Widget build(BuildContext context) =>  Builder(
@@ -166,29 +158,30 @@ class _EditProfilePageState extends State<EditProfilePage> {
               padding: EdgeInsets.symmetric(horizontal: 32),
               physics: BouncingScrollPhysics(),
               children: [
-                ProfileWidget(
-                  imagePath: "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/271deea8-e28c-41a3-aaf5-2913f5f48be6/de7834s-6515bd40-8b2c-4dc6-a843-5ac1a95a8b55.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzI3MWRlZWE4LWUyOGMtNDFhMy1hYWY1LTI5MTNmNWY0OGJlNlwvZGU3ODM0cy02NTE1YmQ0MC04YjJjLTRkYzYtYTg0My01YWMxYTk1YThiNTUuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.BopkDn1ptIwbmcKHdAOlYHyAOOACXW0Zfgbs0-6BY-E",
+                StaticProfileWidget(
+                  imagePath: "https://wallpapers.com/images/hd/cute-girl-vector-art-profile-picture-jhbu3wt713zj2bti.jpg",
                   isEdit: true,
                   onClicked: () async {},
                 ),
                 
-               
                 const SizedBox(height: 24),
-                TextField(
+                TextField(                  
                   controller : usernamecontroller,
-                  decoration: InputDecoration(
-                labelText: "Username",
-                
+                  readOnly: true,
+                  decoration: InputDecoration(              
+                labelText: "Username",               
               ),
                 ),
 
+             
+
               const SizedBox(height: 24),
               TextField(
-              obscureText: true,//This will obscure text dynamically
+              obscureText: true,
               controller : pswdcontroller,
+              readOnly: true,
               decoration: InputDecoration(
-                labelText: "Password",
-                
+              labelText: "Password",
               ),
             ),
 
@@ -196,43 +189,29 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 const SizedBox(height: 24),
                 TextField(
                   controller : emailcontroller,
+                  readOnly: true,
                   decoration: InputDecoration(
-                labelText: "Email",
-                
-              ),
+                  labelText: "Email",
+                  ),
                 ),
                
                
                 const SizedBox(height: 24),
                 TextField(
                   controller : biocontroller,
+                  readOnly: true,
                   decoration: InputDecoration(
                 labelText: "Bio",
-                
               ),
                 ),
-Spacer(),
-            TextButton(
-            style: TextButton.styleFrom(),
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  content: Text(
-                      'You have deleted your account. Goodbye!'),
-                ),
-              );
-            },
-            child: Text('Delete account'),
-            )
-
               ],
             ),
           );
   
 
 }
-void Build (){
+
+void BuildStatic (){
   pswdcontroller.text = "hahadethamehakareis";
   usernamecontroller.text = "Vasileia";
   emailcontroller.text = "ntalianiv@gmail.com";

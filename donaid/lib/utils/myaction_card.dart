@@ -2,8 +2,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 
-class MyActionCard extends StatelessWidget {
+class MyActionCard extends StatefulWidget {
   const MyActionCard({super.key});
+@override
+  _MyActionCardState createState() => _MyActionCardState();
+}
+
+bool _isFavorited = false; 
+class _MyActionCardState extends State<MyActionCard> {
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +37,16 @@ class MyActionCard extends StatelessWidget {
 
                   title: Text(heading),
                   subtitle: Text(subheading),
-                  trailing: const Icon(Icons.favorite_outline),
+                  // trailing: const Icon(Icons.favorite_outline),
+                  trailing: IconButton(
+              onPressed: () => {
+                  setState(() => _isFavorited = !_isFavorited) },
+              icon: _isFavorited
+                  ? Icon(Icons.favorite)
+                  : Icon(Icons.favorite_border),
+              color: (_isFavorited)
+                                ? Colors.red
+                                : Colors.black12),
                 )
               ,
             Container(

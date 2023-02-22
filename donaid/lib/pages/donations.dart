@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:donaid/utils/action_card.dart';
 
-
 class DonationsPage extends StatelessWidget {
   const DonationsPage({super.key});
 

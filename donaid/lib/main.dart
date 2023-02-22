@@ -6,6 +6,7 @@ import 'package:donaid/pages/donations.dart';
 import 'package:donaid/pages/actions.dart';
 import 'package:donaid/pages/favorite.dart';
 import 'package:donaid/pages/account.dart';
+import 'package:donaid/pages/static_account.dart';
 import 'package:donaid/theme.dart';
 import 'package:donaid/mainfab.dart';
 import 'package:flutter/src/material/card.dart';////
@@ -49,10 +50,35 @@ class MainPage extends StatelessWidget {
     return 
         Scaffold(
         appBar: AppBar(
-          leading: mymenu,
+          leading: mymenu, 
+          title: Text ("Donaid"),
+           actions: [
+          //  Icon(Icons.person),
+          IconButton(
+          icon: const Icon(Icons.account_circle),
+          // tooltip: 'Increase volume by 10',
+          onPressed: () {
+            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Account()),
+            );
+          }
+          )
+           ],
+          
           backgroundColor: maincolor,
           foregroundColor: textblack,
-          title: const Text("DonAid"),
+          // title: const Text("Donaid"),
+          
+          // title: Row(
+          //   children:[
+          //   const Text("DonAid"),
+          //   ListTile(
+          //     leading: const Icon(Icons.person),
+          //   )
+          //   ]
+          // )          
         ),
       body: const InteractiveMapPage(),
       floatingActionButton:  const MainFab(),
@@ -108,6 +134,33 @@ class Account extends StatelessWidget {
         ),
       body:   EditProfilePage(),
       // floatingActionButton:accfab,
+
+      
+      drawer: const MyDrawer(),
+      );
+  }
+}
+
+
+class StaticAccount extends StatelessWidget {
+  const StaticAccount({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    var content = StaticProfilePage();
+    BuildStatic();
+    return 
+        Scaffold(
+        appBar: AppBar(
+          leading: mymenu,
+          backgroundColor: maincolor,
+          foregroundColor: textblack,
+          title: const Text("Ο Σταθερός Λογαριασμός μου"),
+          
+        ),
+      body:   StaticProfilePage(),
+    
 
       
       drawer: const MyDrawer(),
