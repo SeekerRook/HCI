@@ -3,6 +3,8 @@ import 'package:donaid/theme.dart';
 import 'package:donaid/pages/qr.dart';
 
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+
+import '../pages/actions.dart';
  
   var renderOverlay = true;
   var visible = true;
@@ -88,3 +90,50 @@ import 'package:flutter_speed_dial/flutter_speed_dial.dart';
           ],
         );
   }}
+
+
+
+ class DonFab extends StatelessWidget {
+    const DonFab({super.key});
+
+
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+       child: const Icon(Icons.qr_code),
+       onPressed: () {
+          
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => QRView(),
+            ));
+       }
+    );
+  }
+}
+
+
+ class AddFab extends StatelessWidget {
+    const AddFab({super.key});
+
+
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+       child: const Icon(Icons.add),
+       onPressed: () {
+          
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddActions(),
+            ));
+       }
+    );
+  }
+}
