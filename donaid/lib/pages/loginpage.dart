@@ -19,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Text(
           "DonAid",
           textAlign: TextAlign.center,
-          style: TextStyle(color: Color.fromARGB(255, 85, 5, 99)),
+          style: TextStyle(color: textlightpurple),
           //style: DefaultTextStyle.of(context).style.apply(fontSizeFactor: 2.0),
         ),
       ),
@@ -34,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
                     width: 200,
                     height: 200,   
                                    
-                    child: Image.network('https://www.coastaldiscos.co.uk/wp-content/uploads/2017/03/pin-purple.png')),
+                    child: Image.asset('assets/icon.png')),
               ),
             ),
             
@@ -77,6 +77,7 @@ class _LoginPageState extends State<LoginPage> {
                   color: pincolor, borderRadius: BorderRadius.circular(20)),
               child: TextButton(
                 onPressed: () {
+                  Navigator.pop(context);
                   Navigator.push(
                       context, MaterialPageRoute(builder: (context) => MainPage()));
                 },

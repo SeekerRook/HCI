@@ -248,7 +248,6 @@ class MyMap extends StatelessWidget {
 }
 
 
-
 class MyDrawer extends StatelessWidget{
     const MyDrawer({super.key});
 
@@ -311,7 +310,7 @@ class MyDrawer extends StatelessWidget{
 
         title: const Text('Οι Δράσεις μου'),
         onTap: () {
-            Navigator.pop(context);            
+          Navigator.pop(context);            
           Navigator.pop(context);
 
             Navigator.push(
@@ -362,7 +361,7 @@ class MyDrawer extends StatelessWidget{
         title: const Text('Αποσύνδεση'),
         onTap: () {
           Navigator.pop(context);            
-   Navigator.pop(context);
+          Navigator.pop(context);
 
 
             Navigator.push(
