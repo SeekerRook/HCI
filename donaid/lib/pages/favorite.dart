@@ -1,3 +1,4 @@
+import 'package:donaid/utils/data.dart';
 import 'package:flutter/material.dart';
 import 'package:donaid/utils/action_card.dart';
 
@@ -7,6 +8,11 @@ class FavoritePage extends StatelessWidget{
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    List<Widget> favorites = [];
+    for (var v in global_action.keys){
+      if (global_action[v]!.isFavorite)
+      favorites.add(ActionCard(v));
+    }
     return 
     Scaffold(
     body: Container(
@@ -14,11 +20,11 @@ class FavoritePage extends StatelessWidget{
           child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Column(
-                children: [
-                  ActionCard("D1"),
-                  ActionCard("D2"),
-                  // ActionCard(),                 
-                ],
+                children: favorites//[
+                //   ActionCard("D1"),
+                //   ActionCard("D2"),
+                //   // ActionCard(),                 
+                // ],
               )),
     )
     ); 
@@ -27,3 +33,8 @@ class FavoritePage extends StatelessWidget{
 FloatingActionButton favfab = FloatingActionButton(onPressed: ()=>{},
     child: const Icon(Icons.search)
 );
+
+Future<String> get_data() async {
+  return get_data_();
+
+}

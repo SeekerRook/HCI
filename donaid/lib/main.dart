@@ -21,6 +21,7 @@ import 'dart:io';
 
 
 void main() {
+  HttpOverrides.global = MyHttpOverrides();
   runApp( MaterialApp(
       title: 'DonAid',
       theme: mytheme,
@@ -29,7 +30,13 @@ void main() {
 
   ));
 }
-
+ class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
+}
 
 // ValueNotifier<bool> isDialOpen = ValueNotifier(false);
 
