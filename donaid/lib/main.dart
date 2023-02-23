@@ -65,7 +65,7 @@ class MainPage extends StatelessWidget {
         Scaffold(
         appBar: AppBar(
           leading: mymenu, 
-          title: Text ("Donaid"),
+          title: Text ("DonAid"),
            actions: [
           //  Icon(Icons.person),
           IconButton(
@@ -199,9 +199,9 @@ class Favorites extends StatelessWidget {
       body: const  FavoritePage(),
       
       floatingActionButton: FloatingActionButton(
-      child: favfab,
+      child: const Icon(Icons.search),
       onPressed: () {
-            Navigator.pop(context);
+        Navigator.pop(context);
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const MainPage()),
@@ -254,8 +254,14 @@ class MyMap extends StatelessWidget {
         ),
       body: const  AddMapPage(),
       
-      floatingActionButton:mapfab,
-
+      //floatingActionButton:mapfab,
+floatingActionButton: FloatingActionButton(
+      child: const Icon(Icons.save),
+      onPressed: () {
+        Navigator.pop(context);
+        debugPrint('location ${addmaploc.toString()}');
+          }
+      ),
       
       drawer: const MyDrawer(),
       );

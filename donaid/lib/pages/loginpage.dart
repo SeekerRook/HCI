@@ -44,7 +44,6 @@ class _LoginPageState extends State<LoginPage> {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email',
-              //      hintText: 'Enter email id as mail@gmail.com'
                ),
               ),
             ),
@@ -57,7 +56,6 @@ class _LoginPageState extends State<LoginPage> {
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Password',
-//                    hintText: 'Enter secure password'
                  ),
               ),
             ),
@@ -89,11 +87,11 @@ class _LoginPageState extends State<LoginPage> {
             ),
           
            Text(
-          '\n\n"DonAid is here and helps you to help"',
-        style: TextStyle(fontStyle: FontStyle.italic,color: textpurple,fontSize: 16),),
+          '\n\n"Η DonAid είναι εδώ για να σε βοηθήσει να βοηθήσεις"',
+        style: TextStyle(fontStyle: FontStyle.italic,color: textpurple,fontSize: 15),),
         
             SizedBox(
-              height: 120,
+              height: 45,
             ),
             Text('Sign up')
           ],
