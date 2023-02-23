@@ -34,7 +34,7 @@ Future<String> load_data() async {
           future:  get_data(),
           builder: (context, AsyncSnapshot snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting)
-              return Center(child: CircularProgressIndicator());
+              return Container();//Center(child: CircularProgressIndicator());
             else if (snapshot.connectionState == ConnectionState.done){
   var data=global_action[widget.ID];
   debugPrint('${data}');

@@ -1,7 +1,9 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:path_provider/path_provider.dart';
+import 'package:http/http.dart' ;
 class DonaidAction {
   DonaidAction(
       {required this.title,
@@ -15,17 +17,17 @@ class DonaidAction {
       required this.hasDonated,
       required this.type,
       required this.description});
-   String title;
-   String organization;
-   String imgpath;
-   bool hasDonated;
-   bool isFavorite;
-   String type;
-   String date;
-   String place;
-   double x;
-   double y;
-   String description;
+  String title;
+  String organization;
+  String imgpath;
+  bool hasDonated;
+  bool isFavorite;
+  String type;
+  String date;
+  String place;
+  double x;
+  double y;
+  String description;
 
   factory DonaidAction.fromJson(Map<String, dynamic> data) {
     // note the explicit cast to String
@@ -56,9 +58,25 @@ class DonaidAction {
       description: description,
     );
   }
+  Map toDict() {
+    var data = {};
+    data['title'] = title;
+    data['organization'] = organization;
+    data['date'] = date;
+    data["imgpath"] = imgpath;
+    data["hasDonated"] = hasDonated;
+    data["isFavorite"] = isFavorite;
+    data["type"] = type;
+    data['place'] = place;
+    data['x'] = x;
+    data['y'] = y;
+    data['description'] = description;
+    return data;
+  }
 }
 
-Map<String,DonaidAction> global_action = Map<String,DonaidAction>();//List<DonaidAction>(
+Map<String, DonaidAction> global_action =
+    Map<String, DonaidAction>(); //List<DonaidAction>(
 //   title: "",
 //   organization: "",
 //   date: "",
@@ -94,14 +112,12 @@ Map<String,DonaidAction> global_action = Map<String,DonaidAction>();//List<Donai
 //   //     description: "",);
 //   //   // DonaidAction res;
 //     debugPrint('ASYNC');
-    
+
 //     Future<void> action = _get_data();
 //     action.then((value) {debugPrint(global_action.title);  })
 //       .catchError((error) => debugPrint(error.toString()));
 //     return global_action;
 // }
-
-
 
 // //   final response =
 //       "{\"title\": \"Εθελοντική Αιμοδοσία\",\"organization\": \"Αιμοπετάλιο\", \"place\": \"Πλατεία Συντάγματος\",\"date\": \"25/12/2023\",\"x\": 37.97531039553379,\"y\":  23.73562607771404,\"description\": \"Αυτά τα Χριστουγεννα δώρισε αίμα σε όσους το έχουν ανάγκη\"}";
@@ -111,18 +127,33 @@ Map<String,DonaidAction> global_action = Map<String,DonaidAction>();//List<Donai
 //   final action = DonaidAction.fromJson(data);
 //   return action;
 // }
+var client = Client();
 Future<String> get_data_() async {
-  final String response = await rootBundle.loadString('assets/data/actions.json');
-// final data = await json.decode(response);
+  
+  var url = Uri.http('seekerrook.pythonanywhere.com', 'actions/');
+  final  response = (await client.get(url)).body;
+  debugPrint('got response');
+
   debugPrint('Response : ${response}');
 
-  final data =  jsonDecode(response);
-  for (int i = 0; i< data.length; i++){
-  debugPrint('ID : ${data[i]["ID"]}');
-  global_action ["${data[i]["ID"]}"] =   DonaidAction.fromJson(data[i]);
+  if (global_action.isEmpty) {
+    // final data = jsonDecode(response);
+  final data = (await json.decode(response))['data'];
+
+    for (int i = 0; i < data.length; i++) {
+    debugPrint('Data : ${data}');
+
+      global_action["${data[i]["ID"]}"] = DonaidAction.fromJson(data[i]);
+    }
+  } else {
+    var response = [];
+    for (int i = 0; i < global_action.length; i++) {
+      response.add(global_action[i]?.toDict());
+    }
+    String result = jsonEncode(response);
+
+    // file.writeAsString(result);
+    // .fromJson(file.readAsString());
   }
-  debugPrint('${global_action}');
-
-
-   return "action";
+  return "action";
 }

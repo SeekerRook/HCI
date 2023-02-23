@@ -43,6 +43,7 @@ dependencies:
   cached_network_image: any
   flutter_speed_dial: ^6.2.0
   mobile_scanner: ^2.1.0
+  path_provider: any
 
 
 dev_dependencies:
@@ -75,7 +76,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/data/actions.json
+    # - assets/data/actions.json
     - assets/icon.png
     # - images/a_dot_ham.jpeg
 

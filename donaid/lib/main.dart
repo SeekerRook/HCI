@@ -80,7 +80,7 @@ class MainPage extends StatelessWidget {
           //   ]
           // )          
         ),
-      body: const InteractiveMapPage(),
+      body:  InteractiveMapPage(),
       floatingActionButton:  const MainFab(),
 
       
