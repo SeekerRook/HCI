@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:donaid/utils/action_card.dart';
+import 'package:donaid/utils/data.dart';
 
 class DonationsPage extends StatelessWidget {
   const DonationsPage({super.key});
@@ -7,18 +8,18 @@ class DonationsPage extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
+    List<Widget> donated = [] ;
+    for (var v in global_action.keys){
+    if (global_action[v]!.hasDonated)
+    donated.add(ActionCard(v));
+    }
     return Scaffold(
         body: Container(
       padding: EdgeInsets.all(16.0),
       child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
-            children: [
-              ActionCard("D1"),
-              ActionCard("D2"),
-              // ActionCard(""),
-            ],
+            children: donated,
           )),
     ));
   }

@@ -1,3 +1,5 @@
+import 'package:donaid/utils/action_card.dart';
+import 'package:donaid/utils/data.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
@@ -6,6 +8,7 @@ class QRView extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    get_data_();
     return Scaffold(
       // appBar: AppBar(title: const Text('Mobile Scanner')),
       body: MobileScanner(
@@ -15,9 +18,12 @@ class QRView extends StatelessWidget{
               debugPrint('Failed to scan Barcode');
             } else {
               final String code = barcode.rawValue!;
-              var valid_barcodes = ["DON41D_qwerty","DON41D_asdf","DON41D_zxcv"];
+              List<String> valid_barcodes = (global_action).keys.toList();
               if (valid_barcodes.contains(code)){
+                   global_action[code]!.hasDonated = true;
+
                   showDialog<String>(
+                    
                           context: context,
                           builder: (BuildContext context) => AlertDialog(
                             title: const Text('Donation Successful'),
@@ -37,6 +43,8 @@ class QRView extends StatelessWidget{
                   );
               }
               else{
+              debugPrint('\n\n\n${code} not in ${global_action.keys}\n\n\n');
+
                     showDialog<String>(
                           context: context,
                           builder: (BuildContext context) => AlertDialog(
