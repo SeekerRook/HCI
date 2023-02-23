@@ -177,7 +177,7 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
               builder: (context) {
                 return SingleChildScrollView(
                     //  height: 200,
-                    // padding: const EdgeInsets.only(bottom: kFloatingActionButtonMargin + 48),
+                    padding: const EdgeInsets.only(top: kFloatingActionButtonMargin + 20),
                     child: Wrap(children: [
                   ActionCard(ID)
 //                           ListTile(

@@ -125,6 +125,7 @@ class DonaidAction {
 }
 
 String myID = "U1";
+// String loggedin = "U1";
 // DonaidUser me = 
 
 Map<String, DonaidUser> global_user =
@@ -191,7 +192,10 @@ Future<String> get_users_() async {
 
     for (int i = 0; i < data.length; i++) {
       global_user["${data[i]["ID"]}"] = DonaidUser.fromJson(data[i]);
+    
     }
+    debugPrint(global_user.toString());
+
   } else {
     debugPrint('! EMPTY');
 
