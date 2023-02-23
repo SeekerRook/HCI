@@ -158,7 +158,10 @@ Future<String> load_data() async {
 
 
 Future<String> get_data() async {
-  return get_data_();
+  var res =  get_data_();
+   get_users_();
+return res;
+ 
 //   final String response = await rootBundle.loadString('assets/data/actions.json');
 // // final data = await json.decode(response);
 //   debugPrint('Response : ${response}');
@@ -173,3 +176,4 @@ Future<String> get_data() async {
 
 //    return "action";
 }
+
