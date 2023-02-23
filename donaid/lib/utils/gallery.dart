@@ -24,13 +24,13 @@
 //               child: Column(
 //                 mainAxisAlignment: MainAxisAlignment.center,
 //                 children: <Widget>[
-//                   // RaisedButton(
-//                     // color: Colors.greenAccent,
-//                     // onPressed: () {
-//                       _getFromGallery(),
-//                     // },
-//                     // child: Text("PICK FROM GALLERY"),
-//                   // ),
+//                   ElevatedButton(
+//                     //color: Colors.greenAccent,
+//                     onPressed: () {
+//                      _getFromGallery();
+//                     },
+//                     child: Text("PICK FROM GALLERY"),
+//                   ),
 //                   Container(
 //                     height: 40.0,
 //                   ),
@@ -55,7 +55,7 @@
 
 //   /// Get from gallery
 //   _getFromGallery() async {
-//     PickedFile pickedFile = await ImagePicker().getImage(
+//     PickedFile? pickedFile = await ImagePicker().getImage(
 //       source: ImageSource.gallery,
 //       maxWidth: 1800,
 //       maxHeight: 1800,
@@ -67,67 +67,69 @@
 //     }
 //   }
 
-//   /// Get from Camera
-//   // _getFromCamera() async {
-//   //   PickedFile pickedFile = await ImagePicker().getImage(
-//   //     source: ImageSource.camera,
-//   //     maxWidth: 1800,
-//   //     maxHeight: 1800,
-//   //   );
-//   //   if (pickedFile != null) {
-//   //     setState(() {
-//   //       imageFile = File(pickedFile.path);
-//   //     });
-//   //   }
-//   // }
+
+
+  /// Get from Camera
+  // _getFromCamera() async {
+  //   PickedFile pickedFile = await ImagePicker().getImage(
+  //     source: ImageSource.camera,
+  //     maxWidth: 1800,
+  //     maxHeight: 1800,
+  //   );
+  //   if (pickedFile != null) {
+  //     setState(() {
+  //       imageFile = File(pickedFile.path);
+  //     });
+  //   }
+  // }
+//}
+
+
+
+// import 'dart:io';
+// import 'package:flutter/material.dart';
+// import 'package:image_picker/image_picker.dart';
+
+
+
+// class MyGallery extends StatefulWidget{
+//   @override
+//   _MyGalleryState createState() => _MyGalleryState();
 // }
 
+// class _MyGalleryState extends State<MyGallery> { 
 
+//   ImagePicker picker = ImagePicker();
+//   XFile? image;
 
-// // import 'dart:io';
-// // import 'package:flutter/material.dart';
-// // import 'package:image_picker/image_picker.dart';
+//   @override
+//   Widget build(BuildContext context) { 
+//     return  Scaffold(
+//           appBar: AppBar(
+//             title: Text("Image Picker from Gallery"),
+//             backgroundColor: Colors.redAccent
+//           ),
+//           body: Container(
+//             padding: EdgeInsets.only(top:20, left:20, right:20),
+//             alignment: Alignment.topCenter,
+//             child: Column(
+//               children: [
 
-
-
-// // class MyGallery extends StatefulWidget{
-// //   @override
-// //   _MyGalleryState createState() => _MyGalleryState();
-// // }
-
-// // class _MyGalleryState extends State<MyGallery> { 
-
-// //   ImagePicker picker = ImagePicker();
-// //   XFile? image;
-
-// //   @override
-// //   Widget build(BuildContext context) { 
-// //     return  Scaffold(
-// //           appBar: AppBar(
-// //             title: Text("Image Picker from Gallery"),
-// //             backgroundColor: Colors.redAccent
-// //           ),
-// //           body: Container(
-// //             padding: EdgeInsets.only(top:20, left:20, right:20),
-// //             alignment: Alignment.topCenter,
-// //             child: Column(
-// //               children: [
-
-// //                  ElevatedButton(
-// //                   onPressed: () async {
-// //                       image = await picker.pickImage(source: ImageSource.gallery); 
-// //                       setState(() {
-// //                         //update UI
-// //                       });
-// //                   }, 
-// //                   child: Text("Pick Image")
-// //                 ),
+//                  ElevatedButton(
+//                   onPressed: () async {
+//                       image = await picker.pickImage(source: ImageSource.gallery); 
+//                       setState(() {
+//                         //update UI
+//                       });
+//                   }, 
+//                   child: Text("Pick Image")
+//                 ),
  
-// //                 image == null?Container():
-// //                 Image.file(File(image!.path))
+//                 image == null?Container():
+//                 Image.file(File(image!.path))
                 
-// //             ],)
-// //           )
-// //        );
-// //   }
-// // }
+//             ],)
+//           )
+//        );
+//   }
+// }
