@@ -41,7 +41,7 @@ class _MyActionCardState extends State<MyActionCard> {
             Navigator.pop(context);
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const StaticAccount()),
+              MaterialPageRoute(builder: (context) =>  StaticAccount("U1")),
             );
           }
           ),

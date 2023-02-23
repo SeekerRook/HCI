@@ -168,23 +168,26 @@ class Account extends StatelessWidget {
 
 
 class StaticAccount extends StatelessWidget {
-  const StaticAccount({super.key});
+  String ID;
+
+
+  StaticAccount(this.ID,{super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    var content = StaticProfilePage();
-    BuildStatic();
+    var content = StaticProfilePage(ID);
+    BuildStatic(ID);
     return 
         Scaffold(
         appBar: AppBar(
           leading: previouspage,
           backgroundColor: maincolor,
           foregroundColor: textblack,
-          title: const Text("Αιμοπετάλιο"),
+          title:  Text(global_user[ID]!.username),
           
         ),
-      body:   StaticProfilePage(),
+      body:   StaticProfilePage(ID),
     
 
       
