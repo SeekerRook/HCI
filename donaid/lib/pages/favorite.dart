@@ -34,7 +34,7 @@ class FavoritePage extends StatelessWidget{
 //     child: const Icon(Icons.search)
 // );
 
-Future<String> get_data() async {
-  return get_data_();
+// Future<String> get_data() async {
+//   return get_data_();
 
-}
+// }

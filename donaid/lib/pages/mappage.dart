@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:donaid/utils/action_card.dart';
+import 'package:donaid/utils/data.dart';
 import 'package:flutter/services.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:donaid/theme.dart';
@@ -11,7 +12,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:latlng/latlng.dart';
 import 'package:map/map.dart';
-import 'package:donaid/utils/action_card.dart';
 
 class InteractiveMapPage extends StatefulWidget {
   const InteractiveMapPage({Key? key}) : super(key: key);
@@ -177,7 +177,7 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
               builder: (context) {
                 return SingleChildScrollView(
                     //  height: 200,
-                    // padding: const EdgeInsets.only(bottom: kFloatingActionButtonMargin + 48),
+                    padding: const EdgeInsets.only(top: kFloatingActionButtonMargin + 20),
                     child: Wrap(children: [
                   ActionCard(ID)
 //                           ListTile(

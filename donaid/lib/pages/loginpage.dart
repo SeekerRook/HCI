@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:donaid/main.dart';
 import 'package:donaid/theme.dart';
+import 'package:donaid/utils/data.dart';
 
 
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
 }
+final TextEditingController mailcontroller= TextEditingController();
+final TextEditingController pswdcontroller= TextEditingController();
 
 class _LoginPageState extends State<LoginPage> {
   @override
+
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: maincolor,
       appBar: AppBar(
@@ -41,6 +46,7 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
               child: TextField(
+                controller: mailcontroller,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email',
@@ -51,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
               padding: const EdgeInsets.only(
                   left: 15.0, right: 15.0, top: 15, bottom: 0),
               child: TextField(
-
+                controller: pswdcontroller,
                 obscureText: true,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -75,9 +81,14 @@ class _LoginPageState extends State<LoginPage> {
                   color: pincolor, borderRadius: BorderRadius.circular(20)),
               child: TextButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  for (var k in global_user.keys)
+                    if (mailcontroller.text == global_user[k]!.email && pswdcontroller.text == global_user[k]!.password   ) {
+                      myID = k;
+  Navigator.pop(context);
                   Navigator.push(
                       context, MaterialPageRoute(builder: (context) => MainPage()));
+                    }
+                
                 },
                 child: Text(
                   'Login',

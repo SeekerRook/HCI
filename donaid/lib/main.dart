@@ -10,6 +10,7 @@ import 'package:donaid/pages/account.dart';
 import 'package:donaid/pages/static_account.dart';
 import 'package:donaid/theme.dart';
 import 'package:donaid/utils/fabs.dart';
+import 'package:donaid/utils/data.dart';
 import 'package:flutter/src/material/card.dart';////
 import 'package:donaid/pages/addmap.dart';
 import 'package:donaid/pages/loginpage.dart';
@@ -22,14 +23,24 @@ import 'dart:io';
 
 void main() {
   HttpOverrides.global = MyHttpOverrides();
-  runApp( MaterialApp(
-      title: 'DonAid',
+  main_();
+  // debugPrint("EXIT");
+}
+
+void main_()async {
+ get_data().then((value) => {
+ runApp( MaterialApp(
+      title: "DonAid",
       theme: mytheme,
      // home: const MainPage(), 
       home:  LoginPage(), 
 
-  ));
+  ))
+ });
+  
+ 
 }
+
  class MyHttpOverrides extends HttpOverrides{
   @override
   HttpClient createHttpClient(SecurityContext? context){
