@@ -12,9 +12,11 @@ import 'package:donaid/theme.dart';
 import 'package:donaid/utils/fabs.dart';
 import 'package:flutter/src/material/card.dart';////
 import 'package:donaid/pages/addmap.dart';
+import 'package:donaid/pages/loginpage.dart';
+import 'package:donaid/pages/logout.dart';
+
 
 import 'dart:io';
-
 
 
 
@@ -22,7 +24,9 @@ void main() {
   runApp( MaterialApp(
       title: 'DonAid',
       theme: mytheme,
-      home: const MainPage(), 
+     // home: const MainPage(), 
+      home:  LoginPage(), 
+
   ));
 }
 
@@ -59,7 +63,7 @@ class MainPage extends StatelessWidget {
           //  Icon(Icons.person),
           IconButton(
           icon: const Icon(Icons.account_circle),
-          // tooltip: 'Increase volume by 10',
+          
           onPressed: () {
             Navigator.pop(context);
             Navigator.push(
@@ -228,21 +232,20 @@ class MyMap extends StatelessWidget {
     return 
         Scaffold(
         appBar: AppBar(
-          leading: mymenu,
+          leading: previouspage,
           backgroundColor: maincolor,
           foregroundColor: textblack,
-          title: const Text("Νέος χάρτης"),
+          title: const Text("Επιλογή Τοποθεσίας"),
         ),
       body: const  AddMapPage(),
       
-      floatingActionButton:DonFab(),
+      floatingActionButton:mapfab,
 
       
       drawer: const MyDrawer(),
       );
   }
 }
-
 
 
 class MyDrawer extends StatelessWidget{
@@ -307,7 +310,7 @@ class MyDrawer extends StatelessWidget{
 
         title: const Text('Οι Δράσεις μου'),
         onTap: () {
-            Navigator.pop(context);            
+          Navigator.pop(context);            
           Navigator.pop(context);
 
             Navigator.push(
@@ -357,8 +360,14 @@ class MyDrawer extends StatelessWidget{
 
         title: const Text('Αποσύνδεση'),
         onTap: () {
-          // Update the state of the app.
-          // ...
+          Navigator.pop(context);            
+          Navigator.pop(context);
+
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LoginPage()),
+            );
         },
       ),
 
