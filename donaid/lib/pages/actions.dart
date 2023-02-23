@@ -1,9 +1,11 @@
 import 'package:donaid/pages/account.dart';
+import 'package:donaid/utils/action_card.dart';
 import 'package:flutter/material.dart';
 import 'package:donaid/utils/myaction_card.dart';
 import 'package:donaid/pages/add_action.dart';
 import 'package:donaid/theme.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:donaid/utils/data.dart';
 
 
 
@@ -13,7 +15,11 @@ class ActionsPage extends StatelessWidget{
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
+   List<Widget> myactions = [] ;
+    for (var v in global_action.keys){
+    if (global_action[v]!.organization == myID)
+    myactions.add(ActionCard(v));
+    }
     return 
     Scaffold(
     body: Container(
@@ -21,11 +27,8 @@ class ActionsPage extends StatelessWidget{
           child: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Column(
-                children: [
-                  MyActionCard(),
-                  MyActionCard(),
-                  MyActionCard(),                 
-                ],
+                children: myactions               
+                ,
               )),
     ) ,
     // floatingActionButton: FloatingActionButton(onPressed: (){
@@ -91,76 +94,76 @@ class ActionsPage extends StatelessWidget{
   var childrenButtonSize = const Size(56.0, 56.0);
   var selectedfABLocation = FloatingActionButtonLocation.endDocked;
 
- class ActionFab extends StatelessWidget {
-    const ActionFab({super.key});
+//  class ActionFab extends StatelessWidget {
+//     const ActionFab({super.key});
 
 
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return   SpeedDial(
+//   // This widget is the root of your application.
+//   @override
+//   Widget build(BuildContext context) {
+//     return   SpeedDial(
 
-          icon: Icons.add,
-          activeIcon: Icons.close,
-          spacing: 3,
-          openCloseDial: isDialOpen,
-          childPadding: const EdgeInsets.all(5),
-          spaceBetweenChildren: 4,
+//           icon: Icons.add,
+//           activeIcon: Icons.close,
+//           spacing: 3,
+//           openCloseDial: isDialOpen,
+//           childPadding: const EdgeInsets.all(5),
+//           spaceBetweenChildren: 4,
 
-          buttonSize:
-              buttonSize, 
-          label: extend
-              ? const Text("Open")
-              : null, 
-          activeLabel: extend ? const Text("Close") : null,
+//           buttonSize:
+//               buttonSize, 
+//           label: extend
+//               ? const Text("Open")
+//               : null, 
+//           activeLabel: extend ? const Text("Close") : null,
 
 
-          onOpen: () => debugPrint('OPENING DIAL'),
-          onClose: () => debugPrint('DIAL CLOSED'),
-          tooltip: 'Open Speed Dial',
-          heroTag: 'speed-dial-hero-tag',
+//           onOpen: () => debugPrint('OPENING DIAL'),
+//           onClose: () => debugPrint('DIAL CLOSED'),
+//           tooltip: 'Open Speed Dial',
+//           heroTag: 'speed-dial-hero-tag',
 
-          // elevation: 8.0,
-          animationCurve: Curves.elasticInOut,
-          shape: customDialRoot
-              ? const RoundedRectangleBorder()
-              : const StadiumBorder(),
-          // childMargin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          children: [
-            SpeedDialChild(
-              child: !rmicons ? const Icon(Icons.search) : null,
-              backgroundColor: secondarycolor,
-              foregroundColor: textlightpurple,
-              label: 'Search Donations',
-              // onTap: () => setState(() => rmicons = !rmicons),
-              onTap: () => debugPrint('Search'),
+//           // elevation: 8.0,
+//           animationCurve: Curves.elasticInOut,
+//           shape: customDialRoot
+//               ? const RoundedRectangleBorder()
+//               : const StadiumBorder(),
+//           // childMargin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+//           children: [
+//             SpeedDialChild(
+//               child: !rmicons ? const Icon(Icons.search) : null,
+//               backgroundColor: secondarycolor,
+//               foregroundColor: textlightpurple,
+//               label: 'Search Donations',
+//               // onTap: () => setState(() => rmicons = !rmicons),
+//               onTap: () => debugPrint('Search'),
 
-              onLongPress: () => debugPrint('FIRST CHILD LONG PRESS'),
-            ),
-            SpeedDialChild(
-              child: !rmicons ? const Icon(Icons.qr_code) : null,
-              backgroundColor: secondarycolor,
-              foregroundColor: textlightpurple,
-              label: 'Scan Donation QR Code',
-              onTap: ()  {
-          // Update the state of the app.
-          // ...
-            // Navigator.pop(context);
+//               onLongPress: () => debugPrint('FIRST CHILD LONG PRESS'),
+//             ),
+//             SpeedDialChild(
+//               child: !rmicons ? const Icon(Icons.qr_code) : null,
+//               backgroundColor: secondarycolor,
+//               foregroundColor: textlightpurple,
+//               label: 'Scan Donation QR Code',
+//               onTap: ()  {
+//           // Update the state of the app.
+//           // ...
+//             // Navigator.pop(context);
 
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const AddActions()),
-            );
-            },
-            )
+//             Navigator.push(
+//               context,
+//               MaterialPageRoute(builder: (context) => const AddActions()),
+//             );
+//             },
+//             )
           
               
           
 
-          ],
-        );
-  }}
+//           ],
+//         );
+//   }}
 
   
 class AddActions extends StatelessWidget {

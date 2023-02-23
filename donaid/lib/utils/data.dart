@@ -124,7 +124,7 @@ class DonaidAction {
   }
 }
 
-String myID = "U0";
+String myID = "U1";
 // DonaidUser me = 
 
 Map<String, DonaidUser> global_user =
@@ -155,6 +155,8 @@ Future<String> get_data_() async {
     for (int i = 0; i < data.length; i++) {
       global_action["${data[i]["ID"]}"] = DonaidAction.fromJson(data[i]);
     }
+    debugPrint(global_action.toString());
+
   } else {
     debugPrint('! EMPTY');
 
@@ -203,8 +205,16 @@ Future<String> get_users_() async {
     String result = jsonEncode({"data": response});
     await client.post(posturl,
         headers: {"Content-Type": "application/json"}, body: result);
+    debugPrint('POST');
+      
     // file.writeAsString(result);
     // .fromJson(file.readAsString());
   }
   return "action";
 }
+
+Future<String> get_data() async {
+  var res = get_data_();
+   res = get_users_();
+  return res;
+  }
