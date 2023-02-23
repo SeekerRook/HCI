@@ -198,8 +198,16 @@ class Favorites extends StatelessWidget {
         ),
       body: const  FavoritePage(),
       
-      floatingActionButton:favfab,
-
+      floatingActionButton: FloatingActionButton(
+      child: favfab,
+      onPressed: () {
+            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const MainPage()),
+            );
+          }
+      ),
       
       drawer: const MyDrawer(),
       );
