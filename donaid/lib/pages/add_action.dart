@@ -2,6 +2,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:intl/intl.dart';
+import 'package:donaid/utils/multiselection.dart';
+import 'package:donaid/main.dart';
+import 'package:donaid/utils/gallery.dart';
+
 
 
 
@@ -86,6 +90,24 @@ class ActionWidget extends StatelessWidget {
             bottom: 0,
             right: 4,
             child: buildEditIcon(color),
+          //   child:
+          // IconButton(
+          //   onPressed: (){
+          //     Navigator.pop(context);
+          //   Navigator.push(
+          //     context,
+          //     MaterialPageRoute(builder: (context) => MyGallery()),
+          //   );
+          //   },
+          //  icon: const Icon(
+          //   // isEdit ? 
+          //   Icons.add_a_photo ,
+          //   // : Icons.edit,
+          //   color: Colors.white,
+          //   size: 20,
+          //  ),
+          // ),
+             
           ),
         ],
       ),
@@ -111,7 +133,9 @@ class ActionWidget extends StatelessWidget {
     );
   }
 
-  Widget buildEditIcon(Color color) => buildCircle(
+@override
+
+Widget buildEditIcon(Color color) => buildCircle(
         color: Colors.white,
         all: 3,
         child: buildCircle(
@@ -121,9 +145,33 @@ class ActionWidget extends StatelessWidget {
             isEdit ? Icons.add_a_photo : Icons.edit,
             color: Colors.white,
             size: 20,
-          ),
-        ),
+           ),
+         
+          //   child:
+          // IconButton(
+          //   onPressed: (){
+          //     //Navigator.pop(context);
+          //   // Navigator.push(
+          //   //   context,
+          //     MaterialPageRoute(builder: (context) => MyGallery());
+          //  // );
+          //   },
+          //  icon: const Icon(
+          //   // isEdit ? 
+          //   Icons.add_a_photo ,
+          //   // : Icons.edit,
+          //   color: Colors.white,
+          //   size: 20,
+          //  ),
+          // ),
+          // ]
+      
+        )
       );
+  // ]
+        // );
+// }
+
 
   Widget buildCircle({
     required Widget child,
@@ -198,7 +246,16 @@ void initState(){
             TextFormField(
               controller: _controllerT,
               decoration: InputDecoration(
-                prefixIcon: Icon(Icons.search),
+                prefixIcon: IconButton(
+                  onPressed: (){
+                    Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const MyMap()),
+            );
+                  },
+                  icon: Icon(Icons.search),
+                ),
                 suffixIcon: IconButton(
                   onPressed: _controllerT.clear,
                   icon: Icon(Icons.clear),
@@ -208,15 +265,6 @@ void initState(){
               onChanged: (location) {},
             ),
             
-            // const SizedBox(height: 24),
-            // TextFormField(
-            //   enabled: _switchValue,
-            //   decoration: InputDecoration(
-            //     labelText: "Ημερομηνία",
-            //     hintText: 'dd/mm/yyyy'
-            //   ),
-            //   onChanged: (date) {},
-            // ),
 
            Row(
   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -335,11 +383,26 @@ TextFormField(
       itemBuilder: (BuildContext context) {
         return items
             .map<PopupMenuItem<String>>((String value) {
-          return new PopupMenuItem(
+          return new PopupMenuItem<String>(
               child: new Text(value), value: value);
         }).toList();
       },
-    ),
+  //     itemBuilder: (context) => [     
+  //   PopupMenuItem(
+  //     child: StatefulBuilder(
+  //              builder: (_context, _setState) => 
+  //                         CheckBoxListTile(
+  //                            //activeColor: kLeadingOrangeColor,
+  //                            value: isShow,
+  //                            onChanged: (value) =>
+  //                                _setState(() => isShow = value),
+  //                            title: checkboxLabel('Show'),
+  //                         ),
+  //            ),
+  //   ),
+  // ],
+   ),
+  
     labelText: "Κατηγορίες",
     hintText: 'Προσθήκη'
   ),
