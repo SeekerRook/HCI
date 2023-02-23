@@ -87,6 +87,11 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
+          
+           Text(
+          '\n\n"DonAid is here and helps you to help"',
+        style: TextStyle(fontStyle: FontStyle.italic,color: textpurple,fontSize: 16),),
+        
             SizedBox(
               height: 120,
             ),
