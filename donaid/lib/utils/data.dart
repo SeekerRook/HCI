@@ -130,28 +130,38 @@ Map<String, DonaidAction> global_action =
 var client = Client();
 Future<String> get_data_() async {
   
-  var url = Uri.http('seekerrook.pythonanywhere.com', 'actions/');
-  final  response = (await client.get(url)).body;
+  var geturl = Uri.http('seekerrook.pythonanywhere.com', 'actions/');
+  var posturl = Uri.http('seekerrook.pythonanywhere.com', 'actions/post');
+  final  response = (await client.get(geturl)).body;
   debugPrint('got response');
 
   debugPrint('Response : ${response}');
 
   if (global_action.isEmpty) {
+    debugPrint('EMPTY');
+
     // final data = jsonDecode(response);
   final data = (await json.decode(response))['data'];
 
     for (int i = 0; i < data.length; i++) {
-    debugPrint('Data : ${data}');
 
       global_action["${data[i]["ID"]}"] = DonaidAction.fromJson(data[i]);
     }
   } else {
-    var response = [];
-    for (int i = 0; i < global_action.length; i++) {
-      response.add(global_action[i]?.toDict());
-    }
-    String result = jsonEncode(response);
+    debugPrint('! EMPTY');
 
+    var response = [];
+    for (var i in global_action.keys) {
+    debugPrint('! ${global_action} , ${global_action[i]}');
+      var ele = global_action[i]!.toDict();
+      ele["ID"] = i;
+      response.add(ele);
+    }
+    String result = jsonEncode({"data":response});
+    await client.post(posturl,
+      headers: {"Content-Type": "application/json"},
+      body: result
+  );
     // file.writeAsString(result);
     // .fromJson(file.readAsString());
   }
