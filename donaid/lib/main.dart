@@ -1,4 +1,5 @@
 import 'package:donaid/mymenu.dart';
+import 'package:donaid/pages/add_action.dart';
 import 'package:donaid/previous_page.dart';
 import 'package:flutter/material.dart';
 import 'package:donaid/pages/mappage.dart';
@@ -73,7 +74,7 @@ class MainPage extends StatelessWidget {
         Scaffold(
         appBar: AppBar(
           leading: mymenu, 
-          title: Text ("DonAid"),
+          title: Center(child:Text ("DonAid"),),
            actions: [
           IconButton(
           icon: const Icon(Icons.account_circle),
@@ -89,7 +90,7 @@ class MainPage extends StatelessWidget {
            ],
           
           backgroundColor: maincolor,
-          foregroundColor: textblack,         
+          foregroundColor: textpurple,         
         ),
       body:  InteractiveMapPage(),
       floatingActionButton:  const MainFab(),
@@ -115,8 +116,8 @@ class Donations extends StatelessWidget {
         appBar: AppBar(
           leading: mymenu,
           backgroundColor: maincolor,
-          foregroundColor: textblack,
-          title: const Text("Οι Δωρεές μου"),
+          foregroundColor: textpurple,
+          title: Center(child:Text("Οι Δωρεές μου"),)
         ),
       body: const  DonationsPage(),
       
@@ -141,8 +142,8 @@ class Account extends StatelessWidget {
         appBar: AppBar(
           leading: mymenu,
           backgroundColor: maincolor,
-          foregroundColor: textblack,
-          title: const Text("Ο Λογαριασμός μου"),
+          foregroundColor: textpurple,
+          title: Center(child:Text("Ο Λογαριασμός μου"),)
           
         ),
       body:   EditProfilePage(),
@@ -168,7 +169,7 @@ class StaticAccount extends StatelessWidget {
         appBar: AppBar(
           leading: previouspage,
           backgroundColor: maincolor,
-          foregroundColor: textblack,
+          foregroundColor: textpurple,
           title: const Text("Αιμοπετάλιο"),
           
         ),
@@ -192,7 +193,7 @@ class Favorites extends StatelessWidget {
         appBar: AppBar(
           leading: mymenu,
           backgroundColor: maincolor,
-          foregroundColor: textblack,
+          foregroundColor: textpurple,
           title: const Text("Τα Αγαπημένα μου"),
         ),
       body: const  FavoritePage(),
@@ -224,7 +225,7 @@ class Actions extends StatelessWidget {
         appBar: AppBar(
           leading: mymenu,
           backgroundColor: maincolor,
-          foregroundColor: textblack,
+          foregroundColor: textpurple,
           title: const Text("Οι Δράσεις μου"),
         ),
      body: const  ActionsPage(),
@@ -248,7 +249,7 @@ class MyMap extends StatelessWidget {
         appBar: AppBar(
           leading: previouspage,
           backgroundColor: maincolor,
-          foregroundColor: textblack,
+          foregroundColor: textpurple,
           title: const Text("Επιλογή Τοποθεσίας"),
         ),
       body: const  AddMapPage(),
