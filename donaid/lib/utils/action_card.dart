@@ -85,6 +85,60 @@ class _ActionCardState extends State<ActionCard> {
                   }
               },
             ): Container();
+
+Widget deletebutton = (data.organization == myID)
+        ? ElevatedButton(
+            // style: ButtonStyle(elevation: MaterialStateProperty(12.0 )),
+            style: ElevatedButton.styleFrom(
+                //primary: Colors.purple,
+               // elevation: 15.0,
+                textStyle: const TextStyle()),
+            child: const Icon(Icons.delete),
+
+            onPressed: () => {
+              if (data.organization == myID)
+                {
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title:Text(
+                              "Είστε σίγουροι ότι θέλετε να διαγράψετε τη συγκεκριμένη δράση;"),
+                      content: Stack(
+                        alignment: Alignment.center,
+                        children: <Widget>[
+                           Row (
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children:[TextButton(
+                            child: Text("Cancel"),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                          TextButton(
+                            child: Text("Continue"),
+                            onPressed: () {},
+                          ),
+                          ]
+                          )
+                        //  ]
+                        // )
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  //   AlertDialog(
+                  //   content: Image.asset('https://www.everypixel.com/q/funny-dogs%27)
+                  // ),
+                }
+            },
+          )
+        : Container();
+
+
+
+
+
             // '00/00/2000\nAddress 0, City\n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis ';
             return Card(
 
@@ -160,6 +214,7 @@ class _ActionCardState extends State<ActionCard> {
                       Spacer(),
 
                       button,
+                      deletebutton,
 
                       SizedBox(
                         width: 10,
