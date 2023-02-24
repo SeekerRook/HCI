@@ -51,6 +51,7 @@ class _ActionCardState extends State<ActionCard> {
             var supportingText =
                 data.date + '\n\n' + data.place + '\n\n' + data.description;
 
+              
             Widget button = (data.organization == myID)? ElevatedButton(
               // style: ButtonStyle(elevation: MaterialStateProperty(12.0 )),
               style: ElevatedButton.styleFrom(
@@ -86,7 +87,7 @@ class _ActionCardState extends State<ActionCard> {
             ): Container();
             // '00/00/2000\nAddress 0, City\n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis ';
             return Card(
-              color: Colors.white,
+
                 elevation: 4.0,
                 child: Column(
                   children: [

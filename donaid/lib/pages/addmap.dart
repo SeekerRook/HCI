@@ -173,15 +173,18 @@ import 'package:flutter/material.dart';
 import 'package:latlng/latlng.dart';
 import 'package:map/map.dart';
 import 'package:donaid/utils/action_card.dart';
+import 'package:geocoder/geocoder.dart';
+
 
 class AddMapPage extends StatefulWidget {
-  const AddMapPage({Key? key}) : super(key: key);
+LatLng? addmaploc; 
+
+  AddMapPage({Key? key}) : super(key: key);
 
   @override
   AddMapPageState createState() => AddMapPageState();
 }
 
-var addmaploc ;
 
 
 class AddMapPageState extends State<AddMapPage> {
@@ -189,7 +192,7 @@ class AddMapPageState extends State<AddMapPage> {
     location: const LatLng(37.97927142078896, 23.783097583782418),
     zoom: 15,
   );
-
+  // var widget.addmaploc;
   final markers = [
     //actual coordinates would be fetched from the app API, that is not implemented for this prototype. We are using dummy data
     const LatLng(37.97327142078896, 23.78297583782418),
@@ -240,9 +243,10 @@ class AddMapPageState extends State<AddMapPage> {
   void _gotoDefault() {
     controller.center = const LatLng(37.97927142078896, 23.783097583782418);
     controller.zoom = 15;
+    debugPrint('${widget.addmaploc}${widget.addmaploc!.latitude}, ${widget.addmaploc!.longitude}');
 
-    Navigator.pop(context);
-    setState(() {});
+    // Navigator.pop(context);
+    setState(() {widget.addmaploc = controller.center;});
   }
 
   void _onDoubleTap(MapTransformer transformer, Offset position) {
@@ -251,7 +255,7 @@ class AddMapPageState extends State<AddMapPage> {
 
     transformer.setZoomInPlace(zoom, position);
 
-    setState(() {});
+    setState(() {widget.addmaploc = controller.center;});
   }
 
   Offset? _dragStart;
@@ -267,22 +271,23 @@ class AddMapPageState extends State<AddMapPage> {
 
     if (scaleDiff > 0) {
       controller.zoom += 0.02;
-      setState(() {});
+      setState(() {widget.addmaploc = controller.center;});
     } else if (scaleDiff < 0) {
       controller.zoom -= 0.02;
-      setState(() {});
+      
+      setState(() {widget.addmaploc = controller.center;});
     } else {
       final now = details.focalPoint;
       final diff = now - _dragStart!;
       _dragStart = now;
       transformer.drag(diff.dx, diff.dy);
-      setState(() {});
+      setState(() {widget.addmaploc = controller.center;});
     }
   }
 
   Widget _buildMarkerWidget(Offset pos, Color color, MapTransformer transformer,
       [IconData icon = Icons.location_on]) {
-        addmaploc=pos;
+        widget.addmaploc = controller.center;
     return Positioned(      
       left: pos.dx - 24,
       top: pos.dy - 24,
@@ -405,6 +410,7 @@ class AddMapPageState extends State<AddMapPage> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       body: MapLayout(
         controller: controller,
@@ -457,7 +463,10 @@ class AddMapPageState extends State<AddMapPage> {
             child: Listener(
               behavior: HitTestBehavior.opaque,
               onPointerSignal: (event) {
+              // addmaploc=controller.center;
+
                 if (event is PointerScrollEvent) {
+
                   final delta = event.scrollDelta.dy / -1000.0;
                   final zoom = clamp(controller.zoom + delta, 2, 18);
 
