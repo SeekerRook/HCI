@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:donaid/utils/action_card.dart';
 import 'package:donaid/utils/data.dart';
+import 'package:donaid/utils/location.dart';
 import 'package:flutter/services.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:donaid/theme.dart';
@@ -10,6 +11,7 @@ import 'package:donaid/utils/tile_servers.dart';
 import 'package:donaid/utils/utils.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:latlng/latlng.dart';
 import 'package:map/map.dart';
 
@@ -21,15 +23,100 @@ class InteractiveMapPage extends StatefulWidget {
 }
 
 class InteractiveMapPageState extends State<InteractiveMapPage> {
-  final controller = MapController(
+  
+  List<LatLng> markers = [
+    for (var val in global_action.values) (LatLng(val.x, val.y))
+    
+  ];
+  var mdata = [
+    for (var val in global_action.keys) (val)
+  ];
+  //   LOCATION 
+
+  String? _currentAddress;
+  LatLng _currentPosition = LatLng ( 37.97927142078896, 23.783097583782418);
+
+
+
+Future<bool> _handleLocationPermission() async {
+  bool serviceEnabled;
+  LocationPermission permission;
+  
+  serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  if (!serviceEnabled) {
+     debugPrint('Location services are disabled. Please enable the services');
+    
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Location services are disabled. Please enable the services')));
+    return false;
+  }  permission = await Geolocator.checkPermission();
+  if (permission == LocationPermission.denied) {
+    permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.denied) {   
+     debugPrint('Location permissions are denied');
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        
+          const SnackBar(content: Text('Location permissions are denied')));
+      return false;
+    }
+  }  if (permission == LocationPermission.deniedForever) {
+     debugPrint('Location permissions are permanently denied, we cannot request permissions.');
+
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Location permissions are permanently denied, we cannot request permissions.')));
+    return false;
+  }  return true;
+}
+Future<void> _getCurrentPosition() async {
+  final hasPermission = await _handleLocationPermission();  if (!hasPermission) return;
+  await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high)
+      .then((Position position) {
+                debugPrint("Found GPS");
+        debugPrint("NEW ${position.longitude},${position.longitude}");
+        debugPrint("OLD 37.97927142078896, 23.783097583782418");
+    setState(() => _currentPosition = LatLng(position.latitude,position.longitude));
+  }).catchError((e) {
+    debugPrint(e);
+  });
+
+}
+
+final controller = MapController(
     location: const LatLng(37.97927142078896, 23.783097583782418),
     zoom: 15,
   );
 
-  final markers = [
+//   /Location
+
+  // final markers = [
+  //   //actual coordinates would be fetched from the app API, that is not implemented for this prototype. We are using dummy data
+  //   const LatLng(37.97327142078896, 23.78297583782418),
+  //   const LatLng(37.97527142078896, 23.78397583782418),
+  //   // const LatLng(37.97727142078896, 23.784097583782418),
+  //   // const LatLng(37.97227142078896, 23.786097583782418),
+  //   // const LatLng(37.87327142078896, 23.78297583782418),
+  //   // const LatLng(37.94527142078896, 23.783547583782418),
+  //   // const LatLng(37.93727142078896, 23.782397583782418),
+  //   // const LatLng(37.96227142078896, 23.779097583782418),
+  //   // const LatLng(37.17327142078896, 23.72597583782418),
+  //   // const LatLng(37.95727142078896, 23.75497583782418),
+  //   // const LatLng(37.92627142078896, 23.743097583782418),
+  //   // const LatLng(37.93827142078896, 23.787097583782418),
+  //   // const LatLng(37.99027142078896, 23.70397583782418),
+  //   // const LatLng(37.93027142078896, 23.72497583782418),
+  //   // const LatLng(37.90027142078896, 23.765097583782418),
+  //   // const LatLng(37.98927142078896, 23.778097583782418),
+  //   // const LatLng(37.93427142078896, 23.73297583782418),
+  //   // const LatLng(37.93427142078896, 23.74597583782418),
+  //   // const LatLng(37.95627142078896, 23.733097583782418),
+  //   // const LatLng(37.92927142078896, 23.777097583782418),
+  // ];
+
     //actual coordinates would be fetched from the app API, that is not implemented for this prototype. We are using dummy data
-    const LatLng(37.97327142078896, 23.78297583782418),
-    const LatLng(37.97527142078896, 23.78397583782418),
+    // const LatLng(37.97327142078896, 23.78297583782418),
+    // const LatLng(37.97527142078896, 23.78397583782418),
     // const LatLng(37.97727142078896, 23.784097583782418),
     // const LatLng(37.97227142078896, 23.786097583782418),
     // const LatLng(37.87327142078896, 23.78297583782418),
@@ -48,36 +135,14 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
     // const LatLng(37.93427142078896, 23.74597583782418),
     // const LatLng(37.95627142078896, 23.733097583782418),
     // const LatLng(37.92927142078896, 23.777097583782418),
-  ];
-  final data = [
-    //actual coordinates would be fetched from the app API, that is not implemented for this prototype. We are using dummy data
-    "D1",// const LatLng(37.97327142078896, 23.78297583782418),
-    "D2",// const LatLng(37.97527142078896, 23.78397583782418),
-    // const LatLng(37.97727142078896, 23.784097583782418),
-    // const LatLng(37.97227142078896, 23.786097583782418),
-    // const LatLng(37.87327142078896, 23.78297583782418),
-    // const LatLng(37.94527142078896, 23.783547583782418),
-    // const LatLng(37.93727142078896, 23.782397583782418),
-    // const LatLng(37.96227142078896, 23.779097583782418),
-    // const LatLng(37.17327142078896, 23.72597583782418),
-    // const LatLng(37.95727142078896, 23.75497583782418),
-    // const LatLng(37.92627142078896, 23.743097583782418),
-    // const LatLng(37.93827142078896, 23.787097583782418),
-    // const LatLng(37.99027142078896, 23.70397583782418),
-    // const LatLng(37.93027142078896, 23.72497583782418),
-    // const LatLng(37.90027142078896, 23.765097583782418),
-    // const LatLng(37.98927142078896, 23.778097583782418),
-    // const LatLng(37.93427142078896, 23.73297583782418),
-    // const LatLng(37.93427142078896, 23.74597583782418),
-    // const LatLng(37.95627142078896, 23.733097583782418),
-    // const LatLng(37.92927142078896, 23.777097583782418),
-  ];
+  // ];
 
   void _gotoDefault() {
-    controller.center = const LatLng(37.97927142078896, 23.783097583782418);
+    
+    controller.center = _currentPosition;//const LatLng(37.97927142078896, 23.783097583782418);
     controller.zoom = 15;
 
-    Navigator.pop(context);
+    // Navigator.pop(context);
     setState(() {});
   }
 
@@ -141,6 +206,7 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
   }
 
   Widget _buildMarkerWidgetwithbs(
+
       Offset pos,
       String ID,
       Color color,
@@ -153,6 +219,7 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
       String contact,
       [bool showbs = true,
       IconData icon = Icons.location_on]) {
+        
     return Positioned(
       left: pos.dx - 24,
       top: pos.dy - 24,
@@ -180,72 +247,38 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
                     padding: const EdgeInsets.only(top: kFloatingActionButtonMargin + 20),
                     child: Wrap(children: [
                   ActionCard(ID)
-//                           ListTile(
-//                             title: Text(
-//                               title,
-// ),
-//                             subtitle: Text("από: $by"),
 
-//                             tileColor: maincolor,
-//                           ),
-//                           ListTile(
-//                             title: Text(
-//                               place,
-//                               style: const TextStyle(color: Color(0xff49454F)),
-
-//                             ),
-//                             leading: Icon(Icons.place),
-
-//                           ),
-//                           ListTile(
-//                             title: Text(
-//                               date,
-//                               style: const TextStyle(color: Color(0xff49454F)),
-
-//                             ),
-//                             leading: Icon(Icons.date_range),
-
-//                           ),
-//                           ListTile(
-//                             title: Text(
-//                               description,
-//                               style: const TextStyle(color: Color(0xff49454F)),
-
-//                             ),
-//                             leading: Icon(Icons.info),
-
-//                           ),
-//                           ListTile(
-//                             title: Text(
-//                               'info@aggaliazois.com',
-//                               style: const TextStyle(color: Color(0xff49454F)),
-
-//                             ),
-//                             onTap: () {
-//                               Clipboard.setData(ClipboardData(text: contact));
-
-//                             },
-//                             leading: Icon(Icons.message),
-
-//                           ),
                 ]));
               });
         },
       ),
     );
   }
-
+  bool flag = true;
   @override
   Widget build(BuildContext context) {
+    // LatLng mypos = LatLng(37.97927142078896, 23.783097583782418);
+    // Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high).then((value) => position = LatLng(value.latitude,value.longitude)).onError((error, stackTrace) => position = LatLng(37.97927142078896, 23.783097583782418));
+          _getCurrentPosition();
+    if (flag){
+      _getCurrentPosition().then((value) {      
+      controller.center = _currentPosition;
+      flag = false;});
+
+    }
     return Scaffold(
       body: MapLayout(
         controller: controller,
         builder: (context, transformer) {
+          //  _getCurrentPosition().then((value){
+          //   controller.center = _currentPosition;   
+          //  });
+
           final markerPositions = markers.map(transformer.toOffset).toList();
           // final markertuples = markerPositions.map()
           var markerTuples = [];
           for   (int i = 0; i< markerPositions.length; i++){
-            markerTuples.add([markerPositions[i],data[i]]);
+            markerTuples.add([markerPositions[i],mdata[i]]);
           }
           var markerWidgets = markerTuples.map(
             (pos) => _buildMarkerWidgetwithbs(
@@ -263,11 +296,12 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
           );
 
           final homeLocation = transformer
-              .toOffset(const LatLng(37.97927142078896, 23.783097583782418));
+
+              .toOffset(_currentPosition);
 
           //final homeLocation = transformer.toOffset(const LatLng(37.97927142078896, 23.783097583782418));
-
-          final homeMarkerWidget = _buildMarkerWidget(
+          var homeMarkerWidget = _buildMarkerWidget(
+            
               homeLocation, textpurple, transformer, Icons.my_location);
 
           final centerLocation = Offset(

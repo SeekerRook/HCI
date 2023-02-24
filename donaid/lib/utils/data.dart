@@ -189,6 +189,7 @@ Future<String> get_users_() async {
 
     // final data = jsonDecode(response);
     final data = (await json.decode(response))['data'];
+    myID = (await json.decode(response))['curr'];
 
     for (int i = 0; i < data.length; i++) {
       global_user["${data[i]["ID"]}"] = DonaidUser.fromJson(data[i]);
@@ -206,7 +207,7 @@ Future<String> get_users_() async {
       ele["ID"] = i;
       response.add(ele);
     }
-    String result = jsonEncode({"data": response});
+    String result = jsonEncode({"data": response,"curr":myID});
     await client.post(posturl,
         headers: {"Content-Type": "application/json"}, body: result);
     debugPrint('POST');
@@ -222,3 +223,5 @@ Future<String> get_data() async {
    res = get_users_();
   return res;
   }
+
+  

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
+import 'package:donaid/utils/data.dart';
 
 
 class StaticTextFieldWidget extends StatefulWidget {
@@ -138,6 +139,9 @@ class StaticProfileWidget extends StatelessWidget {
 
 
 class StaticProfilePage extends StatefulWidget {
+  String ID;
+
+  StaticProfilePage(this.ID, {super.key});
   @override
   _StaticProfilePageState createState() => _StaticProfilePageState();
 }
@@ -153,13 +157,15 @@ class _StaticProfilePageState extends State<StaticProfilePage> {
 
 
   @override
-  Widget build(BuildContext context) =>  Builder(
+  Widget build(BuildContext context) {
+    var user = global_user[widget.ID];
+    return Builder(
           builder: (context) =>  ListView(
               padding: EdgeInsets.symmetric(horizontal: 32),
               physics: BouncingScrollPhysics(),
               children: [
                 StaticProfileWidget(
-                  imagePath: "https://images-ext-2.discordapp.net/external/QJu037WHfI_pq95d1gg46OEvK0X7r_i4Lv0yBlHFTnM/%3F_nc_cat%3D104%26ccb%3D1-7%26_nc_sid%3D09cbfe%26_nc_ohc%3DU7ioUpjI1H0AX_CfzQ5%26_nc_ht%3Dscontent.fath4-2.fna%26oh%3D00_AfACS5LF8rb8MVvRPoFWty0bXw3KIzSOXbLecCa1eYSH2g%26oe%3D63FAA888/https/scontent.fath4-2.fna.fbcdn.net/v/t39.30808-6/325979872_1388081398611609_2589098736076340159_n.jpg?width=670&height=664",
+                  imagePath: user!.imageurl,
                   isEdit: true,
                   
                   onClicked: () async {},
@@ -188,13 +194,14 @@ class _StaticProfilePageState extends State<StaticProfilePage> {
             ),
           );
   
-
+  }
 }
 
-void BuildStatic (){
+void BuildStatic (String ID){
+  var user = global_user[ID];
   //pswdcontroller.text = "hahadethamehakareis";
  // orgcontroller.text = "Aimopetalio";
-  contactcontroller.text = "https://aimopetalio.med.uoa.gr/";
-  infocontroller.text = "Το Αιμοπετάλιο επιδιώκει τη διάδοση της ιδέας της εθελοντικής αιμοδοσίας. Κύρια δράση του είναι η διοργάνωση εθελοντικών αιμοδοσιών σε χώρους του πανεπιστημίου, σε συνεργασία με το Ε.ΚΕ.Α. Συνήθως διοργανώνονται δυο αιμοδοσίες σε κάθε ακαδημαϊκό εξάμηνο, ένα διήμερο στην Ιατρική Σχολή και ένα διήμερο/τριήμερο στην Πανεπιστημιούπολη!";
+  contactcontroller.text = user!.contact;
+  infocontroller.text = user.bio;
 
   }

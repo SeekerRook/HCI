@@ -99,7 +99,7 @@ class _ActionCardState extends State<ActionCard> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const StaticAccount()),
+                                  builder: (context) =>  StaticAccount(data.organization)),
                             );
                           }),
                       title: Text(heading),

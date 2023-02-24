@@ -26,14 +26,25 @@ void main() {
 }
 
 void main_()async {
- get_data().then((value) => {
+  runApp( MaterialApp(
+      // title: "DonAid",
+      theme: mytheme,
+     // home: const MainPage(), 
+      home: Scaffold(
+        backgroundColor: maincolor,
+        body: Center(child: Image.asset('assets/icon.png')), 
+      ), 
+
+  ));
+ get_data().then((value)  {
+  var start = (myID == "")?LoginPage():MainPage();
  runApp( MaterialApp(
       title: "DonAid",
       theme: mytheme,
      // home: const MainPage(), 
-      home:  LoginPage(), 
+      home:  start, 
 
-  ))
+  ));
  });
   
  
@@ -157,23 +168,28 @@ class Account extends StatelessWidget {
 
 
 class StaticAccount extends StatelessWidget {
-  const StaticAccount({super.key});
+  String ID;
+
+
+  StaticAccount(this.ID,{super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    var content = StaticProfilePage();
-    BuildStatic();
+    var content = StaticProfilePage(ID);
+    BuildStatic(ID);
     return 
         Scaffold(
         appBar: AppBar(
           leading: previouspage,
           backgroundColor: maincolor,
-          foregroundColor: textpurple,
-          title: const Text("Αιμοπετάλιο"),
+
+          foregroundColor: textblack,
+          title:  Text(global_user[ID]!.username),
+
           
         ),
-      body:   StaticProfilePage(),
+      body:   StaticProfilePage(ID),
     
 
       
@@ -381,6 +397,8 @@ class MyDrawer extends StatelessWidget{
 
         title: const Text('Αποσύνδεση'),
         onTap: () {
+          myID == "";
+          get_data();
           Navigator.pop(context);            
           Navigator.pop(context);
 
