@@ -1,10 +1,13 @@
+import 'package:donaid/main.dart';
 import 'package:flutter/material.dart';
 import 'package:donaid/theme.dart';
 import 'package:donaid/pages/qr.dart';
 
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:easy_search_bar/easy_search_bar.dart';
 
 import '../pages/actions.dart';
+import 'bar_test.dart';
  
   var renderOverlay = true;
   var visible = true;
@@ -20,10 +23,10 @@ import '../pages/actions.dart';
   var childrenButtonSize = const Size(56.0, 56.0);
   var selectedfABLocation = FloatingActionButtonLocation.endDocked;
 
+
+
  class MainFab extends StatelessWidget {
     const MainFab({super.key});
-
-
 
   // This widget is the root of your application.
   @override
@@ -63,7 +66,9 @@ import '../pages/actions.dart';
               foregroundColor: textlightpurple,
               label: 'Search Donations',
               // onTap: () => setState(() => rmicons = !rmicons),
-              onTap: () => debugPrint('Search'),
+              //onTap: () => debugPrint('Search'),
+              onTap: (){},
+
 
               onLongPress: () => debugPrint('FIRST CHILD LONG PRESS'),
             ),

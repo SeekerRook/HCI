@@ -16,7 +16,7 @@ import 'package:donaid/pages/addmap.dart';
 import 'package:donaid/pages/loginpage.dart';
 import 'package:donaid/pages/logout.dart';
 
-
+import 'package:easy_search_bar/easy_search_bar.dart';
 import 'dart:io';
 
 
@@ -78,7 +78,6 @@ class MainPage extends StatelessWidget {
           leading: mymenu, 
           title: Text ("DonAid"),
            actions: [
-          //  Icon(Icons.person),
           IconButton(
           icon: const Icon(Icons.account_circle),
           
@@ -89,30 +88,22 @@ class MainPage extends StatelessWidget {
               MaterialPageRoute(builder: (context) => const Account()),
             );
           }
-          )
+          )          
            ],
           
           backgroundColor: maincolor,
-          foregroundColor: textblack,
-          // title: const Text("Donaid"),
-          
-          // title: Row(
-          //   children:[
-          //   const Text("DonAid"),
-          //   ListTile(
-          //     leading: const Icon(Icons.person),
-          //   )
-          //   ]
-          // )          
+          foregroundColor: textblack,         
         ),
       body:  InteractiveMapPage(),
       floatingActionButton:  const MainFab(),
 
-      
       drawer: const MyDrawer(),
       );
   }
 }
+
+
+
 
 class Donations extends StatelessWidget {
   const Donations({super.key});
