@@ -15,8 +15,6 @@ import 'package:flutter/src/material/card.dart';////
 import 'package:donaid/pages/addmap.dart';
 import 'package:donaid/pages/loginpage.dart';
 import 'package:donaid/pages/logout.dart';
-
-import 'package:easy_search_bar/easy_search_bar.dart';
 import 'dart:io';
 
 
@@ -24,7 +22,6 @@ import 'dart:io';
 void main() {
   HttpOverrides.global = MyHttpOverrides();
   main_();
-  // debugPrint("EXIT");
 }
 
 void main_()async {
