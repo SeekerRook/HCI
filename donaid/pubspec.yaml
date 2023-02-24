@@ -29,7 +29,6 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  easy_search_bar: ^2.4.2
   flutter:
     sdk: flutter
   image_picker: ^0.8.5+3
@@ -48,6 +47,8 @@ dependencies:
   flutter_speed_dial: ^6.2.0
   mobile_scanner: ^2.1.0
   path_provider: any
+  # flutter_search_bar: ^2.1.0
+  flutter_text_field_fab: any
 
   # location: any
   # app_settings: 4.1.1
