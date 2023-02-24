@@ -16,14 +16,16 @@ import 'package:latlng/latlng.dart';
 import 'package:map/map.dart';
 
 class InteractiveMapPage extends StatefulWidget {
-  const InteractiveMapPage({Key? key}) : super(key: key);
-
+  LatLng? pos;
+  InteractiveMapPage({this.pos, Key? key}) : super(key: key);
+  
   @override
   InteractiveMapPageState createState() => InteractiveMapPageState();
+  
 }
 
 class InteractiveMapPageState extends State<InteractiveMapPage> {
-  
+
   List<LatLng> markers = [
     for (var val in global_action.values) (LatLng(val.x, val.y))
     
@@ -218,7 +220,8 @@ final controller = MapController(
       String description,
       String contact,
       [bool showbs = true,
-      IconData icon = Icons.location_on]) {
+      IconData icon = Icons.location_on])
+       {
         
     return Positioned(
       left: pos.dx - 24,
@@ -259,7 +262,11 @@ final controller = MapController(
   Widget build(BuildContext context) {
     // LatLng mypos = LatLng(37.97927142078896, 23.783097583782418);
     // Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high).then((value) => position = LatLng(value.latitude,value.longitude)).onError((error, stackTrace) => position = LatLng(37.97927142078896, 23.783097583782418));
-          _getCurrentPosition();
+          // _getCurrentPosition();
+    if (widget.pos != null){
+      controller.center = widget.pos!;
+
+    }else
     if (flag){
       _getCurrentPosition().then((value) {      
       controller.center = _currentPosition;

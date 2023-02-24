@@ -1,3 +1,4 @@
+import 'package:donaid/pages/mappage.dart';
 import 'package:donaid/pages/qr.dart';
 import 'package:flutter/material.dart';
 import 'package:donaid/utils/data.dart';
@@ -5,6 +6,7 @@ import 'package:donaid/main.dart';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:latlng/latlng.dart';
 
 class ActionCard extends StatefulWidget {
   String ID;
@@ -89,6 +91,7 @@ class _ActionCardState extends State<ActionCard> {
             return Card(
               // color: Colors.white,
                 elevation: 4.0,
+                
                 child: Column(
                   children: [
                     ListTile(
@@ -104,7 +107,14 @@ class _ActionCardState extends State<ActionCard> {
                                   builder: (context) =>  StaticAccount(data.organization)),
                             );
                           }),
-                      title: Text(heading),
+                      title: GestureDetector(child:Text(heading),onTap: () {
+                            // Navigator.pop(context);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>  InteractiveMapPage(pos: LatLng(data.x,data.y))),
+                            );
+                          },),
                       subtitle: Text(subheading),
                       // trailing: const Icon(Icons.favorite_outline),
                       trailing: IconButton(

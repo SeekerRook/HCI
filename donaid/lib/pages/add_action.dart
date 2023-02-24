@@ -10,7 +10,7 @@ import 'package:donaid/utils/gallery.dart';
 
 var selectloc = [0.0, 0.0];
 var setaddress = "";
-
+var defaultimg = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
 class TextFieldWidgetAct extends StatefulWidget {
   final int maxLines;
   final String label;
@@ -218,7 +218,7 @@ class _AddActionPageState extends State<AddActionPage> {
           children: [
             ActionWidget(
               imagePath:
-                  "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png",
+                  defaultimg,
               isEdit: true,
               onClicked: () async {},
             ),
@@ -426,6 +426,9 @@ class _AddActionPageState extends State<AddActionPage> {
                 String stdate = startdateController.text;
                 String edate = enddateController.text;
                 String category = _catcontroller.text;
+                // double x = selectloc[0];
+                // double y = selectloc[1];
+                String imgpath = defaultimg;
                 String date =
                     (_switchValue == true) ? "${stdate} έως ${edate}" : "Πάντα";
                 var errmessage = " \n";
@@ -449,6 +452,12 @@ class _AddActionPageState extends State<AddActionPage> {
                   if (category == "") {
                     errmessage += "Επιλέξτε Κατηγορία\n";
                   }
+
+                showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                          content: Text(errmessage),
+                        ));
                 } else {
                   errmessage = "Η δράση '$title' προστέθηκε με επιτυχία!";
                                   _titcontroller.text = "";
@@ -458,14 +467,20 @@ class _AddActionPageState extends State<AddActionPage> {
                 enddateController.text = "";
                 _catcontroller.text = "";
                 selectloc = [0.0,0.0];
-                }
 
-
-                showDialog(
+                var newaction= DonaidAction(title: title, organization: myID, date: date, place: location, x: selectloc[1], y: selectloc[0], imgpath: imgpath, isFavorite: false, hasDonated: false, type: category, description: description);  
+                global_action["D${global_action.length+1}"] = newaction;
+                get_data().then(((value) {
+                                  showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
                           content: Text(errmessage),
                         ));
+                }));
+
+                }
+
+
               },
               child: Text('Submit'),
             )
