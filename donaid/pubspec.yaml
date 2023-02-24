@@ -49,6 +49,7 @@ dependencies:
   path_provider: any
   # flutter_search_bar: ^2.1.0
   flutter_text_field_fab: any
+  geocoder: ^0.2.1
 
   # location: any
   # app_settings: 4.1.1

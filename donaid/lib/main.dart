@@ -14,8 +14,12 @@ import 'package:donaid/utils/data.dart';
 import 'package:flutter/src/material/card.dart';////
 import 'package:donaid/pages/addmap.dart';
 import 'package:donaid/pages/loginpage.dart';
+import 'package:donaid/pages/add_action.dart';
 import 'package:donaid/pages/logout.dart';
+
 import 'dart:io';
+
+import 'package:geocoder/geocoder.dart';
 
 
 
@@ -256,7 +260,8 @@ class MyMap extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
             debugPrint(context.toString());
-
+    var loc = "Something";
+    var mp = AddMapPage();
     return 
         Scaffold(
         appBar: AppBar(
@@ -265,14 +270,23 @@ class MyMap extends StatelessWidget {
           foregroundColor: textblack,
           title: const Text("Επιλογή Τοποθεσίας"),
         ),
-      body: const  AddMapPage(),
+      body: mp,
       
       //floatingActionButton:mapfab,
 floatingActionButton: FloatingActionButton(
       child: const Icon(Icons.save),
-      onPressed: () {
+      onPressed: () async {
+        var _ = Geocoder.local.findAddressesFromCoordinates(
+          new Coordinates(
+          mp.addmaploc?.latitude, mp.addmaploc?.longitude)).then((value) {
+            // debugPrint('location ${value.first.addressLine}');
+            mapcontroller.text = value.first.addressLine;
+          });
         Navigator.pop(context);
-        debugPrint('location ${addmaploc.toString()}');
+
+        // debugPrint('location ${address.first}');
+        
+        selectloc = [mp.addmaploc!.latitude,mp.addmaploc!.longitude];
           }
       ),
       
