@@ -108,11 +108,17 @@ class _ActionCardState extends State<ActionCard> {
                             );
                           }),
                       title: GestureDetector(child:Text(heading),onTap: () {
+                        // if (context.)
+                          final navstate= Navigator.of(context);
+                          // final currentStack = navstate;
+
+                          debugPrint(navstate.toString());
                             // Navigator.pop(context);
+                            // Navigator.of(context).popUntil((route) => route.toString() != "");
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>  InteractiveMapPage(pos: LatLng(data.x,data.y))),
+                                  builder: (context) =>  MainPage(pos: LatLng(data.x,data.y))),
                             );
                           },),
                       subtitle: Text(subheading),

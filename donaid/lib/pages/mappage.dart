@@ -265,6 +265,7 @@ final controller = MapController(
           // _getCurrentPosition();
     if (widget.pos != null){
       controller.center = widget.pos!;
+      widget.pos = null;
 
     }else
     if (flag){

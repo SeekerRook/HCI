@@ -73,14 +73,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'DonAid',
       theme: mytheme,
-      home: const MainPage(), 
+      home: MainPage(), 
 
     );
   }
 }
 
 class MainPage extends StatelessWidget {
-  const MainPage({super.key});
+  LatLng? pos;
+  MainPage({this.pos ,super.key});
 
   // This widget is the root of your application.
   @override
@@ -107,7 +108,7 @@ class MainPage extends StatelessWidget {
           backgroundColor: maincolor,
           foregroundColor: textblack,         
         ),
-      body:  InteractiveMapPage(),
+      body:  InteractiveMapPage(pos: pos),
       floatingActionButton:  const MainFab(),
 
       drawer: const MyDrawer(),
@@ -222,7 +223,7 @@ class Favorites extends StatelessWidget {
         Navigator.pop(context);
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const MainPage()),
+              MaterialPageRoute(builder: (context) => MainPage()),
             );
           }
       ),
@@ -332,7 +333,7 @@ class MyDrawer extends StatelessWidget{
 
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const MainPage()),
+              MaterialPageRoute(builder: (context) => MainPage()),
             );
         },
       ),
