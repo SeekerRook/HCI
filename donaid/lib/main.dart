@@ -16,7 +16,7 @@ import 'package:donaid/pages/addmap.dart';
 import 'package:donaid/pages/loginpage.dart';
 import 'package:donaid/pages/logout.dart';
 
-
+// import 'package:easy_search_bar/easy_search_bar.dart';
 import 'dart:io';
 
 
@@ -87,9 +87,8 @@ class MainPage extends StatelessWidget {
         Scaffold(
         appBar: AppBar(
           leading: mymenu, 
-          title: Text ("Donaid"),
+          title: Text ("DonAid"),
            actions: [
-          //  Icon(Icons.person),
           IconButton(
           icon: const Icon(Icons.account_circle),
           
@@ -100,30 +99,22 @@ class MainPage extends StatelessWidget {
               MaterialPageRoute(builder: (context) => const Account()),
             );
           }
-          )
+          )          
            ],
           
           backgroundColor: maincolor,
-          foregroundColor: textblack,
-          // title: const Text("Donaid"),
-          
-          // title: Row(
-          //   children:[
-          //   const Text("DonAid"),
-          //   ListTile(
-          //     leading: const Icon(Icons.person),
-          //   )
-          //   ]
-          // )          
+          foregroundColor: textblack,         
         ),
       body:  InteractiveMapPage(),
       floatingActionButton:  const MainFab(),
 
-      
       drawer: const MyDrawer(),
       );
   }
 }
+
+
+
 
 class Donations extends StatelessWidget {
   const Donations({super.key});
@@ -223,8 +214,16 @@ class Favorites extends StatelessWidget {
         ),
       body: const  FavoritePage(),
       
-      floatingActionButton:favfab,
-
+      floatingActionButton: FloatingActionButton(
+      child: const Icon(Icons.search),
+      onPressed: () {
+        Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const MainPage()),
+            );
+          }
+      ),
       
       drawer: const MyDrawer(),
       );
@@ -271,8 +270,14 @@ class MyMap extends StatelessWidget {
         ),
       body: const  AddMapPage(),
       
-      floatingActionButton:mapfab,
-
+      //floatingActionButton:mapfab,
+floatingActionButton: FloatingActionButton(
+      child: const Icon(Icons.save),
+      onPressed: () {
+        Navigator.pop(context);
+        debugPrint('location ${addmaploc.toString()}');
+          }
+      ),
       
       drawer: const MyDrawer(),
       );

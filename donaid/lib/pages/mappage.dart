@@ -23,10 +23,7 @@ class InteractiveMapPage extends StatefulWidget {
 }
 
 class InteractiveMapPageState extends State<InteractiveMapPage> {
-  final controller = MapController(
-    location: const LatLng(37.97927142078896, 23.783097583782418),
-    zoom: 15,
-  );
+  
   List<LatLng> markers = [
     for (var val in global_action.values) (LatLng(val.x, val.y))
     
@@ -86,6 +83,10 @@ Future<void> _getCurrentPosition() async {
 
 }
 
+final controller = MapController(
+    location: const LatLng(37.97927142078896, 23.783097583782418),
+    zoom: 15,
+  );
 
 //   /Location
 
@@ -137,10 +138,11 @@ Future<void> _getCurrentPosition() async {
   // ];
 
   void _gotoDefault() {
-    controller.center = const LatLng(37.97927142078896, 23.783097583782418);
+    
+    controller.center = _currentPosition;//const LatLng(37.97927142078896, 23.783097583782418);
     controller.zoom = 15;
 
-    Navigator.pop(context);
+    // Navigator.pop(context);
     setState(() {});
   }
 
@@ -252,17 +254,26 @@ Future<void> _getCurrentPosition() async {
       ),
     );
   }
-
+  bool flag = true;
   @override
   Widget build(BuildContext context) {
-    LatLng mypos = LatLng(37.97927142078896, 23.783097583782418);
+    // LatLng mypos = LatLng(37.97927142078896, 23.783097583782418);
     // Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high).then((value) => position = LatLng(value.latitude,value.longitude)).onError((error, stackTrace) => position = LatLng(37.97927142078896, 23.783097583782418));
           _getCurrentPosition();
+    if (flag){
+      _getCurrentPosition().then((value) {      
+      controller.center = _currentPosition;
+      flag = false;});
 
+    }
     return Scaffold(
       body: MapLayout(
         controller: controller,
         builder: (context, transformer) {
+          //  _getCurrentPosition().then((value){
+          //   controller.center = _currentPosition;   
+          //  });
+
           final markerPositions = markers.map(transformer.toOffset).toList();
           // final markertuples = markerPositions.map()
           var markerTuples = [];

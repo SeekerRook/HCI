@@ -30,9 +30,9 @@ class FavoritePage extends StatelessWidget{
     ); 
   }
   }
-FloatingActionButton favfab = FloatingActionButton(onPressed: ()=>{},
-    child: const Icon(Icons.search)
-);
+// FloatingActionButton favfab = FloatingActionButton(onPressed: ()=>{},
+//     child: const Icon(Icons.search)
+// );
 
 // Future<String> get_data() async {
 //   return get_data_();

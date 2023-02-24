@@ -181,6 +181,9 @@ class AddMapPage extends StatefulWidget {
   AddMapPageState createState() => AddMapPageState();
 }
 
+var addmaploc ;
+
+
 class AddMapPageState extends State<AddMapPage> {
   final controller = MapController(
     location: const LatLng(37.97927142078896, 23.783097583782418),
@@ -279,7 +282,8 @@ class AddMapPageState extends State<AddMapPage> {
 
   Widget _buildMarkerWidget(Offset pos, Color color, MapTransformer transformer,
       [IconData icon = Icons.location_on]) {
-    return Positioned(
+        addmaploc=pos;
+    return Positioned(      
       left: pos.dx - 24,
       top: pos.dy - 24,
       width: 48,
@@ -300,6 +304,10 @@ class AddMapPageState extends State<AddMapPage> {
           }),
     );
   }
+
+
+
+
 
   Widget _buildMarkerWidgetwithbs(
       Offset pos,
@@ -498,11 +506,11 @@ class AddMapPageState extends State<AddMapPage> {
 }
 
 
-FloatingActionButton mapfab = FloatingActionButton(
-  onPressed: () {},
-  child: Icon( 
-    Icons.save,
-    size: 20.0,
-  ),
+// FloatingActionButton mapfab = FloatingActionButton(
+//   onPressed: () {},
+//   child: Icon( 
+//     Icons.save,
+//     size: 20.0,
+//   ),
   
-);
+// );
