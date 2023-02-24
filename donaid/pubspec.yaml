@@ -50,6 +50,7 @@ dependencies:
   # flutter_search_bar: ^2.1.0
   flutter_text_field_fab: any
   geocoder: ^0.2.1
+  searchfield: ^0.7.5
 
   # location: any
   # app_settings: 4.1.1

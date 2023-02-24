@@ -91,7 +91,45 @@ class ActionWidget extends StatelessWidget {
           Positioned(
             bottom: 0,
             right: 4,
-            child: buildEditIcon(color),
+            //child: buildEditIcon(color),
+            
+            child:
+            IconButton(
+              onPressed: (){
+                showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Dialog(
+            // shape: RoundedRectangleBorder(
+            //     borderRadius:
+            //         BorderRadius.circular(50.0)), //this right here
+            child: Container(
+              height: 90,
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    TextField(
+                      decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Paste image link...'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        });
+
+              },
+             icon: const Icon(
+              Icons.add_a_photo ,
+             
+             ),
+            ),
+
             //   child:
             // IconButton(
             //   onPressed: (){
@@ -183,9 +221,13 @@ class ActionWidget extends StatelessWidget {
 }
 
 class AddActionPage extends StatefulWidget {
+  // const AddActionPage({Key? key}) : super(key: key);
+
+
   @override
   _AddActionPageState createState() => _AddActionPageState();
 }
+
 
 var mapcontroller = TextEditingController();
 var _titcontroller = TextEditingController();
@@ -198,8 +240,10 @@ TextEditingController enddateController = TextEditingController();
 final TextEditingController _catcontroller = new TextEditingController();
 
 class _AddActionPageState extends State<AddActionPage> {
+
   bool _switchValue = false;
   var items = ['Τρόφιμα', 'Φάρμακα', 'Αιμοδοσία', 'Αδέσποτα'];
+
 // var items = <your call to api>;
   @override
   void initState() {
@@ -245,6 +289,9 @@ class _AddActionPageState extends State<AddActionPage> {
               controller: mapcontroller,
               decoration: InputDecoration(
                 prefixIcon: IconButton(
+
+                   
+                  
                   onPressed: () {
                     // Navigator.pop(context);
                     Navigator.push(
@@ -352,6 +399,7 @@ class _AddActionPageState extends State<AddActionPage> {
               ],
             ),
 
+
             Switch(
               value: _switchValue,
               onChanged: (bool value) {
@@ -361,19 +409,6 @@ class _AddActionPageState extends State<AddActionPage> {
               },
             ),
 
-            // const SizedBox(height: 24),
-            // TextFormField(
-            //   controller: _controllerC,
-            //   decoration: InputDecoration(
-            //       prefixIcon: Icon(Icons.search),
-            //       suffixIcon: IconButton(
-            //         onPressed: _controllerC.clear,
-            //         icon: Icon(Icons.clear),
-            //       ),
-            //       labelText: "Κατηγορίες",
-            //       hintText: 'Προσθήκη'),
-            //   onChanged: (categories) {},
-            // ),
 
             TextFormField(
               controller: _catcontroller,
@@ -389,20 +424,6 @@ class _AddActionPageState extends State<AddActionPage> {
                             child: new Text(value), value: value);
                       }).toList();
                     },
-                    //     itemBuilder: (context) => [
-                    //   PopupMenuItem(
-                    //     child: StatefulBuilder(
-                    //              builder: (_context, _setState) =>
-                    //                         CheckBoxListTile(
-                    //                            //activeColor: kLeadingOrangeColor,
-                    //                            value: isShow,
-                    //                            onChanged: (value) =>
-                    //                                _setState(() => isShow = value),
-                    //                            title: checkboxLabel('Show'),
-                    //                         ),
-                    //            ),
-                    //   ),
-                    // ],
                   ),
                   labelText: "Κατηγορίες",
                   hintText: 'Προσθήκη'),
@@ -487,4 +508,8 @@ class _AddActionPageState extends State<AddActionPage> {
           ],
         ),
       );
+
+
+
+
 }

@@ -1,8 +1,9 @@
 import 'package:donaid/main.dart';
+import 'package:donaid/utils/searchbar.dart';
 import 'package:flutter/material.dart';
 import 'package:donaid/theme.dart';
 import 'package:donaid/pages/qr.dart';
-
+import 'package:searchfield/searchfield.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 import 'package:flutter_text_field_fab/flutter_text_field_fab.dart';
@@ -68,46 +69,44 @@ import '../pages/actions.dart';
               // onTap: () => setState(() => rmicons = !rmicons),
               //onTap: () => debugPrint('Search'),
               onTap: (){
-              // showDialog(
-              //   context: context,
-              //   builder: (context) => AlertDialog(
-                  
-              //     title: Text(''),
-              //     content: TextField(
-              //       decoration:InputDecoration(hintText: "Search...")
-              //     ),
-              //   ),
-              // );
-
-            showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return Dialog(
-            // shape: RoundedRectangleBorder(
-            //     borderRadius:
-            //         BorderRadius.circular(50.0)), //this right here
-            child: Container(
-              height: 90,
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextField(
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Search...'),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
-        });
+              Navigator.pop(context);
+              Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SearchBar(title:'')),
+            );
+              
+              
 
 
-              },
+        // showDialog(
+        // context: context,
+        // builder: (BuildContext context) {
+        //   return Dialog(
+        //     // shape: RoundedRectangleBorder(
+        //     //     borderRadius:
+        //     //         BorderRadius.circular(50.0)), //this right here
+        //     child: Container(
+        //       height: 90,
+        //       child: Padding(
+        //         padding: const EdgeInsets.all(12.0),
+        //         child: Column(
+        //           mainAxisAlignment: MainAxisAlignment.center,
+        //           crossAxisAlignment: CrossAxisAlignment.start,
+        //           children: [
+        //             TextField(
+        //               decoration: InputDecoration(
+        //                   border: InputBorder.none,
+        //                   hintText: 'Search...'),
+        //             ),
+        //           ],
+        //         ),
+        //       ),
+        //     ),
+        //   );
+        // });
+
+
+},
               onLongPress: () => debugPrint('FIRST CHILD LONG PRESS'),
             ),
          
