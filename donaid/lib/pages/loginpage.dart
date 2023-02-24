@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-// import 'package:donaid/utils/searchbar.dart';
-=======
-
->>>>>>> 43501ede33be0e331e9775886437b392c58381d8
 import 'package:flutter/material.dart';
 import 'package:donaid/main.dart';
 import 'package:donaid/theme.dart';

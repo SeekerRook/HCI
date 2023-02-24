@@ -4,16 +4,10 @@ import 'package:donaid/theme.dart';
 import 'package:donaid/pages/qr.dart';
 
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-<<<<<<< HEAD
-// import 'package:easy_search_bar/easy_search_bar.dart';
 
-import '../pages/actions.dart';
-// import 'bar_test.dart';
-=======
 import 'package:flutter_text_field_fab/flutter_text_field_fab.dart';
 import '../pages/actions.dart';
 
->>>>>>> 43501ede33be0e331e9775886437b392c58381d8
  
   var renderOverlay = true;
   var visible = true;
