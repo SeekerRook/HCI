@@ -86,6 +86,7 @@ class _ActionCardState extends State<ActionCard> {
             ): Container();
             // '00/00/2000\nAddress 0, City\n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis ';
             return Card(
+              color: Colors.white,
                 elevation: 4.0,
                 child: Column(
                   children: [

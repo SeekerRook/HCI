@@ -128,7 +128,7 @@ class Donations extends StatelessWidget {
           leading: mymenu,
           backgroundColor: maincolor,
           foregroundColor: textpurple,
-          title: Center(child:Text("Οι Δωρεές μου"),)
+          title: Text("Οι Δωρεές μου"),
         ),
       body: const  DonationsPage(),
       
@@ -154,7 +154,7 @@ class Account extends StatelessWidget {
           leading: mymenu,
           backgroundColor: maincolor,
           foregroundColor: textpurple,
-          title: Center(child:Text("Ο Λογαριασμός μου"),)
+          title: Text("Ο Λογαριασμός μου"),
           
         ),
       body:   EditProfilePage(),
