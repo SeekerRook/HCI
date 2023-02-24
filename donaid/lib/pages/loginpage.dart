@@ -86,6 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                   for (var k in global_user.keys)
                     if (mailcontroller.text == global_user[k]!.email && pswdcontroller.text == global_user[k]!.password   ) {
                       myID = k;
+                      get_data();
   Navigator.pop(context);
                   Navigator.push(
                       context, MaterialPageRoute(builder: (context) => MainPage()));

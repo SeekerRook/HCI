@@ -28,14 +28,25 @@ void main() {
 }
 
 void main_()async {
- get_data().then((value) => {
+  runApp( MaterialApp(
+      // title: "DonAid",
+      theme: mytheme,
+     // home: const MainPage(), 
+      home: Scaffold(
+        backgroundColor: maincolor,
+        body: Center(child: Image.asset('assets/icon.png')), 
+      ), 
+
+  ));
+ get_data().then((value)  {
+  var start = (myID == "")?LoginPage():MainPage();
  runApp( MaterialApp(
       title: "DonAid",
       theme: mytheme,
      // home: const MainPage(), 
-      home:  LoginPage(), 
+      home:  start, 
 
-  ))
+  ));
  });
   
  
@@ -381,6 +392,8 @@ class MyDrawer extends StatelessWidget{
 
         title: const Text('Αποσύνδεση'),
         onTap: () {
+          myID == "";
+          get_data();
           Navigator.pop(context);            
           Navigator.pop(context);
 
