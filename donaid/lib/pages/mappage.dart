@@ -47,6 +47,8 @@ Future<bool> _handleLocationPermission() async {
   
   serviceEnabled = await Geolocator.isLocationServiceEnabled();
   if (!serviceEnabled) {
+     debugPrint('Location services are disabled. Please enable the services');
+    
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Location services are disabled. Please enable the services')));
     return false;
@@ -54,11 +56,16 @@ Future<bool> _handleLocationPermission() async {
   if (permission == LocationPermission.denied) {
     permission = await Geolocator.requestPermission();
     if (permission == LocationPermission.denied) {   
+     debugPrint('Location permissions are denied');
+
       ScaffoldMessenger.of(context).showSnackBar(
+        
           const SnackBar(content: Text('Location permissions are denied')));
       return false;
     }
   }  if (permission == LocationPermission.deniedForever) {
+     debugPrint('Location permissions are permanently denied, we cannot request permissions.');
+
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Location permissions are permanently denied, we cannot request permissions.')));
     return false;
@@ -197,6 +204,7 @@ Future<void> _getCurrentPosition() async {
   }
 
   Widget _buildMarkerWidgetwithbs(
+
       Offset pos,
       String ID,
       Color color,
@@ -209,6 +217,7 @@ Future<void> _getCurrentPosition() async {
       String contact,
       [bool showbs = true,
       IconData icon = Icons.location_on]) {
+        
     return Positioned(
       left: pos.dx - 24,
       top: pos.dy - 24,
@@ -248,6 +257,7 @@ Future<void> _getCurrentPosition() async {
   Widget build(BuildContext context) {
     LatLng mypos = LatLng(37.97927142078896, 23.783097583782418);
     // Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high).then((value) => position = LatLng(value.latitude,value.longitude)).onError((error, stackTrace) => position = LatLng(37.97927142078896, 23.783097583782418));
+          _getCurrentPosition();
 
     return Scaffold(
       body: MapLayout(
@@ -273,7 +283,6 @@ Future<void> _getCurrentPosition() async {
               "info@mail.com",
             ),
           );
-
 
           final homeLocation = transformer
 
