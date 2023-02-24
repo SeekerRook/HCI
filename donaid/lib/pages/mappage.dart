@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:donaid/utils/action_card.dart';
 import 'package:donaid/utils/data.dart';
+import 'package:donaid/utils/location.dart';
 import 'package:flutter/services.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:donaid/theme.dart';
@@ -10,6 +11,7 @@ import 'package:donaid/utils/tile_servers.dart';
 import 'package:donaid/utils/utils.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:latlng/latlng.dart';
 import 'package:map/map.dart';
 
@@ -32,6 +34,53 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
   var mdata = [
     for (var val in global_action.keys) (val)
   ];
+  //   LOCATION 
+
+  String? _currentAddress;
+  LatLng _currentPosition = LatLng ( 37.97927142078896, 23.783097583782418);
+
+
+
+Future<bool> _handleLocationPermission() async {
+  bool serviceEnabled;
+  LocationPermission permission;
+  
+  serviceEnabled = await Geolocator.isLocationServiceEnabled();
+  if (!serviceEnabled) {
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Location services are disabled. Please enable the services')));
+    return false;
+  }  permission = await Geolocator.checkPermission();
+  if (permission == LocationPermission.denied) {
+    permission = await Geolocator.requestPermission();
+    if (permission == LocationPermission.denied) {   
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Location permissions are denied')));
+      return false;
+    }
+  }  if (permission == LocationPermission.deniedForever) {
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Location permissions are permanently denied, we cannot request permissions.')));
+    return false;
+  }  return true;
+}
+Future<void> _getCurrentPosition() async {
+  final hasPermission = await _handleLocationPermission();  if (!hasPermission) return;
+  await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high)
+      .then((Position position) {
+                debugPrint("Found GPS");
+        debugPrint("NEW ${position.longitude},${position.longitude}");
+        debugPrint("OLD 37.97927142078896, 23.783097583782418");
+    setState(() => _currentPosition = LatLng(position.latitude,position.longitude));
+  }).catchError((e) {
+    debugPrint(e);
+  });
+
+}
+
+
+//   /Location
 
   // final markers = [
   //   //actual coordinates would be fetched from the app API, that is not implemented for this prototype. We are using dummy data
@@ -187,54 +236,7 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
                     padding: const EdgeInsets.only(top: kFloatingActionButtonMargin + 20),
                     child: Wrap(children: [
                   ActionCard(ID)
-//                           ListTile(
-//                             title: Text(
-//                               title,
-// ),
-//                             subtitle: Text("από: $by"),
 
-//                             tileColor: maincolor,
-//                           ),
-//                           ListTile(
-//                             title: Text(
-//                               place,
-//                               style: const TextStyle(color: Color(0xff49454F)),
-
-//                             ),
-//                             leading: Icon(Icons.place),
-
-//                           ),
-//                           ListTile(
-//                             title: Text(
-//                               date,
-//                               style: const TextStyle(color: Color(0xff49454F)),
-
-//                             ),
-//                             leading: Icon(Icons.date_range),
-
-//                           ),
-//                           ListTile(
-//                             title: Text(
-//                               description,
-//                               style: const TextStyle(color: Color(0xff49454F)),
-
-//                             ),
-//                             leading: Icon(Icons.info),
-
-//                           ),
-//                           ListTile(
-//                             title: Text(
-//                               'info@aggaliazois.com',
-//                               style: const TextStyle(color: Color(0xff49454F)),
-
-//                             ),
-//                             onTap: () {
-//                               Clipboard.setData(ClipboardData(text: contact));
-
-//                             },
-//                             leading: Icon(Icons.message),
-
-//                           ),
                 ]));
               });
         },
@@ -244,6 +246,9 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
 
   @override
   Widget build(BuildContext context) {
+    LatLng mypos = LatLng(37.97927142078896, 23.783097583782418);
+    // Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high).then((value) => position = LatLng(value.latitude,value.longitude)).onError((error, stackTrace) => position = LatLng(37.97927142078896, 23.783097583782418));
+
     return Scaffold(
       body: MapLayout(
         controller: controller,
@@ -269,12 +274,14 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
             ),
           );
 
+
           final homeLocation = transformer
-              .toOffset(const LatLng(37.97927142078896, 23.783097583782418));
+
+              .toOffset(_currentPosition);
 
           //final homeLocation = transformer.toOffset(const LatLng(37.97927142078896, 23.783097583782418));
-
-          final homeMarkerWidget = _buildMarkerWidget(
+          var homeMarkerWidget = _buildMarkerWidget(
+            
               homeLocation, textpurple, transformer, Icons.my_location);
 
           final centerLocation = Offset(
