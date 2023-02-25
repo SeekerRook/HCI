@@ -16,14 +16,16 @@ import 'package:latlng/latlng.dart';
 import 'package:map/map.dart';
 
 class InteractiveMapPage extends StatefulWidget {
-  const InteractiveMapPage({Key? key}) : super(key: key);
-
+  LatLng? pos;
+  InteractiveMapPage({this.pos, Key? key}) : super(key: key);
+  
   @override
   InteractiveMapPageState createState() => InteractiveMapPageState();
+  
 }
 
 class InteractiveMapPageState extends State<InteractiveMapPage> {
-  
+
   List<LatLng> markers = [
     for (var val in global_action.values) (LatLng(val.x, val.y))
     
@@ -218,11 +220,11 @@ final controller = MapController(
       String description,
       String contact,
       [bool showbs = true,
-      IconData icon = Icons.location_on]) {
 
+      IconData icon = Icons.location_on])
+       {
+        var title = global_action[ID]!.title;
 
-
-    var title = global_action[ID]!.title;  
     return Positioned(
       left: pos.dx - 24,
       top: pos.dy - 24,
@@ -230,13 +232,17 @@ final controller = MapController(
       height: 48,
       child: GestureDetector(
         child:
-        Wrap(children:[
+        Row(children:[
          Icon(
           icon,
           color: color,
           size: 48,
         ),
-        Text(title, style: TextStyle(background: Paint()..color = Colors.blue),),
+        Expanded (child:
+        
+        Text(title, overflow: TextOverflow.visible,
+            softWrap: false, style: TextStyle(background: Paint()..color = Color.fromARGB(255, 198, 185, 234), fontSize: 11),textAlign: TextAlign.center,
+  ))
 
         ],
         ),
@@ -269,7 +275,12 @@ final controller = MapController(
   Widget build(BuildContext context) {
     // LatLng mypos = LatLng(37.97927142078896, 23.783097583782418);
     // Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high).then((value) => position = LatLng(value.latitude,value.longitude)).onError((error, stackTrace) => position = LatLng(37.97927142078896, 23.783097583782418));
-          _getCurrentPosition();
+          // _getCurrentPosition();
+    if (widget.pos != null){
+      controller.center = widget.pos!;
+      widget.pos = null;
+
+    }else
     if (flag){
       _getCurrentPosition().then((value) {      
       controller.center = _currentPosition;

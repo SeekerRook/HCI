@@ -1,3 +1,4 @@
+import 'package:donaid/pages/mappage.dart';
 import 'package:donaid/pages/qr.dart';
 import 'package:flutter/material.dart';
 import 'package:donaid/utils/data.dart';
@@ -5,6 +6,7 @@ import 'package:donaid/main.dart';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:latlng/latlng.dart';
 
 class ActionCard extends StatefulWidget {
   String ID;
@@ -143,6 +145,7 @@ Widget deletebutton = (data.organization == myID)
             return Card(
 
                 elevation: 4.0,
+                
                 child: Column(
                   children: [
                     ListTile(
@@ -158,7 +161,20 @@ Widget deletebutton = (data.organization == myID)
                                   builder: (context) =>  StaticAccount(data.organization)),
                             );
                           }),
-                      title: Text(heading),
+                      title: GestureDetector(child:Text(heading),onTap: () {
+                        // if (context.)
+                          final navstate= Navigator.of(context);
+                          // final currentStack = navstate;
+
+                          debugPrint(navstate.toString());
+                            // Navigator.pop(context);
+                            // Navigator.of(context).popUntil((route) => route.toString() != "");
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>  MainPage(pos: LatLng(data.x,data.y))),
+                            );
+                          },),
                       subtitle: Text(subheading),
                       // trailing: const Icon(Icons.favorite_outline),
                       trailing: IconButton(
