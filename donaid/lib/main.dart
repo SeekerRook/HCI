@@ -23,6 +23,8 @@ import 'dart:io';
 import 'package:geocoder/geocoder.dart';
 import 'package:latlng/latlng.dart';
 
+import 'pages/new_account.dart';
+
 
 
 void main() {
@@ -119,7 +121,6 @@ class MainPage extends StatelessWidget {
 
 
 
-
 class Donations extends StatelessWidget {
   const Donations({super.key});
 
@@ -171,6 +172,34 @@ class Account extends StatelessWidget {
       );
   }
 }
+
+
+class NewAccount extends StatelessWidget {
+  const NewAccount({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    var content = NewProfilePage();
+    NewBuild();
+    return 
+        Scaffold(
+        appBar: AppBar(
+          leading: previouspage,
+          backgroundColor: maincolor,
+          foregroundColor: textpurple,
+          title: Text("Δημιουργία Λογαριασμού"),
+          
+        ),
+      body:   NewProfilePage(),
+      // floatingActionButton:accfab,
+
+      
+      //drawer: const MyDrawer(),
+      );
+  }
+}
+
 
 
 class StaticAccount extends StatelessWidget {

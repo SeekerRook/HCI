@@ -4,11 +4,11 @@ import 'package:donaid/utils/data.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 
-var me = global_user[myID];
+// var me = global_user[myID];
 var defaultimg =
     "https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg";
-var selected_image = me!.imageurl;
-
+var selected_image =
+    defaultimg;
 class TextFieldWidget extends StatefulWidget {
   final int maxLines;
   final String label;
@@ -66,12 +66,12 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       );
 }
 
-class ProfileWidget extends StatefulWidget {
+class NewProfileWidget extends StatefulWidget {
   final String imagePath;
   final bool isEdit;
   var onClicked;
 
-  ProfileWidget({
+  NewProfileWidget({
     Key? key,
     required this.imagePath,
     this.isEdit = false,
@@ -79,10 +79,10 @@ class ProfileWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _ProfileWidget createState() => _ProfileWidget();
+  _NewProfileWidget createState() => _NewProfileWidget();
 }
 
-class _ProfileWidget extends State<ProfileWidget> {
+class _NewProfileWidget extends State<NewProfileWidget> {
   String _img = "";
   @override
   Widget build(BuildContext context) {
@@ -117,6 +117,7 @@ class _ProfileWidget extends State<ProfileWidget> {
                                   onChanged: ((value) {
                                     try {
                                       var img = NetworkImage(value);
+                                      selected_image = value;
                                       // defaultimg = value;
                                       setState(() {
                                         _img = value;
@@ -151,7 +152,7 @@ class _ProfileWidget extends State<ProfileWidget> {
   }
 
   Widget buildImage() {
-    if (_img == "") _img = global_user[myID]!.imageurl;
+    if (_img == "") _img = defaultimg;
     final image = NetworkImage(_img);
 
     return ClipOval(
@@ -196,9 +197,9 @@ class _ProfileWidget extends State<ProfileWidget> {
       );
 }
 
-class EditProfilePage extends StatefulWidget {
+class NewProfilePage extends StatefulWidget {
   @override
-  _EditProfilePageState createState() => _EditProfilePageState();
+  _NewProfilePageState createState() => _NewProfilePageState();
 }
 
 final TextEditingController usernamecontroller = TextEditingController();
@@ -207,7 +208,7 @@ final TextEditingController emailcontroller = TextEditingController();
 final TextEditingController infocontroller = TextEditingController();
 final TextEditingController contactcontroller = TextEditingController();
 
-class _EditProfilePageState extends State<EditProfilePage> {
+class _NewProfilePageState extends State<NewProfilePage> {
   // User user = UserPreferences.myUser;
 // @override
 //   void initState() {
@@ -222,8 +223,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
           padding: EdgeInsets.symmetric(horizontal: 32),
           physics: BouncingScrollPhysics(),
           children: [
-            ProfileWidget(
-              imagePath: me!.imageurl,
+            NewProfileWidget(
+              imagePath: defaultimg, //me!.imageurl,
               isEdit: true,
               onClicked: () async {},
             ),
@@ -269,10 +270,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
             ),
             Spacer(),
             TextButton(
-                style: TextButton.styleFrom(),
-                child: Text('Αποθήκευση αλλαγών'),
-                onPressed: () {
-                // var ID = "U${global_user.length + 1}";
+              style: TextButton.styleFrom(),
+              child: Text('Δημιουργία'),
+              onPressed: () {
+                var ID = "U${global_user.length + 1}";
                 var newuser = DonaidUser(
                     username: usernamecontroller.text,
                     email: emailcontroller.text,
@@ -280,89 +281,19 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     contact: contactcontroller.text,
                     bio: infocontroller.text,
                     imageurl: selected_image);
-                global_user[myID] = newuser;
+                global_user[ID] = newuser;
                 debugPrint(selected_image);
                 // global_user[ID]!.password= pswdcontroller.text;
                 // global_user[ID]!.username= usernamecontroller.text;
                 // global_user[ID]!.email= emailcontroller.text;
                 // global_user[ID]!.bio= infocontroller.text;
                 // global_user[ID]!.contact= contactcontroller.text;
-                get_data().then((value) {
-                                   showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                      content: Text(
-                          'Οι αλλαγές αποθηκεύτηκαν!'),
-                    ),
-                  );
-
-                });
-                // Navigator.pop(context);
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => LoginPage()),
-                // );                  
-                }),
-            Spacer(),
-            TextButton(
-              style: TextButton.styleFrom(),
-              child: Text('Διαγραφη λογαριασμού'),
-              onPressed: () {
-                //  showDialog(
-                //     context: context,
-                //     builder: (context) => AlertDialog(
-                //       content: Text(
-                //           'Ο λογαριασμός διαγράφηκε'),
-                //     ),
-                //   );
-
-//  if (data.organization == myID){
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: Text(
-                        "Είστε σίγουροι ότι θέλετε να διαγράψετε το λογαριασμό σας;"),
-                    content: Stack(
-                      alignment: Alignment.center,
-                      children: <Widget>[
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              TextButton(
-                                child: Text("Ακύρωση"),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                              ),
-                              TextButton(
-                                child: Text("Διαγραφή"),
-                                onPressed: () {
-                                  global_user.remove(myID);
-                                  for (var v in global_action.keys) {
-                                    if (global_action[v]!.organization ==
-                                        myID) {
-                                      global_action.remove(v);
-                                    }
-                                  }
-                                  myID = "";
-                                  get_data();
-                                  Navigator.pop(context);
-                                  Navigator.pop(context);
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => LoginPage()),
-                                  );
-                                },
-                              ),
-                            ])
-                        //  ]
-                        // )
-                      ],
-                    ),
-                  ),
+                get_data();
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
                 );
-//  }
               },
             )
           ],
@@ -370,13 +301,18 @@ class _EditProfilePageState extends State<EditProfilePage> {
       );
 }
 
-void Build() {
-  me = global_user[myID];
+void NewBuild() {
+  // me = global_user[myID];
 
-  pswdcontroller.text = me!.password;
-  usernamecontroller.text = me!.username;
-  emailcontroller.text = me!.email;
-  infocontroller.text = me!.bio;
-  contactcontroller.text = me!.contact;
+  // pswdcontroller.text = me!.password;
+  // usernamecontroller.text = me!.username;
+  // emailcontroller.text = me!.email;
+  // infocontroller.text = me!.bio;
   // contactcontroller.text = me!.contact;
+
+  pswdcontroller.text = "";
+  usernamecontroller.text = "";
+  emailcontroller.text = "";
+  infocontroller.text = "";
+  contactcontroller.text = "";
 }

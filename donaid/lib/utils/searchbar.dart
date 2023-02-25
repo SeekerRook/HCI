@@ -88,12 +88,13 @@ void filterSearchResults(String query) {
                   filterSearchResults( value);
                 },
                 controller: editingController,
+                style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                     labelText: "Search",
                     hintText: "Search...",
                     hintStyle: TextStyle(color: maincolor),
                     labelStyle: TextStyle(color: maincolor),
-                  
+                    
                  
                     // prefixIcon: Icon(Icons.search),
                     prefixIcon:IconButton(

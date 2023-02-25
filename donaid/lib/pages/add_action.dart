@@ -10,7 +10,9 @@ import 'package:donaid/utils/gallery.dart';
 
 var selectloc = [0.0, 0.0];
 var setaddress = "";
-var defaultimg = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
+var defaultimg =
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
+
 class TextFieldWidgetAct extends StatefulWidget {
   final int maxLines;
   final String label;
@@ -68,17 +70,29 @@ class _TextFieldWidgetActState extends State<TextFieldWidgetAct> {
       );
 }
 
-class ActionWidget extends StatelessWidget {
-  final String imagePath;
-  final bool isEdit;
-  final VoidCallback onClicked;
-
-  const ActionWidget({
+class ActionWidget extends StatefulWidget {
+  String imagePath;
+  bool isEdit;
+  var onClicked;
+  ActionWidget({
     Key? key,
     required this.imagePath,
     this.isEdit = false,
     required this.onClicked,
   }) : super(key: key);
+
+  @override
+  _ActionWidget createState() => _ActionWidget();
+}
+
+class _ActionWidget extends State<ActionWidget> {
+  // const _ActionWidget({
+  //   Key? key,
+  //   required this.imagePath,
+  //   this.isEdit = false,
+  //   required this.onClicked,
+  // }) : super(key: key);
+  String _img = "";
 
   @override
   Widget build(BuildContext context) {
@@ -92,61 +106,53 @@ class ActionWidget extends StatelessWidget {
             bottom: 0,
             right: 4,
             //child: buildEditIcon(color),
-            
-            child:
-            IconButton(
-              onPressed: (){
+
+            child: IconButton(
+              onPressed: ()  {
                 showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return Dialog(
-            // shape: RoundedRectangleBorder(
-            //     borderRadius:
-            //         BorderRadius.circular(50.0)), //this right here
-            child: Container(
-              height: 90,
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextField(
-                      decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Paste image link...'),
-                    ),
-                  ],
-                ),
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Dialog(
+                        // shape: RoundedRectangleBorder(
+                        //     borderRadius:
+                        //         BorderRadius.circular(50.0)), //this right here
+                        child: Container(
+                          height: 90,
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                TextField(
+                                  onChanged: ((value) {
+                                    try {
+                                      var img = NetworkImage(value);
+                                      // defaultimg = value;
+                                      setState(() {
+                                        _img = value;
+                                      });
+                                    } catch (e) {
+                                      setState(() {
+                                        _img = _img;
+                                      });
+                                    }
+                                  }),
+                                  decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: 'Paste image link...'),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    });
+              },
+              icon: const Icon(
+                Icons.add_a_photo,
               ),
             ),
-          );
-        });
-
-              },
-             icon: const Icon(
-              Icons.add_a_photo ,
-             
-             ),
-            ),
-
-            //   child:
-            // IconButton(
-            //   onPressed: (){
-            //     Navigator.pop(context);
-            //   Navigator.push(
-            //     context,
-            //     MaterialPageRoute(builder: (context) => MyGallery()),
-            //   );
-            //   },
-            //  icon: const Icon(
-            //   // isEdit ?
-            //   Icons.add_a_photo ,
-            //   // : Icons.edit,
-            //   color: Colors.white,
-            //   size: 20,
-            //  ),
-            // ),
           ),
         ],
       ),
@@ -154,7 +160,8 @@ class ActionWidget extends StatelessWidget {
   }
 
   Widget buildImage() {
-    final image = NetworkImage(imagePath);
+    if (_img == "") _img = defaultimg;
+    final image = NetworkImage(_img);
 
     return ClipRect(
       child: Material(
@@ -164,7 +171,7 @@ class ActionWidget extends StatelessWidget {
           fit: BoxFit.cover,
           // width: 128,
           height: 200,
-          child: InkWell(onTap: onClicked),
+          child: InkWell(onTap: widget.onClicked),
         ),
       ),
     );
@@ -178,33 +185,11 @@ class ActionWidget extends StatelessWidget {
         color: color,
         all: 8,
         child: Icon(
-          isEdit ? Icons.add_a_photo : Icons.edit,
+          widget.isEdit ? Icons.add_a_photo : Icons.edit,
           color: Colors.white,
           size: 20,
         ),
-
-        //   child:
-        // IconButton(
-        //   onPressed: (){
-        //     //Navigator.pop(context);
-        //   // Navigator.push(
-        //   //   context,
-        //     MaterialPageRoute(builder: (context) => MyGallery());
-        //  // );
-        //   },
-        //  icon: const Icon(
-        //   // isEdit ?
-        //   Icons.add_a_photo ,
-        //   // : Icons.edit,
-        //   color: Colors.white,
-        //   size: 20,
-        //  ),
-        // ),
-        // ]
       ));
-  // ]
-  // );
-// }
 
   Widget buildCircle({
     required Widget child,
@@ -223,11 +208,9 @@ class ActionWidget extends StatelessWidget {
 class AddActionPage extends StatefulWidget {
   // const AddActionPage({Key? key}) : super(key: key);
 
-
   @override
   _AddActionPageState createState() => _AddActionPageState();
 }
-
 
 var mapcontroller = TextEditingController();
 var _titcontroller = TextEditingController();
@@ -240,7 +223,6 @@ TextEditingController enddateController = TextEditingController();
 final TextEditingController _catcontroller = new TextEditingController();
 
 class _AddActionPageState extends State<AddActionPage> {
-
   bool _switchValue = false;
   var items = ['Τρόφιμα', 'Φάρμακα', 'Αιμοδοσία', 'Αδέσποτα'];
 
@@ -261,8 +243,7 @@ class _AddActionPageState extends State<AddActionPage> {
           physics: BouncingScrollPhysics(),
           children: [
             ActionWidget(
-              imagePath:
-                  defaultimg,
+              imagePath: defaultimg,
               isEdit: true,
               onClicked: () async {},
             ),
@@ -289,9 +270,6 @@ class _AddActionPageState extends State<AddActionPage> {
               controller: mapcontroller,
               decoration: InputDecoration(
                 prefixIcon: IconButton(
-
-                   
-                  
                   onPressed: () {
                     // Navigator.pop(context);
                     Navigator.push(
@@ -302,11 +280,11 @@ class _AddActionPageState extends State<AddActionPage> {
                   icon: Icon(Icons.search),
                 ),
                 suffixIcon: IconButton(
-                  onPressed: (){
+                  onPressed: () {
                     mapcontroller.text = "";
                     debugPrint("${selectloc[0]}");
-                selectloc = [0.0,0.0];
-                  // mp.addmaploc = [0.0,0.0]
+                    selectloc = [0.0, 0.0];
+                    // mp.addmaploc = [0.0,0.0]
                   },
                   icon: Icon(Icons.clear),
                 ),
@@ -399,7 +377,6 @@ class _AddActionPageState extends State<AddActionPage> {
               ],
             ),
 
-
             Switch(
               value: _switchValue,
               onChanged: (bool value) {
@@ -408,7 +385,6 @@ class _AddActionPageState extends State<AddActionPage> {
                 });
               },
             ),
-
 
             TextFormField(
               controller: _catcontroller,
@@ -474,42 +450,46 @@ class _AddActionPageState extends State<AddActionPage> {
                     errmessage += "Επιλέξτε Κατηγορία\n";
                   }
 
-                showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                          content: Text(errmessage),
-                        ));
+                  showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                            content: Text(errmessage),
+                          ));
                 } else {
                   errmessage = "Η δράση '$title' προστέθηκε με επιτυχία!";
-                                  _titcontroller.text = "";
-                __descontroller.text = "";
-                mapcontroller.text = "";
-                startdateController.text = "";
-                enddateController.text = "";
-                _catcontroller.text = "";
-                selectloc = [0.0,0.0];
+                  _titcontroller.text = "";
+                  __descontroller.text = "";
+                  mapcontroller.text = "";
+                  startdateController.text = "";
+                  enddateController.text = "";
+                  _catcontroller.text = "";
+                  selectloc = [0.0, 0.0];
 
-                var newaction= DonaidAction(title: title, organization: myID, date: date, place: location, x: selectloc[1], y: selectloc[0], imgpath: imgpath, isFavorite: false, hasDonated: false, type: category, description: description);  
-                global_action["D${global_action.length+1}"] = newaction;
-                get_data().then(((value) {
-                                  showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                          content: Text(errmessage),
-                        ));
-                }));
-
+                  var newaction = DonaidAction(
+                      title: title,
+                      organization: myID,
+                      date: date,
+                      place: location,
+                      x: selectloc[1],
+                      y: selectloc[0],
+                      imgpath: imgpath,
+                      isFavorite: false,
+                      hasDonated: false,
+                      type: category,
+                      description: description);
+                  global_action["D${global_action.length + 1}"] = newaction;
+                  get_data().then(((value) {
+                    showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                              content: Text(errmessage),
+                            ));
+                  }));
                 }
-
-
               },
               child: Text('Submit'),
             )
           ],
         ),
       );
-
-
-
-
 }

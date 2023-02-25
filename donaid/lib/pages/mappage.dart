@@ -220,19 +220,36 @@ final controller = MapController(
       String description,
       String contact,
       [bool showbs = true,
+
       IconData icon = Icons.location_on])
        {
         var title = global_action[ID]!.title;
+
     return Positioned(
       left: pos.dx - 24,
       top: pos.dy - 24,
       width: 48,
       height: 48,
       child: GestureDetector(
-        child: Icon(
+        child:
+        Row(children:[
+         Icon(
           icon,
           color: color,
           size: 48,
+        ),
+        Expanded (child:
+        
+        Text(
+          title, 
+        overflow: TextOverflow.visible,
+            softWrap: false,
+             style: TextStyle(background: Paint()..color = Color.fromARGB(255, 198, 185, 234), fontSize: 11),
+            textAlign: TextAlign.center,
+  )
+  )
+
+        ],
         ),
         onTap: () {
           get_data();
@@ -254,6 +271,7 @@ final controller = MapController(
                 ]));
               });
         },
+    
       ),
     );
   }

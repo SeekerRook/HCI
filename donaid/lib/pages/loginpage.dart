@@ -102,10 +102,21 @@ class _LoginPageState extends State<LoginPage> {
           '\n\n"Η DonAid είναι εδώ για να σε βοηθήσει να βοηθήσεις"',
         style: TextStyle(fontStyle: FontStyle.italic,color: textpurple,fontSize: 15),),
         
-            SizedBox(
-              height: 45,
-            ),
-            Text('Sign up')
+
+
+
+
+
+            TextButton(
+                            child: Text("Sign up"),
+                            onPressed: () {
+            
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => NewAccount()),
+            );
+                            },
+                          ),
           ],
         ),
       ),
