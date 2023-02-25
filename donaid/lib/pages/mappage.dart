@@ -222,7 +222,7 @@ final controller = MapController(
       [bool showbs = true,
       IconData icon = Icons.location_on])
        {
-        
+        var title = global_action[ID]!.title;
     return Positioned(
       left: pos.dx - 24,
       top: pos.dy - 24,

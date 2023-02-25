@@ -2,7 +2,9 @@ import 'package:donaid/main.dart';
 import 'package:donaid/mymenu.dart';
 import 'package:donaid/previous_page.dart';
 import 'package:donaid/theme.dart';
+import 'package:donaid/utils/data.dart';
 import 'package:flutter/material.dart';
+import 'package:latlng/latlng.dart';
 
 
 class SearchBar extends StatefulWidget {
@@ -21,7 +23,10 @@ required this.title,
 class _SearchBarState extends State<SearchBar> {
   TextEditingController editingController = TextEditingController();
 
-  final duplicateItems = List<String>.generate(10000, (i) => "Item $i");
+  final duplicateItems = [
+    for (var v in global_action.keys) 
+      ("$v^${global_action[v]!.title}^${global_user[global_action[v]!.organization]!.username}^${global_action[v]!.type}^${global_action[v]!.title.toLowerCase()}^${global_user[global_action[v]!.organization]!.username.toLowerCase()}^${global_action[v]!.type.toLowerCase()}${global_action[v]!.title.toUpperCase()}^${global_user[global_action[v]!.organization]!.username.toUpperCase()}^${global_action[v]!.type.toUpperCase()}")
+  ];
   var items = <String>[];
 
   @override
@@ -80,7 +85,7 @@ void filterSearchResults(String query) {
               padding: const EdgeInsets.all(8.0),
               child: TextField(                
                 onChanged: (value) {
-                  
+                  filterSearchResults( value);
                 },
                 controller: editingController,
                 decoration: InputDecoration(
@@ -96,7 +101,7 @@ void filterSearchResults(String query) {
                         Navigator.pop(context);
                         Navigator.push(
                         context,
-                      MaterialPageRoute(builder: (context) => const MainPage()),
+                      MaterialPageRoute(builder: (context) =>  MainPage()),
                     );
                       },
                    color:maincolor,
@@ -112,8 +117,17 @@ void filterSearchResults(String query) {
                 shrinkWrap: true,
                 itemCount: items.length,
                 itemBuilder: (context, index) {
+                  var data = items[index].split('^');
                   return ListTile(
-                    title: Text('${items[index]}',style: TextStyle(fontSize: 25, color: Colors.white),),
+                    title: Text("'${data[1]}'",style: TextStyle(fontSize: 17, color: Colors.white),),
+                    subtitle: Text('από \"${data[2]}\" -  ${data[3]} ',style: TextStyle(fontSize: 17, color: Colors.white),),
+                    onTap: (() {                        Navigator.pop(context);
+                        Navigator.push(
+                        context,
+                      MaterialPageRoute(builder: (context) =>  MainPage(pos:LatLng(global_action[data[0]]!.x,global_action[data[0]]!.y))),
+                    );
+                      
+                    }),
                   );
                 },
               ),
