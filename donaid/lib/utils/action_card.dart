@@ -151,7 +151,7 @@ Widget deletebutton = (data.organization == myID)
                           icon: const Icon(Icons.account_circle),
                           // tooltip: 'Increase volume by 10',
                           onPressed: () {
-                            Navigator.pop(context);
+                            // Navigator.pop(context);
                             Navigator.push(
                               context,
                               MaterialPageRoute(
