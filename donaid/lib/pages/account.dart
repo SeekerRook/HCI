@@ -272,7 +272,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 style: TextButton.styleFrom(),
                 child: Text('Αποθήκευση αλλαγών'),
                 onPressed: () {
-                var ID = "U${global_user.length + 1}";
+                // var ID = "U${global_user.length + 1}";
                 var newuser = DonaidUser(
                     username: usernamecontroller.text,
                     email: emailcontroller.text,
@@ -280,7 +280,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     contact: contactcontroller.text,
                     bio: infocontroller.text,
                     imageurl: selected_image);
-                global_user[ID] = newuser;
+                global_user[myID] = newuser;
                 debugPrint(selected_image);
                 // global_user[ID]!.password= pswdcontroller.text;
                 // global_user[ID]!.username= usernamecontroller.text;
