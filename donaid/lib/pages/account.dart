@@ -229,17 +229,57 @@ class _EditProfilePageState extends State<EditProfilePage> {
 Spacer(),
             TextButton(
             style: TextButton.styleFrom(),
+               child: Text('Διαγραφη λογαριασμού'),
             onPressed: () {
+            //  showDialog(
+            //     context: context,
+            //     builder: (context) => AlertDialog(
+            //       content: Text(
+            //           'Ο λογαριασμός διαγράφηκε'),
+            //     ),
+            //   );
+
+//  if (data.organization == myID){
               showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                  content: Text(
-                      'You have deleted your account. Goodbye!'),
-                ),
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title:Text(
+                              "Είστε σίγουροι ότι θέλετε να διαγράψετε το λογαριασμό σας;"),
+                      content: Stack(
+                        alignment: Alignment.center,
+                        children: <Widget>[
+                           Row (
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children:[TextButton(
+                            child: Text("Ακύρωση"),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                          TextButton(
+                            child: Text("Διαγραφή"),
+                            onPressed: () {
+                              showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                              content: Text(
+                                  'Ο λογαραισμός διαγράφηκε με επιτυχία.'),
+                              ),
               );
+                            },
+                          ),
+                          ]
+                          )
+                        //  ]
+                        // )
+                        ],
+                      ),
+                    ),
+                  );
+//  }
+
             },
-            child: Text('Delete account'),
-            )
+           )
 
               ],
             ),

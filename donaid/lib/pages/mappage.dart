@@ -240,9 +240,14 @@ final controller = MapController(
         ),
         Expanded (child:
         
-        Text(title, overflow: TextOverflow.visible,
-            softWrap: false, style: TextStyle(background: Paint()..color = Color.fromARGB(255, 198, 185, 234), fontSize: 11),textAlign: TextAlign.center,
-  ))
+        Text(
+          title, 
+        overflow: TextOverflow.visible,
+            softWrap: false,
+             style: TextStyle(background: Paint()..color = Color.fromARGB(255, 198, 185, 234), fontSize: 11),
+            textAlign: TextAlign.center,
+  )
+  )
 
         ],
         ),

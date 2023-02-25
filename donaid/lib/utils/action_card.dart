@@ -1,5 +1,6 @@
 import 'package:donaid/pages/mappage.dart';
 import 'package:donaid/pages/qr.dart';
+import 'package:donaid/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:donaid/utils/data.dart';
 import 'package:donaid/main.dart';
@@ -111,14 +112,22 @@ Widget deletebutton = (data.organization == myID)
                            Row (
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children:[TextButton(
-                            child: Text("Cancel"),
+                            child: Text("Ακύρωση"),
                             onPressed: () {
                               Navigator.pop(context);
                             },
                           ),
                           TextButton(
-                            child: Text("Continue"),
-                            onPressed: () {},
+                            child: Text("Διαγραφή"),
+                            onPressed: () {
+                              showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                              content: Text(
+                                  'Η δράση διαγράφηκε με επιτυχία.'),
+                              ),
+              );
+                            },
                           ),
                           ]
                           )
@@ -152,7 +161,7 @@ Widget deletebutton = (data.organization == myID)
                       // leading: const Icon(Icons.account_circle),
                       leading: IconButton(
                           icon: const Icon(Icons.account_circle),
-                          // tooltip: 'Increase volume by 10',
+                          color: textpurple,
                           onPressed: () {
                             // Navigator.pop(context);
                             Navigator.push(
@@ -161,7 +170,9 @@ Widget deletebutton = (data.organization == myID)
                                   builder: (context) =>  StaticAccount(data.organization)),
                             );
                           }),
-                      title: GestureDetector(child:Text(heading),onTap: () {
+                      title: GestureDetector(
+                        child: Text(heading, style: TextStyle(foreground: Paint()..color = textpurple)),
+                      onTap: () {
                         // if (context.)
                           final navstate= Navigator.of(context);
                           // final currentStack = navstate;
