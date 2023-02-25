@@ -4,7 +4,8 @@ import 'package:donaid/utils/data.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 
-var me = global_user[myID];
+// var me = global_user[myID];
+var defaultimg = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
 
 class TextFieldWidget extends StatefulWidget {
   
@@ -67,12 +68,12 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
 }
 
 
-class ProfileWidget extends StatelessWidget {
+class NewProfileWidget extends StatelessWidget {
   final String imagePath;
   final bool isEdit;
   final VoidCallback onClicked;
 
-  const ProfileWidget({
+  const NewProfileWidget({
     Key? key,
     required this.imagePath,
     this.isEdit = false,
@@ -143,9 +144,9 @@ class ProfileWidget extends StatelessWidget {
 }
 
 
-class EditProfilePage extends StatefulWidget {
+class NewProfilePage extends StatefulWidget {
   @override
-  _EditProfilePageState createState() => _EditProfilePageState();
+  _NewProfilePageState createState() => _NewProfilePageState();
 }
 
 
@@ -156,7 +157,7 @@ final TextEditingController infocontroller= TextEditingController();
 final TextEditingController contactcontroller= TextEditingController();
 
 
-class _EditProfilePageState extends State<EditProfilePage> {
+class _NewProfilePageState extends State<NewProfilePage> {
   // User user = UserPreferences.myUser;
 // @override
 //   void initState() {
@@ -171,8 +172,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
               padding: EdgeInsets.symmetric(horizontal: 32),
               physics: BouncingScrollPhysics(),
               children: [
-                ProfileWidget(
-                  imagePath: me!.imageurl,
+                NewProfileWidget(
+                  imagePath: defaultimg,//me!.imageurl,
                   isEdit: true,
                   onClicked: () async {},
                 ),
@@ -227,72 +228,30 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 
               ),
                 ),
-               Spacer(),
-                TextButton(
-            style: TextButton.styleFrom(),
-               child: Text('Αποθήκευση αλλαγών'),
-            onPressed: () {}
-                ),
-
 Spacer(),
             TextButton(
             style: TextButton.styleFrom(),
-               child: Text('Διαγραφη λογαριασμού'),
+               child: Text('Δημιουργία'),
             onPressed: () {
-            //  showDialog(
-            //     context: context,
-            //     builder: (context) => AlertDialog(
-            //       content: Text(
-            //           'Ο λογαριασμός διαγράφηκε'),
-            //     ),
-            //   );
-
-//  if (data.organization == myID){
-              showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                      title:Text(
-                              "Είστε σίγουροι ότι θέλετε να διαγράψετε το λογαριασμό σας;"),
-                      content: Stack(
-                        alignment: Alignment.center,
-                        children: <Widget>[
-                           Row (
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children:[TextButton(
-                            child: Text("Ακύρωση"),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                          TextButton(
-                            child: Text("Διαγραφή"),
-                            onPressed: () {
-            global_user.remove(myID);
-            for (var v in global_action.keys){
-              if  (global_action[v]!.organization == myID){
-                global_action.remove(v);
-              }
-            } 
-           myID = "";
-          get_data();
-          Navigator.pop(context);            
-          Navigator.pop(context);
+              var ID = "U${global_user.length+1}";
+              var newuser = DonaidUser(username: usernamecontroller.text, 
+              email: emailcontroller.text,
+               password: pswdcontroller.text,
+                contact: contactcontroller.text,
+                 bio: infocontroller.text,
+                  imageurl: defaultimg);
+                  global_user[ID] = newuser;
+              // global_user[ID]!.password= pswdcontroller.text;
+              // global_user[ID]!.username= usernamecontroller.text;
+              // global_user[ID]!.email= emailcontroller.text;
+              // global_user[ID]!.bio= infocontroller.text;
+              // global_user[ID]!.contact= contactcontroller.text;
+              get_data();
+         Navigator.pop(context);
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => LoginPage()),
             );
-                            },
-                          ),
-                          ]
-                          )
-                        //  ]
-                        // )
-                        ],
-                      ),
-                    ),
-                  );
-//  }
-
             },
            )
 
@@ -302,13 +261,19 @@ Spacer(),
   
 
 }
-void Build (){
-  me = global_user[myID];
+void NewBuild (){
+  // me = global_user[myID];
 
-  pswdcontroller.text =me!.password;
-  usernamecontroller.text = me!.username;
-  emailcontroller.text = me!.email;
-  infocontroller.text = me!.bio;
-  contactcontroller.text = me!.contact;
+  // pswdcontroller.text = me!.password;
+  // usernamecontroller.text = me!.username;
+  // emailcontroller.text = me!.email;
+  // infocontroller.text = me!.bio;
+  // contactcontroller.text = me!.contact;
+
+  pswdcontroller.text = "";
+  usernamecontroller.text = "";
+  emailcontroller.text = "";
+  infocontroller.text = "";
+  contactcontroller.text = "";
 
   }

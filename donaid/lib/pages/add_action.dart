@@ -68,22 +68,35 @@ class _TextFieldWidgetActState extends State<TextFieldWidgetAct> {
       );
 }
 
-class ActionWidget extends StatelessWidget {
-  final String imagePath;
-  final bool isEdit;
-  final VoidCallback onClicked;
-
-  const ActionWidget({
+class ActionWidget extends StatefulWidget {
+  String imagePath;
+  bool isEdit;
+  var onClicked;
+  ActionWidget({
     Key? key,
     required this.imagePath,
     this.isEdit = false,
     required this.onClicked,
   }) : super(key: key);
 
+
+  @override
+  _ActionWidget createState() => _ActionWidget();
+}
+
+
+class _ActionWidget extends State<ActionWidget> {
+  // const _ActionWidget({
+  //   Key? key,
+  //   required this.imagePath,
+  //   this.isEdit = false,
+  //   required this.onClicked,
+  // }) : super(key: key);
+    String _img = ""; 
+
   @override
   Widget build(BuildContext context) {
     final color = Theme.of(context).colorScheme.primary;
-
     return Center(
       child: Stack(
         children: [
@@ -112,6 +125,21 @@ class ActionWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TextField(
+                      onChanged: ((value){
+                        try {
+                          var img =  NetworkImage(value);
+                          // defaultimg = value;
+                          setState(() {
+                                      _img = value;
+                                                    });
+                        }
+                        catch(e){
+                          setState(() {
+                                      _img = _img;
+                                                    });
+                        }
+              
+                      }),
                       decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Paste image link...'),
@@ -154,7 +182,8 @@ class ActionWidget extends StatelessWidget {
   }
 
   Widget buildImage() {
-    final image = NetworkImage(imagePath);
+    if (_img == "") _img = defaultimg;
+    final image = NetworkImage(_img);
 
     return ClipRect(
       child: Material(
@@ -164,7 +193,7 @@ class ActionWidget extends StatelessWidget {
           fit: BoxFit.cover,
           // width: 128,
           height: 200,
-          child: InkWell(onTap: onClicked),
+          child: InkWell(onTap: widget.onClicked),
         ),
       ),
     );
@@ -178,7 +207,7 @@ class ActionWidget extends StatelessWidget {
         color: color,
         all: 8,
         child: Icon(
-          isEdit ? Icons.add_a_photo : Icons.edit,
+          widget.isEdit ? Icons.add_a_photo : Icons.edit,
           color: Colors.white,
           size: 20,
         ),
