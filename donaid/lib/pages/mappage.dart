@@ -141,8 +141,8 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
   // ];
 
   void _gotoDefault() {
-    controller.center =
-        widget.pos!; //const LatLng(37.97927142078896, 23.783097583782418);
+    controller.center = _currentPosition;
+    // widget.pos!; //const LatLng(37.97927142078896, 23.783097583782418);
     controller.zoom = 15;
 
     // Navigator.pop(context);
@@ -277,15 +277,17 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
     // Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high).then((value) => position = LatLng(value.latitude,value.longitude)).onError((error, stackTrace) => position = LatLng(37.97927142078896, 23.783097583782418));
     // _getCurrentPosition();
 
-    debugPrint("LOC : BUILD");
+    debugPrint("LOC : BUILD ");
     if (widget.pos != null) {
-    debugPrint("LOC : posisnull");
-      
+      debugPrint("LOC : set");
       controller.center = widget.pos!;
+
       widget.pos = null;
-      widget.flag = false;
+      _getCurrentPosition().then((value) {
+        widget.flag = false;
+      });
     } else if (widget.flag) {
-      debugPrint("LOC : posnotnull");
+      debugPrint("LOC : gps");
 
       _getCurrentPosition().then((value) {
         controller.center = _currentPosition;
