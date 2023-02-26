@@ -467,7 +467,6 @@ class _AddActionPageState extends State<AddActionPage> {
                   startdateController.text = "";
                   enddateController.text = "";
                   _catcontroller.text = "";
-                  selectloc = [0.0, 0.0];
 
                   var newaction = DonaidAction(
                       title: title,
@@ -481,6 +480,8 @@ class _AddActionPageState extends State<AddActionPage> {
                       hasDonated: false,
                       type: category,
                       description: description);
+                  selectloc = [0.0, 0.0];
+                  
                   global_action["D${global_action.length + 1}"] = newaction;
                   get_data().then(((value) {
                     showDialog(
