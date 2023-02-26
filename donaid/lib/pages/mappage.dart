@@ -143,7 +143,7 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
   void _gotoDefault() {
     controller.center = _currentPosition;
     // widget.pos!; //const LatLng(37.97927142078896, 23.783097583782418);
-    controller.zoom = 15;
+    // controller.zoom = 15;
 
     // Navigator.pop(context);
     setState(() {});
