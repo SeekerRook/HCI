@@ -69,7 +69,8 @@ void filterSearchResults(String query) {
 
         child: Stack(
         children: [
-          MainPage(),         
+          // MainPage(),
+          Container(),         
        Container(
         width: double.infinity,
         color: Color.fromARGB(177, 0, 0, 0),
@@ -100,10 +101,11 @@ void filterSearchResults(String query) {
                     prefixIcon:IconButton(
                       onPressed: (){
                         Navigator.pop(context);
-                        Navigator.push(
-                        context,
-                      MaterialPageRoute(builder: (context) =>  MainPage()),
-                    );
+                    //     Navigator.push(
+                    //     context,
+                    //   MaterialPageRoute(builder: (context) =>  MainPage()),
+                    // );
+                    
                       },
                    color:maincolor,
                      icon: Icon(Icons.arrow_back)

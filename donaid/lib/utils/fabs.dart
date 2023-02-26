@@ -69,7 +69,7 @@ import '../pages/actions.dart';
               // onTap: () => setState(() => rmicons = !rmicons),
               //onTap: () => debugPrint('Search'),
               onTap: (){
-              Navigator.pop(context);
+              // Navigator.pop(context);
               Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const SearchBar(title:'')),
