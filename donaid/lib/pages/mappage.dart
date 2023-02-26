@@ -14,7 +14,11 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlng/latlng.dart';
 import 'package:map/map.dart';
-
+ValueNotifier<LatLng> center =ValueNotifier(LatLng(37.97927142078896, 23.783097583782418));
+ MapController global_controller = MapController(
+    location: const LatLng(37.97927142078896, 23.783097583782418),
+    zoom: 15,
+  );
 class InteractiveMapPage extends StatefulWidget {
   LatLng? pos;
   bool flag = true;
@@ -86,10 +90,7 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
     });
   }
 
-  final controller = MapController(
-    location: const LatLng(37.97927142078896, 23.783097583782418),
-    zoom: 15,
-  );
+ 
 
 //   /Location
 
@@ -141,7 +142,7 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
   // ];
 
   void _gotoDefault() {
-    controller.center = _currentPosition;
+    global_controller.center = _currentPosition;
     // widget.pos!; //const LatLng(37.97927142078896, 23.783097583782418);
     // controller.zoom = 15;
 
@@ -151,7 +152,7 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
 
   void _onDoubleTap(MapTransformer transformer, Offset position) {
     const delta = 1;
-    final zoom = clamp(controller.zoom + delta, 2, 18);
+    final zoom = clamp(global_controller.zoom + delta, 2, 18);
 
     transformer.setZoomInPlace(zoom, position);
 
@@ -160,6 +161,7 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
 
   Offset? _dragStart;
   double _scaleStart = 1.0;
+  
   void _onScaleStart(ScaleStartDetails details) {
     _dragStart = details.focalPoint;
     _scaleStart = 1.0;
@@ -170,10 +172,10 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
     _scaleStart = details.scale;
 
     if (scaleDiff > 0) {
-      controller.zoom += 0.02;
+      global_controller.zoom += 0.02;
       setState(() {});
     } else if (scaleDiff < 0) {
-      controller.zoom -= 0.02;
+      global_controller.zoom -= 0.02;
       setState(() {});
     } else {
       final now = details.focalPoint;
@@ -198,7 +200,7 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
             size: 48,
           ),
           onTap: () {
-            controller.center =
+            global_controller.center =
                 transformer.toLatLng(Offset(pos.dx, pos.dy + 100));
 
             // controller.zoom = 18;
@@ -221,7 +223,7 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
       String contact,
       [bool showbs = true,
       IconData icon = Icons.location_on]) {
-    var title = global_action[ID]!.title;
+    var title = "${global_action[ID]!.title} \n από ${global_user[global_action[ID]!.organization]!.username}  ";
 
     return Positioned(
       left: pos.dx - 24,
@@ -252,7 +254,7 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
         onTap: () {
           get_data();
           debugPrint('${pos.dx}, ${pos.dy}');
-          controller.center =
+          global_controller.center =
               transformer.toLatLng(Offset(pos.dx, pos.dy + 100));
           // controller.zoom = 15;
           setState(() {});
@@ -280,7 +282,7 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
     debugPrint("LOC : BUILD ");
     if (widget.pos != null) {
       debugPrint("LOC : set");
-      controller.center = widget.pos!;
+      global_controller.center = widget.pos!;
 
       widget.pos = null;
       _getCurrentPosition().then((value) {
@@ -290,13 +292,18 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
       debugPrint("LOC : gps");
 
       _getCurrentPosition().then((value) {
-        controller.center = _currentPosition;
+        global_controller.center = _currentPosition;
         widget.flag = false;
       });
     }
     return Scaffold(
-      body: MapLayout(
-        controller: controller,
+      body: ValueListenableBuilder(
+        valueListenable: center,
+        builder: (BuildContext context, LatLng counterValue,Widget? child){
+          // global_controller.center = counterValue;
+          return 
+        MapLayout(
+        controller: global_controller,
         builder: (context, transformer) {
           //  _getCurrentPosition().then((value){
           //   controller.center = _currentPosition;
@@ -335,6 +342,8 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
 
           final centerMarkerWidget =
               _buildMarkerWidget(centerLocation, Colors.purple, transformer);
+          
+          
 
           return GestureDetector(
             behavior: HitTestBehavior.opaque,
@@ -350,7 +359,7 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
               onPointerSignal: (event) {
                 if (event is PointerScrollEvent) {
                   final delta = event.scrollDelta.dy / -1000.0;
-                  final zoom = clamp(controller.zoom + delta, 2, 18);
+                  final zoom = clamp(global_controller.zoom + delta, 2, 18);
 
                   transformer.setZoomInPlace(zoom, event.localPosition);
                   setState(() {});
@@ -385,8 +394,14 @@ class InteractiveMapPageState extends State<InteractiveMapPage> {
               ),
             ),
           );
+
+
+
         },
-      ),
+    );}),
+
+
+
       // floatingActionButton: FloatingActionButton(
       //   onPressed: _gotoDefault,
       //   tooltip: 'My Location',

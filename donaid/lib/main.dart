@@ -398,11 +398,11 @@ class MyDrawer extends StatelessWidget{
           // ...
             Navigator.pop(context);
             Navigator.pop(context);
-
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => MainPage()),
-            );
+            Navigator.popUntil(context, (route) => route.isFirst);
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(builder: (context) => MainPage()),
+            // );
         },
       ),
       ListTile(
@@ -537,13 +537,9 @@ class MainDrawer extends StatelessWidget{
         onTap: () {
           // Update the state of the app.
           // ...
+            // Navigator.pop(context);
             Navigator.pop(context);
-            Navigator.pop(context);
-
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => MainPage()),
-            );
+            Navigator.popUntil(context, (route) => route.isFirst);
         },
       ),
       ListTile(
