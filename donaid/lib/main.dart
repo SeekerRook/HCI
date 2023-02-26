@@ -99,7 +99,7 @@ class MainPage extends StatelessWidget {
           icon: const Icon(Icons.account_circle),
           
           onPressed: () {
-            Navigator.pop(context);
+            // Navigator.pop(context);
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const Account()),
