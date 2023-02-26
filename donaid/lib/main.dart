@@ -114,7 +114,7 @@ class MainPage extends StatelessWidget {
       body:  InteractiveMapPage(pos: pos),
       floatingActionButton:  const MainFab(),
 
-      drawer: const MyDrawer(),
+      drawer: const MainDrawer(),
       );
   }
 }
@@ -133,6 +133,18 @@ class Donations extends StatelessWidget {
         Scaffold(
         appBar: AppBar(
           leading: mymenu,
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                   MaterialPageRoute(builder: (context) => const Donations())
+                   );
+              }, 
+              icon: new Icon(Icons.refresh)
+              )
+          ],
           backgroundColor: maincolor,
           foregroundColor: textpurple,
           title: Text("Οι Δωρεές μου"),
@@ -243,6 +255,18 @@ class Favorites extends StatelessWidget {
         Scaffold(
         appBar: AppBar(
           leading: mymenu,
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                   MaterialPageRoute(builder: (context) => const Favorites())
+                   );
+              }, 
+              icon: new Icon(Icons.refresh)
+              )
+          ],
           backgroundColor: maincolor,
           foregroundColor: textpurple,
           title: const Text("Τα Αγαπημένα μου"),
@@ -265,8 +289,8 @@ class Favorites extends StatelessWidget {
   }
 }
 
-class Actions extends StatelessWidget {
-  const Actions({super.key});
+class AllActions extends StatelessWidget {
+  const AllActions({super.key});
 
   // This widget is the root of your application.
   @override
@@ -275,6 +299,18 @@ class Actions extends StatelessWidget {
         Scaffold(
         appBar: AppBar(
           leading: mymenu,
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                   MaterialPageRoute(builder: (context) => const AllActions())
+                   );
+              }, 
+              icon: new Icon(Icons.refresh)
+              )
+          ],
           backgroundColor: maincolor,
           foregroundColor: textpurple,
           title: const Text("Οι Δράσεις μου"),
@@ -318,7 +354,7 @@ floatingActionButton: FloatingActionButton(
           });
         Navigator.pop(context);
 
-        // debugPrint('location ${address.first}');
+         debugPrint('location ${mp.addmaploc!.latitude},${mp.addmaploc!.longitude}');
         
         selectloc = [mp.addmaploc!.latitude,mp.addmaploc!.longitude];
           }
@@ -389,7 +425,6 @@ class MyDrawer extends StatelessWidget{
 
       ListTile(
         leading: const Icon(Icons.add_location_alt),           
-
         title: const Text('Οι Δράσεις μου'),
         onTap: () {
           Navigator.pop(context);            
@@ -397,7 +432,7 @@ class MyDrawer extends StatelessWidget{
 
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const Actions()),
+              MaterialPageRoute(builder: (context) => const AllActions()),
             );
         },
       ),
@@ -470,6 +505,149 @@ class MyDrawer extends StatelessWidget{
 );
   }
 }
+
+
+class MainDrawer extends StatelessWidget{
+    const MainDrawer({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+
+
+    return Drawer(
+  // Add a ListView to the drawer. This ensures the user can scroll
+  // through the options in the drawer if there isn't enough vertical
+  // space to fit everything.
+  child: ListView(
+    // Important: Remove any padding from the ListView.
+    padding: EdgeInsets.zero,
+    children: [
+      const DrawerHeader(
+        decoration: BoxDecoration(
+          
+          color:  maincolor,
+        ),
+        child: Text('Menu'),
+      ),
+      ListTile(
+        leading: const Icon(Icons.home),           
+
+        title: const Text('Αρχική'),
+        onTap: () {
+          // Update the state of the app.
+          // ...
+            Navigator.pop(context);
+            Navigator.pop(context);
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MainPage()),
+            );
+        },
+      ),
+      ListTile(
+        leading: const Icon(Icons.history),           
+
+        title: const Text('Οι Δωρεές μου'),
+        onTap: () {
+          // Update the state of the app.
+          // ...
+            // Navigator.pop(context);            
+            Navigator.pop(context);
+
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Donations()),
+            );
+        },
+      ),
+
+      ListTile(
+        leading: const Icon(Icons.add_location_alt),           
+        title: const Text('Οι Δράσεις μου'),
+        onTap: () {
+          // Navigator.pop(context);            
+          Navigator.pop(context);
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const AllActions()),
+            );
+        },
+      ),
+
+
+     ListTile(
+        leading: const Icon(Icons.favorite),           
+
+        title: const Text('Αγαπημένα'),
+        onTap: () {
+            // Navigator.pop(context);            
+          Navigator.pop(context);
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Favorites()),
+            );
+        },
+      ),
+      const Divider(
+
+      ),
+      ListTile(
+        leading: const Icon(Icons.person),           
+
+        title: const Text('Λογαριασμός'),
+        onTap: () {
+
+            Navigator.pop(context);            
+  //  Navigator.pop(context);
+
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Account()),
+            );
+        },
+      ),
+      
+      ListTile(
+        leading: const Icon(Icons.person_remove),           
+
+        title: const Text('Αποσύνδεση'),
+        onTap: () {
+          myID == "";
+          get_data();
+          Navigator.pop(context);            
+          // Navigator.pop(context);
+
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LoginPage()),
+            );
+        },
+      ),
+
+      ListTile(
+        leading: const Icon(Icons.exit_to_app),           
+
+        title: const Text('Έξοδος'),
+        onTap: () {
+          // Update the state of the app.
+          // ...
+          exit(0);
+        },
+      ),
+    ],
+  ),
+);
+  }
+}
+
+
 
 
 

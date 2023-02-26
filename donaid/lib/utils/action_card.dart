@@ -20,29 +20,10 @@ class ActionCard extends StatefulWidget {
 bool _isFavorited = false;
 
 class _ActionCardState extends State<ActionCard> {
-  // var data ;
-  // @override
-  // void initState(){
 
-  //   super.initState();
-  // }
-
-  // Future<String> load_data() async {
-  //   get_data();
-  //   return "something";
-  // }
 
   @override
   Widget build(BuildContext context) {
-    // return FutureBuilder(
-    //     future: get_data(),
-    //     builder: (context, AsyncSnapshot snapshot) {
-    //       if (snapshot.connectionState == ConnectionState.waiting)
-    //         return Container(); //Center(child: CircularProgressIndicator());
-    //       else 
-          
-    //       if (snapshot.connectionState == ConnectionState.done) {
-
             
             var data = global_action[widget.ID];
             debugPrint('${data}');
@@ -51,6 +32,7 @@ class _ActionCardState extends State<ActionCard> {
             var subheading = 'από "${global_user[data.organization]!.username}"';
             // debugPrint('\n\nAPO   ${}\n\n');
             var cardImage = NetworkImage(data.imgpath);
+            
             var supportingText =
                 data.date + '\n\n' + data.place + '\n\n' + data.description;
 
@@ -81,20 +63,13 @@ class _ActionCardState extends State<ActionCard> {
                         ),
                       ),
                     ),
-
-                    //   AlertDialog(
-                    //   content: Image.asset('https://www.everypixel.com/q/funny-dogs')
-                    // ),
                   }
               },
             ): Container();
 
 Widget deletebutton = (data.organization == myID)
         ? ElevatedButton(
-            // style: ButtonStyle(elevation: MaterialStateProperty(12.0 )),
             style: ElevatedButton.styleFrom(
-                //primary: Colors.purple,
-               // elevation: 15.0,
                 textStyle: const TextStyle()),
             child: const Icon(Icons.delete),
 
@@ -120,13 +95,19 @@ Widget deletebutton = (data.organization == myID)
                           TextButton(
                             child: Text("Διαγραφή"),
                             onPressed: () {
-                              showDialog(
+                                global_action.remove(widget.ID);
+                                get_data().then((value) {
+                                                                showDialog(
                               context: context,
                               builder: (context) => AlertDialog(
                               content: Text(
                                   'Η δράση διαγράφηκε με επιτυχία.'),
                               ),
-              );
+              ).then((value){
+                Navigator.pop(context);
+              
+              });
+                                });
                             },
                           ),
                           ]
@@ -177,7 +158,7 @@ Widget deletebutton = (data.organization == myID)
                           final navstate= Navigator.of(context);
                           // final currentStack = navstate;
 
-                          debugPrint(navstate.toString());
+                          debugPrint('${data.x}, ${data.y}');
                             // Navigator.pop(context);
                             // Navigator.of(context).popUntil((route) => route.toString() != "");
                             Navigator.push(
@@ -200,7 +181,7 @@ Widget deletebutton = (data.organization == myID)
                               (data.isFavorite) ? Colors.red : Colors.black12),
                     ),
                     Container(
-                      height: 175.0,
+                      height: 160.0,
                       child: Ink.image(
                         image: cardImage,
                         fit: BoxFit.cover,
@@ -225,20 +206,7 @@ Widget deletebutton = (data.organization == myID)
                         width: 5,
                       ),
 
-                      // Chip(
-                      //   label: Text(""),
-                      //   // backgroundColor: Colors.white,
-                      //   shape: RoundedRectangleBorder (
-                      //          borderRadius: BorderRadius.circular(5.0),
-                      //   ),
-                      //   side: BorderSide(
-                      //     color: Colors.grey.shade800,
-                      //     width: 1,
-                      //     style: BorderStyle.solid
-                      //   )
-                      // ),
-
-                      Spacer(),
+                          Spacer(),
 
                       button,
                       deletebutton,
@@ -248,50 +216,19 @@ Widget deletebutton = (data.organization == myID)
                       ),
                     ]),
                     Container(
-                      padding: EdgeInsets.all(16.0),
+                      padding: EdgeInsets.all(15),
                       alignment: Alignment.centerLeft,
+                      // child: Padding(
+                      //   padding: EdgeInsets.symmetric(vertical:25.0),
                       child: Text(
                         supportingText,
-                        style: const TextStyle(height: 0.8),
+                        style: const TextStyle(height: 1),
                       ),
+                    // )
                     ),
-                    /* ButtonBar(
-              children: [
-                TextButton(
-                  child: const Text('CONTACT AGENT'),
-                  onPressed: () {/* ... */},
-                ),
-                TextButton(
-                  child: const Text('LEARN MORE'),
-                  onPressed: () {/* ... */},
-                )
-              ],
-            )*/
                   ],
                 ));
-         
-          // } 
-          
-          // else
-          //   return Container();
-
-            
-        // });
-
-    // var data = get_data();
   }
 }
 
 
-//   final String response = await rootBundle.loadString('assets/data/actions.json');
-// // final data = await json.decode(response);
-//   debugPrint('Response : ${response}');
-
-//   final data =  jsonDecode(response);
-//   for (int i = 0; i< data.length; i++){
-//   debugPrint('ID : ${data[i]["ID"]}');
-//   global_action ["${data[i]["ID"]}"] =   DonaidAction.fromJson(data[i]);
-//   }
-//   debugPrint('${global_action}');
-
-//    return "action";

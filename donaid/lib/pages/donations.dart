@@ -1,3 +1,4 @@
+import 'package:donaid/main.dart';
 import 'package:flutter/material.dart';
 import 'package:donaid/utils/action_card.dart';
 import 'package:donaid/utils/data.dart';
@@ -16,12 +17,22 @@ class DonationsPage extends StatelessWidget {
     return Scaffold(
         body: Container(
       padding: EdgeInsets.all(16.0),
-      child: SingleChildScrollView(
+      child:
+              RefreshIndicator(
+            onRefresh: (()async{
+
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) =>  const Donations()),
+                ); 
+                        }),
+            child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
             children: donated,
           )),
-    ));
+    )));
   }
 }
 

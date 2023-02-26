@@ -12,6 +12,8 @@ var selectloc = [0.0, 0.0];
 var setaddress = "";
 var defaultimg =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png";
+var selected_image = defaultimg;
+
 
 class TextFieldWidgetAct extends StatefulWidget {
   final int maxLines;
@@ -146,8 +148,10 @@ class _ActionWidget extends State<ActionWidget> {
                             ),
                           ),
                         ),
+
                       );
-                    });
+                    } ).then((value){selected_image = _img;});
+
               },
               icon: const Icon(
                 Icons.add_a_photo,
@@ -224,7 +228,7 @@ final TextEditingController _catcontroller = new TextEditingController();
 
 class _AddActionPageState extends State<AddActionPage> {
   bool _switchValue = false;
-  var items = ['Τρόφιμα', 'Φάρμακα', 'Αιμοδοσία', 'Αδέσποτα'];
+  var items = ['Τρόφιμα', 'Φάρμακα', 'Άστεγοι', 'Αιμοδοσία', 'Ζώα/Αδέσποτα', 'Βιβλία', 'Ρούχα', 'Παιχνίδια', 'Περιβάλλον', 'Άλλο'];
 
 // var items = <your call to api>;
   @override
@@ -425,7 +429,7 @@ class _AddActionPageState extends State<AddActionPage> {
                 String category = _catcontroller.text;
                 // double x = selectloc[0];
                 // double y = selectloc[1];
-                String imgpath = defaultimg;
+                String imgpath = selected_image;
                 String date =
                     (_switchValue == true) ? "${stdate} έως ${edate}" : "Πάντα";
                 var errmessage = " \n";
@@ -470,8 +474,8 @@ class _AddActionPageState extends State<AddActionPage> {
                       organization: myID,
                       date: date,
                       place: location,
-                      x: selectloc[1],
-                      y: selectloc[0],
+                      x: selectloc[0],
+                      y: selectloc[1],
                       imgpath: imgpath,
                       isFavorite: false,
                       hasDonated: false,
@@ -483,11 +487,13 @@ class _AddActionPageState extends State<AddActionPage> {
                         context: context,
                         builder: (context) => AlertDialog(
                               content: Text(errmessage),
-                            ));
+                            )).then((value){
+                              Navigator.pop(context);
+                            });
                   }));
                 }
               },
-              child: Text('Submit'),
+              child: Text('Δημιουργία'),
             )
           ],
         ),
