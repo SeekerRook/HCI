@@ -281,7 +281,7 @@ class _AddActionPageState extends State<AddActionPage> {
                       MaterialPageRoute(builder: (context) => const MyMap()),
                     );
                   },
-                  icon: Icon(Icons.search),
+                  icon: Icon(Icons.add_location_alt_outlined),
                 ),
                 suffixIcon: IconButton(
                   onPressed: () {
@@ -293,6 +293,7 @@ class _AddActionPageState extends State<AddActionPage> {
                   icon: Icon(Icons.clear),
                 ),
                 labelText: "Τοποθεσία",
+                hintText: "Πάτα το pin αριστερά "
               ),
               onChanged: (location) {},
             ),

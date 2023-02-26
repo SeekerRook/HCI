@@ -1,3 +1,4 @@
+import 'package:donaid/pages/forgot_password.dart';
 import 'package:flutter/material.dart';
 import 'package:donaid/main.dart';
 import 'package:donaid/theme.dart';
@@ -15,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
 
   Widget build(BuildContext context) {
-
+    debugPrint("%_LOGIN PAGE START!");
     return Scaffold(
       backgroundColor: maincolor,
       appBar: AppBar(
@@ -69,9 +70,12 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: (){
                 //TODO FORGOT PASSWORD SCREEN GOES HERE
               },
-              child: Text(
-                'Forgot Password',
-                style: TextStyle(color: pincolor, fontSize: 15),
+              child: TextButton(
+                child: Text('Ξέχασα τον κωδικό μου',style: TextStyle(color: pincolor, fontSize: 15),),
+                onPressed: (){
+                  //Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>ForgotPassword()));
+                },
               ),
             ),
             Container(
@@ -108,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
 
 
             TextButton(
-                            child: Text("Sign up"),
+                            child: Text("Δημιουργία λογαριασμού"),
                             onPressed: () {
             
             Navigator.push(
