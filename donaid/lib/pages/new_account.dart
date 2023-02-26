@@ -283,17 +283,23 @@ class _NewProfilePageState extends State<NewProfilePage> {
                     imageurl: selected_image);
                 global_user[ID] = newuser;
                 debugPrint(selected_image);
+
                 // global_user[ID]!.password= pswdcontroller.text;
                 // global_user[ID]!.username= usernamecontroller.text;
                 // global_user[ID]!.email= emailcontroller.text;
                 // global_user[ID]!.bio= infocontroller.text;
                 // global_user[ID]!.contact= contactcontroller.text;
-                get_data();
-                Navigator.pop(context);
+                if (emailcontroller.text!="" && usernamecontroller.text!="" && pswdcontroller.text!="")
+                get_data().then((value) {
+                  
+                                  Navigator.pop(context);
+                                  Navigator.pop(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => LoginPage()),
                 );
+                });
+
               },
             )
           ],
