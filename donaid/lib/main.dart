@@ -67,20 +67,20 @@ void main_()async {
 
 // ValueNotifier<bool> isDialOpen = ValueNotifier(false);
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'DonAid',
-      theme: mytheme,
-      home: MainPage(), 
+//   // This widget is the root of your application.
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'DonAid',
+//       theme: mytheme,
+//       home: MainPage(), 
 
-    );
-  }
-}
+//     );
+//   }
+// }
 
 class MainPage extends StatelessWidget {
   LatLng? pos;
