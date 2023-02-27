@@ -20,7 +20,7 @@ class QRView extends StatelessWidget{
               final String code = barcode.rawValue!;
               List<String> valid_barcodes = (global_action).keys.toList();
               if (valid_barcodes.contains(code)){
-                   global_action[code]!.hasDonated = true;
+                   global_action[code]!.hasDonated.add(myID);
 
                   showDialog<String>(
                     

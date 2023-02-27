@@ -476,8 +476,8 @@ class _AddActionPageState extends State<AddActionPage> {
                       x: selectloc[0],
                       y: selectloc[1],
                       imgpath: imgpath,
-                      isFavorite: false,
-                      hasDonated: false,
+                      isFavorite: [],
+                      hasDonated: [],
                       type: category,
                       description: description);
                   selectloc = [0.0, 0.0];

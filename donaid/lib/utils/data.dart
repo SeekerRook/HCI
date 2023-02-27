@@ -69,8 +69,8 @@ class DonaidAction {
   String title;
   String organization;
   String imgpath;
-  bool hasDonated;
-  bool isFavorite;
+  List<dynamic> hasDonated;
+  List<dynamic> isFavorite;
   String type;
   String date;
   String place;
@@ -85,14 +85,14 @@ class DonaidAction {
     var organization = data['organization'] as String;
     var date = data['date'] as String;
     var imgpath = data["imgpath"] as String;
-    var hasDonated = data["hasDonated"] as bool;
-    var isFavorite = data["isFavorite"] as bool;
+    var hasDonated = data["hasDonated"] as List<dynamic>;
+    var isFavorite = data["isFavorite"] as List<dynamic>;
     var type = data["type"] as String;
     var place = data['place'] as String;
     var x = data['x'] as double;
     var y = data['y'] as double;
     var description = data['description'] as String;
-
+    debugPrint('%_ ${hasDonated.toString()}');
     return DonaidAction(
       title: title,
       organization: organization,
@@ -140,23 +140,33 @@ Map<String, DonaidAction> global_action =
 
 var client = Client();
 Future<String> get_data_() async {
-  var geturl = Uri.http('seekerrook.pythonanywhere.com', 'actions/');
-  var posturl = Uri.http('seekerrook.pythonanywhere.com', 'actions/post');
+  var geturl = Uri.http('seekerrook.pythonanywhere.com', 'test/actions/');
+  var posturl = Uri.http('seekerrook.pythonanywhere.com', 'test/actions/post');
   final response = (await client.get(geturl)).body;
   debugPrint('got response');
 
   debugPrint('Response : ${response}');
 
   if (global_action.isEmpty) {
-    debugPrint('EMPTY');
+    debugPrint('%_ EMPTY');
 
     // final data = jsonDecode(response);
     final data = (await json.decode(response))['data'];
+    debugPrint('%_  ${data.toString()}');
+    debugPrint('%_  ${data.length}');
+    debugPrint('%_  ${data[0]["ID"]}');
+    
+    debugPrint('%_ ${global_action.toString()}');
+
 
     for (int i = 0; i < data.length; i++) {
+    debugPrint('%_  $i');
+
       global_action["${data[i]["ID"]}"] = DonaidAction.fromJson(data[i]);
+    debugPrint('%_ ${global_action.toString()}');
+
     }
-    debugPrint(global_action.toString());
+    debugPrint('%_ ${global_action.toString()}');
 
   } else {
     debugPrint('! EMPTY');

@@ -172,13 +172,13 @@ Widget deletebutton = (data.organization == myID)
                       trailing: IconButton(
                           onPressed: () => {
                                 setState(
-                                    () => data.isFavorite = !data.isFavorite)
+                                    () => (data.isFavorite.contains(myID))?data.isFavorite.remove(myID):data.isFavorite.add(myID) )
                               },
-                          icon: data.isFavorite
+                          icon: data.isFavorite.contains(myID)
                               ? Icon(Icons.favorite)
                               : Icon(Icons.favorite_border),
                           color:
-                              (data.isFavorite) ? Colors.red : Colors.black12),
+                              (data.isFavorite.contains(myID)) ? Colors.red : Colors.black12),
                     ),
                     Container(
                       height: 160.0,

@@ -11,7 +11,7 @@ class DonationsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> donated = [] ;
     for (var v in global_action.keys){
-    if (global_action[v]!.hasDonated)
+    if (global_action[v]!.hasDonated.contains(myID))
     donated.add(ActionCard(v));
     }
     return Scaffold(
