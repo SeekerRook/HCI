@@ -477,16 +477,20 @@ class MyDrawer extends StatelessWidget{
 
         title: const Text('Αποσύνδεση'),
         onTap: () {
-          myID == "";
-          get_data();
-          Navigator.pop(context);            
-          Navigator.pop(context);
+          myID = "";
+          debugPrint("%_gettingdata....");
 
+          get_data().then((value) {
+          Navigator.popUntil(context, (route) => route.isFirst);
+          Navigator.pop(context);
+          Navigator.pop(context);
 
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => LoginPage()),
             );
+          });
+
         },
       ),
 
@@ -614,16 +618,22 @@ class MainDrawer extends StatelessWidget{
 
         title: const Text('Αποσύνδεση'),
         onTap: () {
-          myID == "";
-          get_data();
-          Navigator.pop(context);            
+          myID = "";
+          debugPrint("%_gettingdata....");
+          
+          get_data().then((value){
+          // Navigator.pop(context);            
           // Navigator.pop(context);
-
+          Navigator.popUntil(context, (route) => route.isFirst);
+          Navigator.pop(context);
+          Navigator.pop(context);
 
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => LoginPage()),
             );
+          });
+
         },
       ),
 

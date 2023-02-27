@@ -195,7 +195,7 @@ Future<String> get_users_() async {
   debugPrint('Response : ${response}');
 
   if (global_user.isEmpty) {
-    debugPrint('EMPTY');
+    debugPrint('%_ EMPTY');
 
     // final data = jsonDecode(response);
     final data = (await json.decode(response))['data'];
@@ -208,7 +208,7 @@ Future<String> get_users_() async {
     debugPrint(global_user.toString());
 
   } else {
-    debugPrint('! EMPTY');
+    debugPrint('%_ ! EMPTY');
 
     var response = [];
     for (var i in global_user.keys) {
@@ -220,7 +220,7 @@ Future<String> get_users_() async {
     String result = jsonEncode({"data": response,"curr":myID});
     await client.post(posturl,
         headers: {"Content-Type": "application/json"}, body: result);
-    debugPrint('POST');
+    debugPrint('%_ POST : ${myID}');
       
     // file.writeAsString(result);
     // .fromJson(file.readAsString());
