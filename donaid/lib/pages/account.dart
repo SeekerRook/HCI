@@ -306,7 +306,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             Spacer(),
             TextButton(
               style: TextButton.styleFrom(),
-              child: Text('Διαγραφη λογαριασμού'),
+              child: Text('Διαγραφή λογαριασμού'),
               onPressed: () {
                 //  showDialog(
                 //     context: context,

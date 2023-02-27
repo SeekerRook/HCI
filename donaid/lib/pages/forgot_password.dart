@@ -8,18 +8,50 @@ class ForgotPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: maincolor,
        appBar: AppBar(
           leading: previouspage,
-          backgroundColor: maincolor,
+          // backgroundColor: maincolor,
           foregroundColor: textpurple,
           title: Text("Ανάκτηση κωδικού"),
           ),
-       body: 
-       Padding(
-        padding: EdgeInsets.all(6.0),
-        child:Text("Εάν έχετε ξεχάσει τον κωδικό σας, συμπληρώστε παρακάτω το email σας και θα σας αποστείλουμε έναν νέο προσωρινό κωδικό. Μπορείτε να χρησιμοποιήσετε αυτον τον κωδικό για να εισέλθετε στην εφαρμογή και στην συνέχεια να ορίσετε έναν νέο κωδικό για τον λογαριασμό σας. "),
-      )
+       body: Center(
+        child:Column(
+      children:[ 
+        
+        Padding(
+        padding: EdgeInsets.all(20.0),
+        child:
+      Text("Εάν έχετε ξεχάσει τον κωδικό σας, συμπληρώστε παρακάτω το email σας και θα σας αποστείλουμε έναν νέο προσωρινό κωδικό. Μπορείτε να χρησιμοποιήσετε αυτόν τον κωδικό για να εισέλθετε στην εφαρμογή και στην συνέχεια να ορίσετε έναν νέο κωδικό για τον λογαριασμό σας. "),),
+      //)
+      Padding(padding: 
+      EdgeInsets.all(20.0)),
+
+      const SizedBox(
+       height: 100, 
+       width:300,
+       child:  TextField(
+            decoration: 
+            InputDecoration(
+            labelText: 'email',
+           // hintText: 'email',
+            border: OutlineInputBorder(),
+            contentPadding: EdgeInsets.symmetric(horizontal: 20),
+          ),
+          )
+),
+
+// Spacer(),
+TextButton(
+  child: Text('Αποστολή κωδικού'),
+  onPressed: () {}
+  )
+      ]
+       ),
+       )
       );
+
+      
       // body: Center(
         // child: TextButton(
         //   onPressed: () {},

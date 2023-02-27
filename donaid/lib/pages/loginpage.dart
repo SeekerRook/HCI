@@ -62,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
                 obscureText: true,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Password',
+                    labelText: 'Κωδικός',
                  ),
               ),
             ),
@@ -96,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                 
                 },
                 child: Text(
-                  'Login',
+                  'Είσοδος',
                   style: TextStyle(color: secondarycolor, fontSize: 25),
                 ),
               ),
