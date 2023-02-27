@@ -22,6 +22,7 @@ import 'dart:io';
 
 import 'package:geocoder/geocoder.dart';
 import 'package:latlng/latlng.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'pages/new_account.dart';
 
@@ -43,7 +44,9 @@ void main_()async {
       ), 
 
   ));
+
  get_data().then((value)  {
+
   var start = (myID == "")?LoginPage():MainPage();
  runApp( MaterialApp(
       title: "DonAid",
@@ -482,8 +485,11 @@ class MyDrawer extends StatelessWidget{
 
           get_data().then((value) {
           Navigator.popUntil(context, (route) => route.isFirst);
+          debugPrint("LAST");
           Navigator.pop(context);
-          Navigator.pop(context);
+          debugPrint("LAST");
+
+          // Navigator.pop(context);
 
             Navigator.push(
               context,
@@ -624,9 +630,11 @@ class MainDrawer extends StatelessWidget{
           get_data().then((value){
           // Navigator.pop(context);            
           // Navigator.pop(context);
+ 
           Navigator.popUntil(context, (route) => route.isFirst);
+          debugPrint("LAST");
           Navigator.pop(context);
-          Navigator.pop(context);
+          debugPrint("LAST");
 
             Navigator.push(
               context,

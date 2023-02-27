@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DonaidUser {
   DonaidUser({
@@ -124,7 +125,7 @@ class DonaidAction {
   }
 }
 
-String myID = "U1";
+String myID = "";
 // String loggedin = "U1";
 // DonaidUser me = 
 
@@ -140,6 +141,7 @@ Map<String, DonaidAction> global_action =
 
 var client = Client();
 Future<String> get_data_() async {
+
   var geturl = Uri.http('seekerrook.pythonanywhere.com', 'test/actions/');
   var posturl = Uri.http('seekerrook.pythonanywhere.com', 'test/actions/post');
   final response = (await client.get(geturl)).body;
@@ -187,6 +189,9 @@ Future<String> get_data_() async {
   return "action";
 }
 Future<String> get_users_() async {
+
+  final prefs = await SharedPreferences.getInstance();
+
   var geturl = Uri.http('seekerrook.pythonanywhere.com', 'users/');
   var posturl = Uri.http('seekerrook.pythonanywhere.com', 'users/post');
   final response = (await client.get(geturl)).body;
@@ -199,7 +204,13 @@ Future<String> get_users_() async {
 
     // final data = jsonDecode(response);
     final data = (await json.decode(response))['data'];
-    myID = (await json.decode(response))['curr'];
+    // myID = (await json.decode(response))['curr'];
+    try{
+    myID = prefs.getString("myID")!;
+    }
+    catch(e){
+      myID = "";
+    }
 
     for (int i = 0; i < data.length; i++) {
       global_user["${data[i]["ID"]}"] = DonaidUser.fromJson(data[i]);
@@ -209,6 +220,9 @@ Future<String> get_users_() async {
 
   } else {
     debugPrint('%_ ! EMPTY');
+    // debugPrint('%_ EMPTY');
+    prefs.setString("myID", myID);
+
 
     var response = [];
     for (var i in global_user.keys) {
