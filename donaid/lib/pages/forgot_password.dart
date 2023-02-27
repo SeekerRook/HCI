@@ -44,7 +44,13 @@ class ForgotPassword extends StatelessWidget {
 // Spacer(),
 TextButton(
   child: Text('Αποστολή κωδικού'),
-  onPressed: () {}
+  onPressed: () {
+    showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text('Επιτυχής αποστολή κωδικού.\n Ελέγξτε το email σας.' )
+                    ));
+  }
   )
       ]
        ),
