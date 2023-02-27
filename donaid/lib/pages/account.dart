@@ -137,8 +137,9 @@ class _ProfileWidget extends State<ProfileWidget> {
                         ),
                       );
                     }).then((value) {
-                      selected_image = _img;//weu-az-mfv-live-cdnep.azureedge.net/mediacontainer/medialibraries/myfamilyvets/my-family-vets/articles-2020/labrador-hero.jpg?ext=.jpg
-                    });
+                  selected_image =
+                      _img; //weu-az-mfv-live-cdnep.azureedge.net/mediacontainer/medialibraries/myfamilyvets/my-family-vets/articles-2020/labrador-hero.jpg?ext=.jpg
+                });
               },
               icon: const Icon(
                 Icons.add_a_photo,
@@ -272,36 +273,34 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 style: TextButton.styleFrom(),
                 child: Text('Αποθήκευση αλλαγών'),
                 onPressed: () {
-                // var ID = "U${global_user.length + 1}";
-                var newuser = DonaidUser(
-                    username: usernamecontroller.text,
-                    email: emailcontroller.text,
-                    password: pswdcontroller.text,
-                    contact: contactcontroller.text,
-                    bio: infocontroller.text,
-                    imageurl: selected_image);
-                global_user[myID] = newuser;
-                debugPrint(selected_image);
-                // global_user[ID]!.password= pswdcontroller.text;
-                // global_user[ID]!.username= usernamecontroller.text;
-                // global_user[ID]!.email= emailcontroller.text;
-                // global_user[ID]!.bio= infocontroller.text;
-                // global_user[ID]!.contact= contactcontroller.text;
-                get_data().then((value) {
-                                   showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                      content: Text(
-                          'Οι αλλαγές αποθηκεύτηκαν!'),
-                    ),
-                  );
-
-                });
-                // Navigator.pop(context);
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => LoginPage()),
-                // );                  
+                  // var ID = "U${global_user.length + 1}";
+                  var newuser = DonaidUser(
+                      username: usernamecontroller.text,
+                      email: emailcontroller.text,
+                      password: pswdcontroller.text,
+                      contact: contactcontroller.text,
+                      bio: infocontroller.text,
+                      imageurl: selected_image);
+                  global_user[myID] = newuser;
+                  debugPrint(selected_image);
+                  // global_user[ID]!.password= pswdcontroller.text;
+                  // global_user[ID]!.username= usernamecontroller.text;
+                  // global_user[ID]!.email= emailcontroller.text;
+                  // global_user[ID]!.bio= infocontroller.text;
+                  // global_user[ID]!.contact= contactcontroller.text;
+                  get_data().then((value) {
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        content: Text('Οι αλλαγές αποθηκεύτηκαν!'),
+                      ),
+                    );
+                  });
+                  // Navigator.pop(context);
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => LoginPage()),
+                  // );
                 }),
             Spacer(),
             TextButton(
@@ -337,7 +336,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                               TextButton(
                                 child: Text("Διαγραφή"),
                                 onPressed: () {
-                                  global_user.remove(myID);
+                                  global_user[myID]!.email = 'deleted${myID}';
+                                  global_user[myID]!.password =
+                                      'deleted${myID}';
                                   for (var v in global_action.keys) {
                                     if (global_action[v]!.organization ==
                                         myID) {
@@ -345,14 +346,15 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     }
                                   }
                                   myID = "";
-                                  get_data();
-                                  Navigator.pop(context);
-                                  Navigator.pop(context);
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => LoginPage()),
-                                  );
+                                  get_data().then((vlue) {
+                                    Navigator.pop(context);
+                                    Navigator.pop(context);
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => LoginPage()),
+                                    );
+                                  });
                                 },
                               ),
                             ])
