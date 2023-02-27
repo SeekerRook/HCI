@@ -11,7 +11,7 @@ class FavoritePage extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> favorites = [];
     for (var v in global_action.keys) {
-      if (global_action[v]!.isFavorite) favorites.add(ActionCard(v));
+      if (global_action[v]!.isFavorite.contains(myID)) favorites.add(ActionCard(v));
     }
     return Scaffold(
         body: Container(
