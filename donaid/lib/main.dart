@@ -507,7 +507,9 @@ class MyDrawer extends StatelessWidget{
         onTap: () {
           // Update the state of the app.
           // ...
-          exit(0);
+          // exit(0);
+          get_data().then((value) => exit(0));
+
         },
       ),
     ],
@@ -652,7 +654,8 @@ class MainDrawer extends StatelessWidget{
         onTap: () {
           // Update the state of the app.
           // ...
-          exit(0);
+          get_data().then((value) => exit(0));
+          // exit(0);
         },
       ),
     ],
